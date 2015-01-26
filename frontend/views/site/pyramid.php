@@ -29,6 +29,7 @@ $this->registerJs("
                 plotBackgroundImage:'./images/bg_pop.png',
                 height:460
             },
+            credits:{'enabled':false},
             title: {
                 text: 'ปิรามิดประชากร ปี '+2558
             },
@@ -41,7 +42,7 @@ $this->registerJs("
                 labels: {
                     step: 1
                 }
-            }, { // mirror axis on right side
+            }, { 
                 opposite: true,
                 reversed: false,
                 categories: categories,
