@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
  */
 class SiteController extends Controller
 {
+    ///
     /**
      * @inheritdoc
      */
