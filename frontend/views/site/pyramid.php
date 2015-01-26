@@ -14,15 +14,14 @@ $data_female = [1656154, 1787564, 1981671, 2108575, 2403438, 2366003, 2301402, 2
 $female = implode(',', $data_female);
 
 $categories = ['0-4', '5-9', '10-14', '15-19',
-            '20-24', '25-29', '30-34', '35-39', '40-44',
-            '45-49', '50-54', '55-59', '60-64', '65-69',
-            '70-74', '75-79', '80-84', '85-89', '90-94',
-            '95-99', '100 + '];
+    '20-24', '25-29', '30-34', '35-39', '40-44',
+    '45-49', '50-54', '55-59', '60-64', '65-69',
+    '70-74', '75-79', '80-84', '85-89', '90-94',
+    '95-99', '100 + '];
 $categories = implode("','", $categories);
 
 $this->registerJs("
-    var categories = ['$categories'];
-    $(document).ready(function () {
+        var categories = ['$categories'];    
         $('#ch1').highcharts({
             chart: {
                 type: 'bar',
@@ -63,20 +62,17 @@ $this->registerJs("
                 min: -4000000,
                 max: 4000000
             },
-
             plotOptions: {
                 series: {
                     stacking: 'normal'
                 }
             },
-
             tooltip: {
                 formatter: function () {
                     return '<b>' + this.series.name + ', อายุ ' + this.point.category + '</b><br/>' +
                         'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
                 }
             },
-
             series: [{
                 name: 'ชาย',
                 data: [$male]
@@ -85,7 +81,7 @@ $this->registerJs("
                 data: [$female]
             }]
         });
-    });");
+    ");
 ?>
 <div style="display: none">
     <?=
