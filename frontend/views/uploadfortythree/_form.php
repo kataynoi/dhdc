@@ -31,9 +31,7 @@ use kartik\widgets\FileInput;
     <?= $form->field($model, 'upload_time')->hiddenInput(['value' => date('His')])->label(false) ?>
 
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Upload') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+    
 
     <?php ActiveForm::end(); ?>
 

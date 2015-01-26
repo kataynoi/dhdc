@@ -71,15 +71,19 @@ class UploadFortythreeController extends Controller {
                             'model' => $model,
                 ]);
             }
-            $model->file_name = "$upfile->name";
-            $model->file_size = "$upfile->size";
+            $hospcode = explode("_", $upfile->baseName);
+            $model->hospcode = $hospcode[1];
+            $newname = $upfile->baseName . "_" . date('ymdhis') . "." . $upfile->extension;
+            $model->file_name = $newname;
+            $model->file_size = strval($upfile->size / 1000000);
 
 
 
             try {
                 //echo $model->hasErrors();
                 $model->save();
-                $upfile->saveAs('./fortythree/' . $upfile->name);
+                $path = './fortythree/';
+                $upfile->saveAs($path . $newname);
                 return $this->redirect(['view', 'id' => $model->id]);
             } catch (\yii\base\ErrorException $e) {
                 return new \Exception('error while save.');
