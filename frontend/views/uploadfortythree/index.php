@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\UploadFortythreeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Upload Fortythrees');
+$this->title = Yii::t('app', 'Fortythrees All');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-fortythree-index">
@@ -27,12 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'hospcode',
             'file_name',
             'file_size',
             'upload_date',
-            // 'upload_time',
+            'upload_time',
             // 'note1',
             // 'note2',
             // 'note3',

@@ -7,9 +7,9 @@ use yii\helpers\Html;
 /* @var $model frontend\models\UploadFortythree */
 
 $this->title = Yii::t('app', '{modelClass}', [
-    'modelClass' => 'Upload Fortythree',
+    'modelClass' => 'Fortythrees',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Upload Fortythrees'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Fortythrees All'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-fortythree-create">
