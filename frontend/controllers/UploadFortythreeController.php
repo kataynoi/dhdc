@@ -79,15 +79,42 @@ class UploadFortythreeController extends Controller {
 
 
 
-            try {
-                //echo $model->hasErrors();
-                $model->save();
-                $path = './fortythree/';
-                $upfile->saveAs($path . $newname);
-                return $this->redirect(['view', 'id' => $model->id]);
-            } catch (\yii\base\ErrorException $e) {
-                return new \Exception('error while save.');
+
+            //echo $model->hasErrors();
+            $model->save();
+            $path = './fortythree/';
+            $upfile->saveAs($path . $newname);
+            
+            $zip = new \ZipArchive();
+            if ($zip->open($path . $newname) === TRUE) {
+                $zip->extractTo($path);
+                $zip->close();
             }
+            
+            rename($path.$upfile->baseName,$path.$newname);
+            $dirname=$path.$newname;
+            //echo $dirname;
+            $dir = opendir($dirname);
+            
+            while (($file = readdir($dir)) !== false) {
+                if ($file !== "." && $file !== "..") {
+
+                    $p = pathinfo($file);
+                    $f = $p['filename'];
+                    $f = strtolower($f);
+                    $sql = "LOAD DATA LOCAL INFILE 'fortythree/$newname/$file'";
+                    $sql.= " REPLACE INTO TABLE $f";
+                    $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+
+                    Yii::$app->db->createCommand($sql)->execute();
+                    //$rows[$f] = Yii::app()->db->createCommand($sql)->execute();
+                }
+            }
+            closedir($dir);
+
+            
+            return $this->redirect(['view', 'id' => $model->id]);
+
             //}
         } else {
             return $this->render('create', [
