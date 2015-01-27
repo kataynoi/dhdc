@@ -64,7 +64,7 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-left'],
                 'encodeLabels' => false,
-                'items' => [['label' => 'ศูนย์ข้อมูล43แฟ้ม อ.'.'เมืองเพชรบูรณ์']],
+                'items' => [['label' => 'DHDC : ศูนย์ข้อมูล43แฟ้ม อ.'.'เมืองเพชรบูรณ์']],
             ]);
             
             echo Nav::widget([
