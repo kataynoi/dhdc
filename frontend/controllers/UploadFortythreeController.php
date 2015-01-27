@@ -76,12 +76,14 @@ class UploadFortythreeController extends Controller {
             $newname = $upfile->baseName . "_" . date('ymdhis') . "." . $upfile->extension;
             $model->file_name = $newname;
             $model->file_size = strval($upfile->size / 1000000);
-            $model->note1=$upfile->baseName;
-            $model->note2='0';
+            $model->note1 = $upfile->baseName;
+            $model->note2 = '0';
 
             $model->save();
             $path = './fortythree/';
+            $pathbackup = './fortythreebackup/';
             $upfile->saveAs($path . $newname);
+            copy($path . $newname, $pathbackup . $newname);
 
             return $this->redirect(['view', 'id' => $model->id]);
 
