@@ -16,31 +16,43 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', '{modelClass}', [
-    'modelClass' => 'Upload Fortythree',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <?=
+        Html::a(Yii::t('app', '{modelClass}', [
+                    'modelClass' => 'Upload Fortythree',
+                ]), ['create'], ['class' => 'btn btn-success'])
+        ?>
     </p>
 
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             //'id',
             'hospcode',
-            'file_name',
+            [
+                'attribute' => 'file_name',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->file_name,array('view','id'=>$data->id));
+                },
+            ],
             'file_size',
             'upload_date',
             'upload_time',
             // 'note1',
-            // 'note2',
-            // 'note3',
-            // 'note4',
-            // 'note5',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            array(
+                'attribute' => 'note2',
+                'value' => function ($data) {
+                    return $data->note2 === '1' ? 'OK' : 'รอนำเข้า';
+                }
+            ),
+        // 'note3',
+        // 'note4',
+        // 'note5',
         ],
-    ]); ?>
+    ]);
+    ?>
 
 </div>

@@ -76,44 +76,11 @@ class UploadFortythreeController extends Controller {
             $newname = $upfile->baseName . "_" . date('ymdhis') . "." . $upfile->extension;
             $model->file_name = $newname;
             $model->file_size = strval($upfile->size / 1000000);
+            $model->note1=$upfile->baseName;
 
-
-
-
-            //echo $model->hasErrors();
             $model->save();
             $path = './fortythree/';
             $upfile->saveAs($path . $newname);
-
-            $zip = new \ZipArchive();
-            if ($zip->open($path . $newname) === TRUE) {
-                $zip->extractTo($path);
-                $zip->close();
-            }
-
-            rename($path . $upfile->baseName, $path . $newname);
-            $dirname = $path . $newname;
-            //echo $dirname;
-            $dir = opendir($dirname);
-
-            while (($file = readdir($dir)) !== false) {
-                if ($file !== "." && $file !== "..") {
-
-                    $p = pathinfo($file);
-                    $f = $p['filename'];
-                    $f = strtolower($f);
-                    if ($f !== 'export_stat') {
-                        $sql = "LOAD DATA LOCAL INFILE 'fortythree/$newname/$file'";
-                        $sql.= " REPLACE INTO TABLE $f";
-                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
-                    }
-                    Yii::$app->db->createCommand($sql)->execute();
-                    //unlink("fortythree/$newname/$file");
-                }
-            }
-            closedir($dir);
-            //rmdir($dirname);
-
 
             return $this->redirect(['view', 'id' => $model->id]);
 
@@ -124,8 +91,6 @@ class UploadFortythreeController extends Controller {
             ]);
         }
     }
-    
-    
 
     /**
      * Updates an existing UploadFortythree model.

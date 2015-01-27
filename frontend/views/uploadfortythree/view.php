@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-fortythree-view">
 
-   
+
 
     <p>
         <?= Html::a(Yii::t('app', 'Upload'), ['create'], ['class' => 'btn btn-success']) ?>
-        
+
     </p>
 
     <?=
@@ -29,8 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'file_size',
             'upload_date',
             'upload_time',
+            'note1'
         ],
     ])
     ?>
 
+    <?php
+    if($model->note2 !== '1'):?>
+    <?php
+    echo Html::a(Yii::t('app', 'นำเข้า'), ['ajax/importfortythree',
+        'fortythree' => $model->file_name,
+        'oldname' => $model->note1, 'id' => $model->id], ['class' => 'btn btn-primary']);
+    
+    ?>
+    <?php else: ?>
+    <div class="alert alert-danger">นำเข้าแล้ว..</div>    
+    <?php    endif;?>
+
+    
 </div>
