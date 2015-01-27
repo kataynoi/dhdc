@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\UploadFortythree */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Upload Fortythrees'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Fortythrees All '), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-fortythree-view">
@@ -34,17 +34,40 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
     ?>
 
-    <?php
-    if($model->note2 !== '1'):?>
-    <?php
-    echo Html::a(Yii::t('app', 'นำเข้า'), ['ajax/importfortythree',
-        'fortythree' => $model->file_name,
-        'oldname' => $model->note1, 'id' => $model->id], ['class' => 'btn btn-primary']);
-    
-    ?>
+    <?php if ($model->note2 !== '1'): ?>
+        <?php
+        echo Html::a(Yii::t('app', 'นำเข้า'), ['ajax/importfortythree',
+            'fortythree' => $model->file_name,
+            'oldname' => $model->note1, 'id' => $model->id], ['class' => 'btn btn-primary']);
+        ?>
+        <button class="btn btn-danger" id="btn_import">นำเข้า</button>
     <?php else: ?>
-    <div class="alert alert-danger">นำเข้าแล้ว..</div>    
-    <?php    endif;?>
+        <div class="alert alert-danger">นำเข้าแล้ว..</div>    
+    <?php endif; ?>
 
-    
+    <?php
+    $script = <<< JS
+$('#btn_import').on('click', function(e) {
+   
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    $('#res').toggle();  
+        
+    $.ajax({
+       url: 'index.php?r=ajax/import',
+       data: {fortythree:"$model->file_name",oldname:"$model->note1",id:"$model->id"},
+       success: function(data) {
+            $('#res').toggle(); 
+            alert(data+' สำเร็จ');
+            window.location.reload();
+       }
+    });
+});
+JS;
+    $this->registerJs($script);
+    ?>
+    <div id="res" style="display: none">
+        <img src="images/busy.gif">
+    </div>
+
+
 </div>

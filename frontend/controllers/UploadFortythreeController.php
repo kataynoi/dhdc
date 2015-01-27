@@ -77,6 +77,7 @@ class UploadFortythreeController extends Controller {
             $model->file_name = $newname;
             $model->file_size = strval($upfile->size / 1000000);
             $model->note1=$upfile->baseName;
+            $model->note2='0';
 
             $model->save();
             $path = './fortythree/';

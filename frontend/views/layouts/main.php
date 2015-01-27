@@ -54,7 +54,7 @@ AppAsset::register($this);
             $menuItems = [
                 
                 ['label' => '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน', 'url' => ['/site/about']],
-                ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/site/contact']],
+                ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/uploadfortythree/index']],
                 ['label' => '<span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน '.$username,
                     'items' => $submenuItems
                 ]
