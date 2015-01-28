@@ -8,23 +8,55 @@ $this->title = 'My Yii Application';
     <div class="well">
         <h1>ระบบ District HDC BACK-END</h1>
     </div>
-    <div>
-        <a class="btn btn-primary" href="<?=Yii::$app->urlManager->createUrl('user/index')?>"> 
-         จัดการ USER
-         </a>
-         <button class="btn btn-danger" id="btn_1"> 
-         ประมวลผลรายงาน
-         </button>
-        
-         <a class="btn btn-warning" href="<?=Yii::$app->urlManager->createUrl('execute/index')?>"> 
-         Show Processlist
-         </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <a class="btn btn-primary" href="<?= Yii::$app->urlManager->createUrl('user/index') ?>"> 
+                    จัดการ USER
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-danger" id="btn_1"> 
+                    ประมวลผลรายงาน
+                </button>
+
+                <div id="res" style="display: none">
+                    <img src="images/busy.gif">
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <a class="btn btn-warning" href="<?= Yii::$app->urlManager->createUrl('execute/index') ?>"> 
+                    Show Processlist
+                </a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <?php
+                $onoff = \frontend\models\SysOnoffUpload::findOne(1);
+                $route_on = Yii::$app->urlManager->createUrl('onoff/on');
+                 $route_off = Yii::$app->urlManager->createUrl('onoff/off');
+                if ($onoff->status === 'on'):
+                    ?>
+                 <a class="btn btn-danger" href="<?=$route_off?>">Close Upload</a>
+                <?php else: ?>
+                <a class="btn btn-success" href="<?=$route_on?>">Open Upload</a>
+                <?php endif; ?>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
     </div>
 
-    <div class="body-content">
-        <?php
-        $route = Yii::$app->urlManager->createUrl('execute/execute');
-        $script = <<< JS
+
+</div>
+
+<?php
+$route = Yii::$app->urlManager->createUrl('execute/execute');
+$script = <<< JS
 $('#btn_1').on('click', function(e) {
                 
     if(!confirm('ประมวลผลรายงาน')){
@@ -49,10 +81,5 @@ $('#btn_1').on('click', function(e) {
     });
 });
 JS;
-        $this->registerJs($script);
-        ?>
-        <div id="res" style="display: none">
-            <img src="images/busy.gif">
-        </div>
-    </div>
-</div>
+$this->registerJs($script);
+?>
