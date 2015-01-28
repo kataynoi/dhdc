@@ -3,7 +3,10 @@ use yii\helpers\ArrayHelper;
 ?>
 
 <h3>สร้างรายงาน</h3>
-<form>
+<?php
+$route = Yii::$app->urlManager->createUrl('runquery/result');
+?>
+<form method="POST" action="<?=$route?>">
     <h4>ชื่อรายงาน</h4>
     <input type="text" class="form-control">
     

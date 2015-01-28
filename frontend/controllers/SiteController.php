@@ -74,9 +74,7 @@ class SiteController extends Controller
         return $this->render('pyramid');
     }
 
-    public function actionGenreport(){
-        return $this->render('gen_report');
-    }
+   
 
     public function actionLogin()
     {
