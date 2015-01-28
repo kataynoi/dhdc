@@ -1,9 +1,24 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>execute/index</h1>
+<h1><?=$sql?></h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<?php
+echo kartik\grid\GridView::widget([
+    'dataProvider' => $dataProvider,
+    'pjax' => true,
+    'pjaxSettings' => [
+        //'neverTimeout' => true,
+        'options' => [
+            'enablePushState' => false,
+        ],
+    ],
+    'responsive' => true,
+    'hover' => true,
+    'panel' => [
+        'before' => '',
+    //'after'=>''
+    ]
+]);
+?>
+

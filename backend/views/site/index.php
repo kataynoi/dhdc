@@ -15,6 +15,10 @@ $this->title = 'My Yii Application';
          <button class="btn btn-danger" id="btn_1"> 
          ประมวลผลรายงาน
          </button>
+        
+         <a class="btn btn-warning" href="<?=Yii::$app->urlManager->createUrl('execute/index')?>"> 
+         Show Processlist
+         </a>
     </div>
 
     <div class="body-content">

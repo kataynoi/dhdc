@@ -13,7 +13,7 @@ class AjaxController extends \yii\web\Controller {
     public function actionImport($fortythree, $oldname, $id) {
 
         $model = UploadFortythree::findOne($id);
-        $model->note2 = 'กำลังนำเข้า';
+        $model->note2 = 'กำลังนำเข้า';        
         $model->update();
 
         $path = './fortythree/';
@@ -30,7 +30,9 @@ class AjaxController extends \yii\web\Controller {
 
         while (($file = readdir($dir)) !== false) {
             if ($file !== "." && $file !== "..") {
-
+                $model->note3=$file;
+                $model->update();
+                
                 $p = pathinfo($file);
                 $f = $p['filename'];
                 $f = strtolower($f);
@@ -58,6 +60,7 @@ class AjaxController extends \yii\web\Controller {
         rmdir("./fortythree/$fortythree");
 
         //$model = UploadFortythree::findOne($id);
+        $model->note3='';
         $model->note2 = 'OK';
         $model->update();
         return $fortythree;
