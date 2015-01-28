@@ -17,20 +17,14 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
 
 </form>
 <hr>
-<?php Pjax::begin(); ?>
+
 <?php
     if(isset($dataProvider))
     echo \kartik\grid\GridView::widget([
         'dataProvider' => $dataProvider,
-        'pjax' => true,
-        'pjaxSettings' => [
-            //'neverTimeout' => true,
-            'options' => [
-                'enablePushState' => false,
-            ],
-        ],
-        'responsive' => true,
-        'hover' => true,
+        
+        'responsive' => FALSE,
+        //'hover' => true,
         'panel' => [
             'before' => '',
         //'after'=>''
@@ -38,4 +32,4 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
     ]);
 
 ?>
-<?php Pjax::end(); ?>
+
