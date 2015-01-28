@@ -42,7 +42,7 @@ AppAsset::register($this);
                 $submenuItems[] = ['label' => 'เข้าระบบ', 'url' => ['/site/login']];
             } else {
                 
-                $submenuItems[] = ['label' => 'ตั้งค่า', 'url' => ['/user/index']];
+                //$submenuItems[] = ['label' => 'ตั้งค่า', 'url' => ['/user/index']];
                 
                 $submenuItems[] = [
                     'label' => 'ออกจากระบบ',

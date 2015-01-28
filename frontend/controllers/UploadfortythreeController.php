@@ -16,7 +16,39 @@ use yii\web\UploadedFile;
 class UploadfortythreeController extends Controller {
 
     public function behaviors() {
+        
+         $role=0;
+        if (!Yii::$app->user->isGuest) {
+            $role = Yii::$app->user->identity->role;
+        }
+        $arr = array();
+        if ($role == 1) {
+            $arr = ['index', 'view', 'create', 'update', 'delete',];
+        }
+        if ($role == 0) {
+            $arr = ['index', 'view'];
+        }
+        
         return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'denyCallback' => function ($rule, $action) {
+                    throw new \yii\web\ForbiddenHttpException("ไม่ได้รับอนุญาต");
+                },
+                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => $arr,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => $arr,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
