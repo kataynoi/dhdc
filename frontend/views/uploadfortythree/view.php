@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             if ($model->note2 === 'กำลังนำเข้า') {
                 echo "กำลังนำเข้า";
             } else {
-                echo "นำเข้าแล้ว..";
+                echo "นำเข้าแล้ว";
             }
             ?>
         </div>    
