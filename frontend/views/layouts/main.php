@@ -40,13 +40,13 @@ AppAsset::register($this);
                 $submenuItems[] = ['label' => 'สมัครผู้ใช้', 'url' => ['/site/signup']];
                 $submenuItems[] = ['label' => 'เข้าระบบ', 'url' => ['/site/login']];
             } else {
-                 $submenuItems[] = ['label' => 'ตั้งค่า', 'url' => ['/setting/set1']];
+                $submenuItems[] = ['label' => 'ตั้งค่า', 'url' => ['/setting/set1']];
+                $submenuItems[] = ['label' => 'สร้างรายงาน', 'url' => ['/setting/set1']];
                 $submenuItems[] = [
                     'label' => 'ออกจากระบบ',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
-               
             }
 
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ประชากร', 'url' => ['#']];
@@ -57,7 +57,9 @@ AppAsset::register($this);
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> แพทย์แผนไทยและแพทย์ทางเลือก', 'url' => ['site/about']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> สุขภาพจิต', 'url' => ['site/about']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ยาและเวชภัณฑ์', 'url' => ['site/about']];
-
+            if (!Yii::$app->user->isGuest) {
+                $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-refresh"></span> คำสั่ง sql', 'url' => ['runquery/index']];
+            }
             $username = '';
             if (!Yii::$app->user->isGuest) {
                 $username = '(' . Html::encode(Yii::$app->user->identity->username) . ')';
@@ -66,7 +68,7 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' =>
                     '<span class="glyphicon glyphicon-folder-open"></span> ปริมาณข้อมูล',
-                    'url'=>['summay/sum1']
+                    'url' => ['summay/sum1']
                 ],
                 ['label' =>
                     '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน',
