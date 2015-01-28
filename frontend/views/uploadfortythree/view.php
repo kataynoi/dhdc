@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Fortythrees All '), 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-fortythree-view">
-
+    
 
 
     <p>
@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
         <div class="alert alert-danger">นำเข้าแล้ว..</div>    
     <?php endif; ?>
+        <div id="info" style="display: none">ระหว่างนำเข้าข้อมูล ท่านสามารถปิดหน้าจอนี้ได้</div>
 
     <?php
     $script = <<< JS
@@ -54,11 +55,13 @@ $('#btn_import').on('click', function(e) {
    
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     $('#res').toggle();  
+    $('#info').toggle(); 
         
     $.ajax({
        url: 'index.php?r=ajax/import',
        data: {fortythree:"$model->file_name",oldname:"$model->note1",id:"$model->id"},
        success: function(data) {
+            $('#res').toggle(); 
             $('#res').toggle(); 
             alert(data+' สำเร็จ');
             window.location.reload();

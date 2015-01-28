@@ -6,6 +6,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
+use backend\models\Configmain;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -40,8 +41,9 @@ AppAsset::register($this);
                 $submenuItems[] = ['label' => 'สมัครผู้ใช้', 'url' => ['/site/signup']];
                 $submenuItems[] = ['label' => 'เข้าระบบ', 'url' => ['/site/login']];
             } else {
-                $submenuItems[] = ['label' => 'ตั้งค่า', 'url' => ['/setting/set1']];
-                $submenuItems[] = ['label' => 'สร้างรายงาน', 'url' => ['/setting/set1']];
+                
+                $submenuItems[] = ['label' => 'ตั้งค่า', 'url' => ['/user/index']];
+                
                 $submenuItems[] = [
                     'label' => 'ออกจากระบบ',
                     'url' => ['/site/logout'],
@@ -79,12 +81,15 @@ AppAsset::register($this);
                     'items' => $submenuItems
                 ]
             ];
-
-
+           
+           
+            $config_main=Configmain::findOne(1);
+            
+           
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-left'],
                 'encodeLabels' => false,
-                'items' => [['label' => 'DHDC : ศูนย์ข้อมูล43แฟ้ม อ.' . 'เมืองเพชรบูรณ์']],
+                'items' => [['label' => 'DHDC : ศูนย์ข้อมูล43แฟ้ม อ.' . Html::encode($config_main->district_name)]],
             ]);
 
             echo Nav::widget([
