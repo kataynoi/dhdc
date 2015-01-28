@@ -12,15 +12,16 @@ class SummaryController extends \yii\web\Controller {
         $amp = $config_main->distcode;
         $_year = '2014';
 
-        $sql = "select hoscode,hosname,person,service,diagnosis_opd,epi,anc from s_count_file";
+        $sql = "select * from s_count_file";
 
         $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        
+        //return;
+        
         $dataProvider = new \yii\data\ArrayDataProvider([
             'key' => 'hoscode',
             'allModels' => $rawData,
-            'sort' => [
-                'attributes' => array_keys($rawData[0])
-            ],
+            'sort' => count($rawData)>0?['attributes' => array_keys($rawData[0])]:[],
             'pagination' => [
                 'pageSize' => 15,
             ],

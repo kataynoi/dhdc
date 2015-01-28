@@ -1,6 +1,7 @@
 <?php
 
 use yii\widgets\Pjax;
+$this->title="ผลรวม";
 ?>
 <a href="#" onclick="$('#sql').toggle()">คำสั่ง</a>
 <div class="alert alert-success" style="display: none" id="sql"><?= $sql ?></div>
