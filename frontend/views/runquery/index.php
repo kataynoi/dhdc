@@ -19,7 +19,7 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
 <hr>
 <?php Pjax::begin(); ?>
 <?php
-if (\Yii::$app->request->isPost) {
+    if(isset($dataProvider))
     echo \kartik\grid\GridView::widget([
         'dataProvider' => $dataProvider,
         'pjax' => true,
@@ -36,6 +36,6 @@ if (\Yii::$app->request->isPost) {
         //'after'=>''
         ],
     ]);
-}
+
 ?>
 <?php Pjax::end(); ?>
