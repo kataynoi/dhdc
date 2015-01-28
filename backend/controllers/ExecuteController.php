@@ -11,7 +11,9 @@ class ExecuteController extends \yii\web\Controller
     
     
     public function actionExecute(){
-        $sql = "call all_exceute;";
+        
+        $sql = "call all_execute;";
+        
         \Yii::$app->db->createCommand($sql)->execute();        
         
     }

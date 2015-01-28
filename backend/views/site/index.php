@@ -6,7 +6,7 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="well">
-        <h1>ระบบ DHDC BACK-END</h1>
+        <h1>ระบบ District HDC BACK-END</h1>
     </div>
     <div>
         <a class="btn btn-primary" href="<?=Yii::$app->urlManager->createUrl('user/index')?>"> 

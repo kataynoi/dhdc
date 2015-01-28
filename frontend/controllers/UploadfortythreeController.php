@@ -104,6 +104,7 @@ class UploadfortythreeController extends Controller {
                 ]);
             }
             $hospcode = explode("_", $upfile->baseName);
+            //$model->hospcode='-';
             if(strtoupper($hospcode[1])==='F43'){
                 $model->hospcode = $hospcode[2];
             }else{
