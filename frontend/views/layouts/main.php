@@ -26,7 +26,7 @@ AppAsset::register($this);
 
         <?php $this->beginBody() ?>
         <div class="wrap">
-           
+
             <?php
             NavBar::begin([
                 'brandLabel' => '<span class="glyphicon glyphicon-th-large"></span>',
@@ -35,38 +35,56 @@ AppAsset::register($this);
                     'class' => 'navbar-custom navbar-fixed-top',
                 ],
             ]);
-            
+
             if (Yii::$app->user->isGuest) {
                 $submenuItems[] = ['label' => 'สมัครผู้ใช้', 'url' => ['/site/signup']];
                 $submenuItems[] = ['label' => 'เข้าระบบ', 'url' => ['/site/login']];
             } else {
+                 $submenuItems[] = ['label' => 'ตั้งค่า', 'url' => ['/setting/set1']];
                 $submenuItems[] = [
                     'label' => 'ออกจากระบบ',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
+               
             }
-            $username='';
+
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ประชากร', 'url' => ['#']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> โรคติดต่อ', 'url' => ['site/about']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> โรคไม่ติดต่อ', 'url' => ['site/about']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> แม่และเด็ก', 'url' => ['site/about']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ภูมิคุ้มกันโรค', 'url' => ['site/about']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> แพทย์แผนไทยและแพทย์ทางเลือก', 'url' => ['site/about']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> สุขภาพจิต', 'url' => ['site/about']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ยาและเวชภัณฑ์', 'url' => ['site/about']];
+
+            $username = '';
             if (!Yii::$app->user->isGuest) {
-                $username='('.Html::encode(Yii::$app->user->identity->username).')';
+                $username = '(' . Html::encode(Yii::$app->user->identity->username) . ')';
             }
-            
+
             $menuItems = [
-                
-                ['label' => '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน', 'url' => ['/site/about']],
+                ['label' =>
+                    '<span class="glyphicon glyphicon-folder-open"></span> ปริมาณข้อมูล',
+                    'url'=>['summay/sum1']
+                ],
+                ['label' =>
+                    '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน',
+                    'items' => $report_mnu_itms
+                ],
                 ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/uploadfortythree/index']],
-                ['label' => '<span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน '.$username,
+                ['label' => '<span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน ' . $username,
                     'items' => $submenuItems
                 ]
             ];
-            
-            
+
+
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-left'],
                 'encodeLabels' => false,
-                'items' => [['label' => 'DHDC : ศูนย์ข้อมูล43แฟ้ม อ.'.'เมืองเพชรบูรณ์']],
+                'items' => [['label' => 'DHDC : ศูนย์ข้อมูล43แฟ้ม อ.' . 'เมืองเพชรบูรณ์']],
             ]);
-            
+
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'encodeLabels' => false,
