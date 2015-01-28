@@ -40,6 +40,9 @@ class RunqueryController extends \yii\web\Controller {
             if ('drop' === substr($sql, 0, 4)) {
                 throw new \yii\web\ConflictHttpException;
             }
+            if ('show' === substr($sql, 0, 4)) {
+                throw new \yii\web\ConflictHttpException;
+            }
 
             try {
                 $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
