@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-        <?= Html::a(Yii::t('app', 'Upload'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', '<span class="glyphicon glyphicon-upload"></span> Upload'), ['create'], ['class' => 'btn btn-success']) ?>
 
     </p>
 
@@ -36,11 +36,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php if ($model->note2 !== '1'): ?>
         <?php
+        /*
         echo Html::a(Yii::t('app', 'นำเข้า'), ['ajax/importfortythree',
             'fortythree' => $model->file_name,
             'oldname' => $model->note1, 'id' => $model->id], ['class' => 'btn btn-primary']);
-        ?>
-        <button class="btn btn-danger" id="btn_import">นำเข้า</button>
+        */
+         ?>
+         
+        <button class="btn btn-danger" id="btn_import"><span class="glyphicon glyphicon-play"></span> นำเข้า</button>
     <?php else: ?>
         <div class="alert alert-danger">นำเข้าแล้ว..</div>    
     <?php endif; ?>
@@ -64,6 +67,7 @@ $('#btn_import').on('click', function(e) {
 });
 JS;
     $this->registerJs($script);
+    
     ?>
     <div id="res" style="display: none">
         <img src="images/busy.gif">
