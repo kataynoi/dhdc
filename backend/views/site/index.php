@@ -5,48 +5,48 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+    <div class="well">
+        <h1>ระบบ DHDC BACK-END</h1>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="<?=Yii::$app->urlManager->createUrl('user/index')?>"> 
+         จัดการ USER
+         </a>
+         <button class="btn btn-danger" id="btn_1"> 
+         ประมวลผลรายงาน
+         </button>
     </div>
 
     <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+        <?php
+        $route = Yii::$app->urlManager->createUrl('execute/execute');
+        $script = <<< JS
+$('#btn_1').on('click', function(e) {
+                
+    if(!confirm('ประมวลผลรายงาน')){
+        return false;
+    }
+   
+    //$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    $('#res').toggle();  
+    
+        
+    $.ajax({
+       url: "$route",
+       //data: {a:'1'},
+       success: function(data) {
+            $('#res').toggle();
+           
+            alert(data+' สำเร็จ');
+            //window.location.reload();
+       }
+    });
+});
+JS;
+        $this->registerJs($script);
+        ?>
+        <div id="res" style="display: none">
+            <img src="images/busy.gif">
         </div>
-
     </div>
 </div>

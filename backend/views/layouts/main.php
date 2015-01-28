@@ -22,7 +22,7 @@ AppAsset::register($this);
 </head>
 <body>
     <?php $this->beginBody() ?>
-    <?php $config_main = backend\models\Sysconfigmain::findOne(1); ?>
+    <?php $config_main = backend\models\Sysconfigmain::find()->one(); ?>
     <div class="wrap">
         <?php
             NavBar::begin([

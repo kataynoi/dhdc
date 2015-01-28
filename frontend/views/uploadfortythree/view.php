@@ -52,7 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     $script = <<< JS
 $('#btn_import').on('click', function(e) {
-   
+    if(!confirm('นำเข้าข้อมูล')){
+        return false;
+    }
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     $('#res').toggle();  
     $('#info').toggle(); 
@@ -62,7 +64,7 @@ $('#btn_import').on('click', function(e) {
        data: {fortythree:"$model->file_name",oldname:"$model->note1",id:"$model->id"},
        success: function(data) {
             $('#res').toggle(); 
-            $('#res').toggle(); 
+            $('#info').toggle(); 
             alert(data+' สำเร็จ');
             window.location.reload();
        }
