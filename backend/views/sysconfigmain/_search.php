@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\ConfigmainSearch */
+/* @var $model backend\models\SysconfigmainSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="configmain-search">
+<div class="sysconfigmain-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,13 +17,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'provcode') ?>
+
+    <?= $form->field($model, 'distcode') ?>
+
     <?= $form->field($model, 'district_code') ?>
 
     <?= $form->field($model, 'district_name') ?>
 
-    <?= $form->field($model, 'note1') ?>
+    <?php // echo $form->field($model, 'note1') ?>
 
-    <?= $form->field($model, 'note2') ?>
+    <?php // echo $form->field($model, 'note2') ?>
 
     <?php // echo $form->field($model, 'note3') ?>
 

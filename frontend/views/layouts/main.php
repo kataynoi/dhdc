@@ -6,7 +6,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
-use backend\models\Configmain;
+
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -83,7 +83,7 @@ AppAsset::register($this);
             ];
            
            
-            $config_main=Configmain::findOne(1);
+            $config_main=  backend\models\Sysconfigmain::find()->one();
             
            
             echo Nav::widget([
@@ -113,8 +113,8 @@ AppAsset::register($this);
 
         <footer class="footer">
             <div class="container">
-                <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-                <p class="pull-right"><?= Yii::powered() ?></p>
+                <p class="pull-left">&copy; <?=$config_main->district_name?> <?= date('Y') ?></p>
+                <p class="pull-right"><?=  Html::a('DHDC TEAM', ['site/index'])?></p>
             </div>
         </footer>
 

@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Configmain;
-use backend\models\ConfigmainSearch;
+use backend\models\Sysconfigmain;
+use backend\models\SysconfigmainSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ConfigmainController implements the CRUD actions for Configmain model.
+ * SysconfigmainController implements the CRUD actions for Sysconfigmain model.
  */
-class ConfigmainController extends Controller
+class SysconfigmainController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class ConfigmainController extends Controller
     }
 
     /**
-     * Lists all Configmain models.
+     * Lists all Sysconfigmain models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ConfigmainSearch();
+        $searchModel = new SysconfigmainSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class ConfigmainController extends Controller
     }
 
     /**
-     * Displays a single Configmain model.
+     * Displays a single Sysconfigmain model.
      * @param integer $id
      * @return mixed
      */
@@ -54,13 +54,13 @@ class ConfigmainController extends Controller
     }
 
     /**
-     * Creates a new Configmain model.
+     * Creates a new Sysconfigmain model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Configmain();
+        $model = new Sysconfigmain();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,7 +72,7 @@ class ConfigmainController extends Controller
     }
 
     /**
-     * Updates an existing Configmain model.
+     * Updates an existing Sysconfigmain model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +91,7 @@ class ConfigmainController extends Controller
     }
 
     /**
-     * Deletes an existing Configmain model.
+     * Deletes an existing Sysconfigmain model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class ConfigmainController extends Controller
     }
 
     /**
-     * Finds the Configmain model based on its primary key value.
+     * Finds the Sysconfigmain model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Configmain the loaded model
+     * @return Sysconfigmain the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Configmain::findOne($id)) !== null) {
+        if (($model = Sysconfigmain::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

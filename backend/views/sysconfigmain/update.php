@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Configmain */
+/* @var $model backend\models\Sysconfigmain */
 
-$this->title = 'Update Configmain: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Configmains', 'url' => ['index']];
+$this->title = 'Update Sysconfigmain: ' . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Sysconfigmains', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="configmain-update">
+<div class="sysconfigmain-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

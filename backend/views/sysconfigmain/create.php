@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Configmain */
+/* @var $model backend\models\Sysconfigmain */
 
-$this->title = 'Create Configmain';
-$this->params['breadcrumbs'][] = ['label' => 'Configmains', 'url' => ['index']];
+$this->title = 'Create Sysconfigmain';
+$this->params['breadcrumbs'][] = ['label' => 'Sysconfigmains', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="configmain-create">
+<div class="sysconfigmain-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

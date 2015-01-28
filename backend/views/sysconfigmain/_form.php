@@ -4,13 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Configmain */
+/* @var $model backend\models\Sysconfigmain */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="configmain-form">
+<div class="sysconfigmain-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'provcode')->textInput(['maxlength' => 255]) ?>
+
+    <?= $form->field($model, 'distcode')->textInput(['maxlength' => 255]) ?>
 
     <?= $form->field($model, 'district_code')->textInput(['maxlength' => 255]) ?>
 

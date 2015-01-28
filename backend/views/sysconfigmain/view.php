@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Configmain */
+/* @var $model backend\models\Sysconfigmain */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Configmains', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Sysconfigmains', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="configmain-view">
+<div class="sysconfigmain-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,6 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            'provcode',
+            'distcode',
             'district_code',
             'district_name',
             'note1',

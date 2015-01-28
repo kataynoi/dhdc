@@ -8,6 +8,8 @@ use Yii;
  * This is the model class for table "sys_config_main".
  *
  * @property integer $id
+ * @property string $provcode
+ * @property string $distcode
  * @property string $district_code
  * @property string $district_name
  * @property string $note1
@@ -16,7 +18,7 @@ use Yii;
  * @property string $note4
  * @property string $note5
  */
-class Configmain extends \yii\db\ActiveRecord
+class Sysconfigmain extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -32,7 +34,7 @@ class Configmain extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['district_code', 'district_name', 'note1', 'note2', 'note3', 'note4', 'note5'], 'string', 'max' => 255]
+            [['provcode', 'distcode', 'district_code', 'district_name', 'note1', 'note2', 'note3', 'note4', 'note5'], 'string', 'max' => 255]
         ];
     }
 
@@ -43,6 +45,8 @@ class Configmain extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'provcode' => 'Provcode',
+            'distcode' => 'Distcode',
             'district_code' => 'District Code',
             'district_name' => 'District Name',
             'note1' => 'Note1',

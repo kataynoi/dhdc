@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Configmain;
+use backend\models\Sysconfigmain;
 
 /**
- * ConfigmainSearch represents the model behind the search form about `backend\models\Configmain`.
+ * SysconfigmainSearch represents the model behind the search form about `backend\models\Sysconfigmain`.
  */
-class ConfigmainSearch extends Configmain
+class SysconfigmainSearch extends Sysconfigmain
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class ConfigmainSearch extends Configmain
     {
         return [
             [['id'], 'integer'],
-            [['district_code', 'district_name', 'note1', 'note2', 'note3', 'note4', 'note5'], 'safe'],
+            [['provcode', 'distcode', 'district_code', 'district_name', 'note1', 'note2', 'note3', 'note4', 'note5'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ConfigmainSearch extends Configmain
      */
     public function search($params)
     {
-        $query = Configmain::find();
+        $query = Sysconfigmain::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -59,7 +59,9 @@ class ConfigmainSearch extends Configmain
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'district_code', $this->district_code])
+        $query->andFilterWhere(['like', 'provcode', $this->provcode])
+            ->andFilterWhere(['like', 'distcode', $this->distcode])
+            ->andFilterWhere(['like', 'district_code', $this->district_code])
             ->andFilterWhere(['like', 'district_name', $this->district_name])
             ->andFilterWhere(['like', 'note1', $this->note1])
             ->andFilterWhere(['like', 'note2', $this->note2])
