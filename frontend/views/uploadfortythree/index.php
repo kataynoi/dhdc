@@ -45,7 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
             array(
                 'attribute' => 'note2',
                 'value' => function ($data) {
-                    return $data->note2 === '1' ? 'OK' : 'รอนำเข้า';
+                    return $data->note2;
+                    
                 }
             ),
         // 'note3',

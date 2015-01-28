@@ -34,17 +34,15 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
     ?>
 
-    <?php if ($model->note2 !== '1'): ?>
-        <?php
-        /*
-        echo Html::a(Yii::t('app', 'นำเข้า'), ['ajax/importfortythree',
-            'fortythree' => $model->file_name,
-            'oldname' => $model->note1, 'id' => $model->id], ['class' => 'btn btn-primary']);
-        */
-         ?>
-         
-        <button class="btn btn-danger" id="btn_import"><span class="glyphicon glyphicon-play"></span> นำเข้า</button>
+    <?php if ($model->note2 !== 'OK' && $model->note2!=='กำลังนำเข้า' ): ?>
+        
+        <button class="btn btn-danger" id="btn_import">
+            <span class="glyphicon glyphicon-play"></span> 
+            นำเข้า
+        </button>
+    
     <?php else: ?>
+   
         <div class="alert alert-danger">นำเข้าแล้ว..</div>    
     <?php endif; ?>
         <div id="info" style="display: none">ระหว่างนำเข้าข้อมูล ท่านสามารถปิดหน้าจอนี้ได้</div>
@@ -52,12 +50,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     $script = <<< JS
 $('#btn_import').on('click', function(e) {
-    if(!confirm('นำเข้าข้อมูล')){
-        return false;
-    }
+    
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     $('#res').toggle();  
     $('#info').toggle(); 
+    $('#btn_import').hide();
         
     $.ajax({
        url: 'index.php?r=ajax/import',

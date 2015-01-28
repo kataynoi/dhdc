@@ -10,10 +10,13 @@ class AjaxController extends \yii\web\Controller {
         return $this->render('index');
     }
 
-    
-    public function actionImport($fortythree,$oldname,$id){
-       
-          $path = './fortythree/';
+    public function actionImport($fortythree, $oldname, $id) {
+
+        $model = UploadFortythree::findOne($id);
+        $model->note2 = 'กำลังนำเข้า';
+        $model->update();
+
+        $path = './fortythree/';
         $filefortythree = $path . $fortythree;
         $zip = new \ZipArchive();
         if ($zip->open($filefortythree) === TRUE) {
@@ -21,7 +24,7 @@ class AjaxController extends \yii\web\Controller {
             $zip->close();
         }
         rename($path . $oldname, $path . $fortythree);
-        
+
         $dirname = $path . $fortythree;
         $dir = opendir($dirname);
 
@@ -54,8 +57,8 @@ class AjaxController extends \yii\web\Controller {
 
         rmdir("./fortythree/$fortythree");
 
-        $model = UploadFortythree::findOne($id);
-        $model->note2 = '1';
+        //$model = UploadFortythree::findOne($id);
+        $model->note2 = 'OK';
         $model->update();
         return $fortythree;
     }

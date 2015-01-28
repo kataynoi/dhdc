@@ -103,18 +103,19 @@ class UploadfortythreeController extends Controller {
                             'model' => $model,
                 ]);
             }
-            $hospcode = explode("_", $upfile->baseName);
-            //$model->hospcode='-';
+            $hos = '-';
+            $hospcode = explode("_", $upfile->baseName);            
             if(strtoupper($hospcode[1])==='F43'){
-                $model->hospcode = $hospcode[2];
+                $hos = $hospcode[2];
             }else{
-                $model->hospcode = $hospcode[1];
+                $hos = $hospcode[1];
             }
+            $model->hospcode = $hos;
             $newname = $upfile->baseName . "_" . date('ymdhis') . "." . $upfile->extension;
             $model->file_name = $newname;
             $model->file_size = strval($upfile->size / 1000000);
             $model->note1 = $upfile->baseName;
-            $model->note2 = '0';
+            $model->note2 = 'รอนำเข้า';
 
             $model->save();
             $path = './fortythree/';

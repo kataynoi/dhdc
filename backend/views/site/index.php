@@ -26,6 +26,7 @@ $('#btn_1').on('click', function(e) {
     if(!confirm('ประมวลผลรายงาน')){
         return false;
     }
+    $('#btn_1').hide();
    
     //$("html, body").animate({ scrollTop: $(document).height() }, "slow");
     $('#res').toggle();  
@@ -36,6 +37,7 @@ $('#btn_1').on('click', function(e) {
        //data: {a:'1'},
        success: function(data) {
             $('#res').toggle();
+            $('#btn_1').show();
            
             alert(data+' สำเร็จ');
             //window.location.reload();
