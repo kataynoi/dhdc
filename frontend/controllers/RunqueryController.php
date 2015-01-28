@@ -20,13 +20,31 @@ class RunqueryController extends \yii\web\Controller {
 
 
         if (\Yii::$app->request->isPost) {
-          
+
             $sql = trim($_POST['sql_code']);
 
+            if ('delete' === substr($sql, 0, 6)) {
+                throw new \yii\web\ConflictHttpException;
+            }
+            if ('insert' === substr($sql, 0, 6)) {
+                throw new \yii\web\ConflictHttpException;
+            }
+
+            if ('update' === substr($sql, 0, 5)) {
+                throw new \yii\web\ConflictHttpException;
+            }
+
+            if ('alter' === substr($sql, 0, 5)) {
+                throw new \yii\web\ConflictHttpException;
+            }
+            if ('drop' === substr($sql, 0, 4)) {
+                throw new \yii\web\ConflictHttpException;
+            }
+
             try {
-                $rawData=\Yii::$app->db->createCommand($sql)->queryAll();
+                $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
             } catch (\yii\db\Exception $e) {
-                throw  new \yii\web\ConflictHttpException;
+                throw new \yii\web\ConflictHttpException;
             }
 
 
@@ -34,13 +52,12 @@ class RunqueryController extends \yii\web\Controller {
             $dataProvider = new \yii\data\ArrayDataProvider([
                 //'key' => 'hoscode',
                 'allModels' => $rawData,
-                
                 'pagination' => FALSE,
             ]);
 
             return $this->render('index', [
                         'dataProvider' => $dataProvider,
-                        'sql_code'=>$sql
+                        'sql_code' => $sql
             ]);
         }
 
