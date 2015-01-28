@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Fortythrees All '), 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-fortythree-view">
-    
+
 
 
     <p>
@@ -34,18 +34,27 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
     ?>
 
-    <?php if ($model->note2 !== 'OK' && $model->note2!=='กำลังนำเข้า' ): ?>
-        
+    <?php if ($model->note2 === 'รอนำเข้า'): ?>
+
         <button class="btn btn-danger" id="btn_import">
             <span class="glyphicon glyphicon-play"></span> 
             นำเข้า
         </button>
-    
+
     <?php else: ?>
-   
-        <div class="alert alert-danger">นำเข้าแล้ว..</div>    
+
+        <div class="alert alert-danger">
+            <?php
+            if ($model->note2 === 'กำลังนำเข้า') {
+                echo "กำลังนำเข้า";
+            } else {
+                echo "นำเข้าแล้ว..";
+            }
+            ?>
+        </div>    
     <?php endif; ?>
-        <div id="info" style="display: none">ระหว่างนำเข้าข้อมูล ท่านสามารถปิดหน้าจอนี้ได้</div>
+    
+    <div id="info" style="display: none">ระหว่างนำเข้าข้อมูล ท่านสามารถปิดหน้าจอนี้ได้</div>
 
     <?php
     $script = <<< JS
@@ -69,7 +78,6 @@ $('#btn_import').on('click', function(e) {
 });
 JS;
     $this->registerJs($script);
-    
     ?>
     <div id="res" style="display: none">
         <img src="images/busy.gif">
