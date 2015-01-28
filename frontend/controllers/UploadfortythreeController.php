@@ -89,7 +89,7 @@ class UploadfortythreeController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        ini_set('max_execution_time', 1800);
+        ini_set('max_execution_time', 1800);//ตั้งค่า php.ini
         ini_set('post_max_size', '64M');
         ini_set('upload_max_filesize', '64M');
 
@@ -104,7 +104,11 @@ class UploadfortythreeController extends Controller {
                 ]);
             }
             $hospcode = explode("_", $upfile->baseName);
-            $model->hospcode = $hospcode[1];
+            if(strtoupper($hospcode[1])==='F43'){
+                $model->hospcode = $hospcode[2];
+            }else{
+                $model->hospcode = $hospcode[1];
+            }
             $newname = $upfile->baseName . "_" . date('ymdhis') . "." . $upfile->extension;
             $model->file_name = $newname;
             $model->file_size = strval($upfile->size / 1000000);

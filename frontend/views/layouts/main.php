@@ -70,7 +70,7 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' =>
                     '<span class="glyphicon glyphicon-folder-open"></span> ปริมาณข้อมูล',
-                    'url' => ['summay/sum1']
+                    'url' => ['summary/index']
                 ],
                 ['label' =>
                     '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน',
