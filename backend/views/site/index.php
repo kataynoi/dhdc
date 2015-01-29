@@ -7,6 +7,8 @@ $this->title ='DHDC Backend';
 
     <div class="well">
         <h1>ระบบ District HDC BACK-END</h1>
+        <p>frontend version  1.0</p>
+        <p>backend version 1.0</p>
     </div>
     <div class="container">
         <div class="row">
@@ -46,7 +48,9 @@ $this->title ='DHDC Backend';
                 <?php endif; ?>
             </div>
             <div class="col-sm-4">
-
+                    <button class="btn btn-success" id="btn_1"> 
+                    ตั้งค่าอำเภอ
+                </button>
             </div>
         </div>
     </div>

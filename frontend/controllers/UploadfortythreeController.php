@@ -89,9 +89,10 @@ class UploadfortythreeController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        ini_set('max_execution_time', 1800);//ตั้งค่า php.ini
-        ini_set('post_max_size', '64M');
-        ini_set('upload_max_filesize', '64M');
+        //set_time_limit(0);
+        //ini_set('max_execution_time', 1800);//ตั้งค่า php.ini
+        //ini_set('post_max_size', '64M');
+        //ini_set('upload_max_filesize', '64M');
 
         $model = new UploadFortythree();
 

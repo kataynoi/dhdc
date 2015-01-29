@@ -23,16 +23,18 @@ use kartik\widgets\FileInput;
                     'options' => ['enctype' => 'multipart/form-data'] // important
         ]);
         ?>
+        <?= $form->field($model, 'file')->fileInput() ?>
         <?php
+        /*
         echo $form->field($model, 'file')->widget(FileInput::classname(), [
             'options' => ['accept' => '*'],
             'pluginOptions' => ['allowedFileExtensions' => ['zip']]
-        ]);
+        ]);*/
         ?>
 
         <?= $form->field($model, 'upload_date')->hiddenInput(['value' => date('Ymd')])->label(false) ?>
         <?= $form->field($model, 'upload_time')->hiddenInput(['value' => date('His')])->label(false) ?>
-
+        <button>Submit</button>
         <?php ActiveForm::end(); ?>
     <?php else: ?>
         <div class="alert alert-danger">Admin ปิดระบบนำเข้า </div>
