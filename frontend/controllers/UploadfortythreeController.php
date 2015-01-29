@@ -112,7 +112,7 @@ class UploadfortythreeController extends Controller {
                 $hos = $hospcode[1];
             }
             $model->hospcode = $hos;
-            $newname = $upfile->baseName . "_" . date('ymdhis') . "." . $upfile->extension;
+            $newname = $upfile->baseName ."." . $upfile->extension;
             $model->file_name = $newname;
             $model->file_size = strval($upfile->size / 1000000);
             $model->note1 = $upfile->baseName;
