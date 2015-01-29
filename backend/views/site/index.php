@@ -52,6 +52,11 @@ $this->title ='DHDC Backend';
                     ตั้งค่าอำเภอ
                 </button>
             </div>
+            <div class="col-sm-4">
+                    <button class="btn btn-success" id="btn_1"> 
+                    ตั้งเวลาประมวลผลรายงาน
+                </button>
+            </div>
         </div>
     </div>
 
