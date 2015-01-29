@@ -1,14 +1,18 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-$this->title = 'About';
+$this->title = 'ทีมพัฒนา';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>This is the About page. You may modify the following file to customize its content:</p>
-
-    <code><?= __FILE__ ?></code>
+    <p>- คุณอุเทน จาดยางโทน (สสจ.พิษณุโลก)</p>
+    <p>- คุณศรศักดิ์ สีหะวงษ์ (สสจ.พิษณุโลก)</p>
+    <p>- คุณสุจินต์ สุกกล้า (รพท.ศรีสังวรณ์ สุโขทัย)</p>
+    <p>- คุณสุพัฒนา ปิงเมือง (รพสต.ผักตบ จ.อุดรธานี)</p>
+    <p>- คุณสันติ จีนะสอน (สสอ.เมืองเพชรบูรณ์)</p>
+    <p>- คุณนครินทร์ เกตุวีระพงศ์ (รพ.วัดโบสถ์ จ.พิษณุโลก)</p>
 </div>

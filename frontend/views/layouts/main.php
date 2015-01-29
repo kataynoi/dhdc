@@ -79,7 +79,8 @@ AppAsset::register($this);
                 ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/uploadfortythree/index']],
                 ['label' => '<span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน ' . $username,
                     'items' => $submenuItems
-                ]
+                ],
+                ['label' => 'เกี่ยวกับ','url'=>['site/about']],
             ];
            
            
@@ -97,6 +98,13 @@ AppAsset::register($this);
                 'encodeLabels' => false,
                 'items' => $menuItems,
             ]);
+            
+             echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'encodeLabels' => false,
+                
+            ]);
+            
             NavBar::end();
             ?>
 
