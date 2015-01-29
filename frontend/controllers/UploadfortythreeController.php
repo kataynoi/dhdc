@@ -15,9 +15,11 @@ use yii\web\UploadedFile;
  */
 class UploadfortythreeController extends Controller {
 
+    public $enableCsrfValidation = false;
+
     public function behaviors() {
-        
-         $role=0;
+
+        $role = 0;
         if (!Yii::$app->user->isGuest) {
             $role = Yii::$app->user->identity->role;
         }
@@ -28,7 +30,7 @@ class UploadfortythreeController extends Controller {
         if ($role == 0) {
             $arr = ['index', 'view'];
         }
-        
+
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
@@ -105,14 +107,14 @@ class UploadfortythreeController extends Controller {
                 ]);
             }
             $hos = '-';
-            $hospcode = explode("_", $upfile->baseName);            
-            if(strtoupper($hospcode[1])==='F43'){
+            $hospcode = explode("_", $upfile->baseName);
+            if (strtoupper($hospcode[1]) === 'F43') {
                 $hos = $hospcode[2];
-            }else{
+            } else {
                 $hos = $hospcode[1];
             }
             $model->hospcode = $hos;
-            $newname = $upfile->baseName ."." . $upfile->extension;
+            $newname = $upfile->baseName . "." . $upfile->extension;
             $model->file_name = $newname;
             $model->file_size = strval($upfile->size / 1000000);
             $model->note1 = $upfile->baseName;
