@@ -84,7 +84,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            //return $this->goBack();
+            return $this->render('index');
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -97,6 +98,7 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+        //return $this->render('login');
     }
     public function actionTestrole(){
         echo \Yii::$app->user->identity->role;
