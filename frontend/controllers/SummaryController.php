@@ -23,7 +23,7 @@ class SummaryController extends \yii\web\Controller {
             'allModels' => $rawData,
             'sort' => count($rawData)>0?['attributes' => array_keys($rawData[0])]:[],
             'pagination' => [
-                'pageSize' => 15,
+                'pageSize' => 30,
             ],
         ]);
         return $this->render('index', [
