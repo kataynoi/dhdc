@@ -2,22 +2,27 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model frontend\models\UploadFortythree */
 
 $this->title = Yii::t('app', '{modelClass}', [
-    'modelClass' => 'Fortythrees',
-]);
+            'modelClass' => 'Fortythrees',
+        ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Fortythrees All'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-fortythree-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="alert alert-block alert-danger">
 
-    <?= $this->render('_form', [
+        <h4>โปรดตรวจสอบคุณภาพข้อมูลก่อนส่ง</h4>
+        <h4>ไม่ควรเปลี่ยนชื่อไฟล์ก่อนส่ง</h4>
+    </div>
+
+    <?=
+    $this->render('_form', [
         'model' => $model,
-    ]) ?>
+    ])
+    ?>
 
 </div>

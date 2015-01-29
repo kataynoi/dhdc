@@ -126,6 +126,12 @@ class UploadfortythreeController extends Controller {
             $upfile->saveAs($path . $newname);
             copy($path . $newname, $pathbackup . $newname);
 
+            $ubuntu_path = "/var/lib/mysql/fortythree/";
+            if (strncasecmp(PHP_OS, 'WIN', 3) !== 0) {
+                //copy($path . $newname, $ubuntu_path . $newname);
+            }
+
+
             return $this->redirect(['view', 'id' => $model->id]);
 
             //}

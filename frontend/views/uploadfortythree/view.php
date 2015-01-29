@@ -53,10 +53,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
         </div>    
     <?php endif; ?>
-    
+
     <div id="info" style="display: none">ระหว่างนำเข้าข้อมูล ท่านสามารถปิดหน้าจอนี้ได้</div>
 
     <?php
+    $action_route = "index.php?r=ajax/import";
+    if (strncasecmp(PHP_OS, 'WIN', 3) !== 0) {
+        $action_route = "index.php?r=ajax/import2";
+    }
     $script = <<< JS
 $('#btn_import').on('click', function(e) {
     
@@ -66,7 +70,7 @@ $('#btn_import').on('click', function(e) {
     $('#btn_import').hide();
         
     $.ajax({
-       url: 'index.php?r=ajax/import',
+       url: "$action_route",
        data: {fortythree:"$model->file_name",oldname:"$model->note1",id:"$model->id"},
        success: function(data) {
             $('#res').toggle(); 
