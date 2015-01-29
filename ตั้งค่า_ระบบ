@@ -7,7 +7,7 @@ max_input_time=3600
 
 [UBUNTU14]
 sudo php5enmod mcrypt;
-sudo apt-get install php5-mysqlnd;
+sudo apt-get install php5-mysqlnd; //LOAD DATA LOCAL
 [mysqld]
 local-infile=1
 [mysql]
