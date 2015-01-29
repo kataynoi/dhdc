@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\Campur;
+use yii\helpers\ArrayHelper;
+use kartik\widgets\DepDrop;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Sysconfigmain */
@@ -12,28 +15,39 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'provcode')->textInput(['maxlength' => 255]) ?>
+    <?=
+    $form->field($model, 'provcode')->dropDownList(
+            ArrayHelper::map(Campur::find()->all(), 'changwatcode', 'changwatcode'),
+            array(
+                'id' => 'provcode',
+                'onchange'=>                       
+                '$.post("index.php?r=sysconfigmain/listamp&provcode="+this.value,function(data){
+                    $("#ampurcodefull").html(data);
+                     $("#sysconfigmain-distcode").val(data.substring(3,4));
+                });'
+                
+                )
+    );
+    ?>
+    
 
-    <?= $form->field($model, 'distcode')->textInput(['maxlength' => 255]) ?>
+    <?php
+    echo $form->field($model, 'district_code')->dropDownList(
+             ArrayHelper::map(Campur::find()->all(), 'ampurcodefull', 'ampurname'),
+            array(
+        'id' => 'ampurcodefull',
+        'prompt'=>'--อำเภอ--'
+    ));
+    ?>
 
-    <?= $form->field($model, 'district_code')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'district_name')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'note1')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'note2')->textInput(['maxlength' => 255]) ?>
-
-    <?= $form->field($model, 'note3')->textInput(['maxlength' => 255]) ?>
-
-    <?= $form->field($model, 'note4')->textInput(['maxlength' => 255]) ?>
-
-    <?= $form->field($model, 'note5')->textInput(['maxlength' => 255]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>

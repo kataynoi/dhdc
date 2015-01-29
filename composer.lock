@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "30ebbc656f7214538bbcf1f397a9c6e5",
+    "hash": "2c11058a1785041b3767789a60e51fa1",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -479,16 +479,16 @@
         },
         {
             "name": "kartik-v/dependent-dropdown",
-            "version": "v1.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/dependent-dropdown.git",
-                "reference": "7f21fd03d96304fd25d88372579a5e33c2978a7f"
+                "reference": "0da824562b89826490b13f4b6a4a949790817c2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/7f21fd03d96304fd25d88372579a5e33c2978a7f",
-                "reference": "7f21fd03d96304fd25d88372579a5e33c2978a7f",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/0da824562b89826490b13f4b6a4a949790817c2e",
+                "reference": "0da824562b89826490b13f4b6a4a949790817c2e",
                 "shasum": ""
             },
             "type": "library",
@@ -517,7 +517,7 @@
                 "option",
                 "select"
             ],
-            "time": "2014-11-08 13:25:26"
+            "time": "2014-12-01 04:26:33"
         },
         {
             "name": "kartik-v/mpdf",
@@ -2373,7 +2373,8 @@
         "miloschuman/yii2-highcharts-widget": 20,
         "kartik-v/yii2-grid": 20,
         "kartik-v/yii2-krajee-base": 20,
-        "kartik-v/yii2-mpdf": 20
+        "kartik-v/yii2-mpdf": 20,
+        "kartik-v/dependent-dropdown": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

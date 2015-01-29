@@ -8,14 +8,15 @@ use backend\models\SysconfigmainSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\Campur;
+
 
 /**
  * SysconfigmainController implements the CRUD actions for Sysconfigmain model.
  */
-class SysconfigmainController extends Controller
-{
-    public function behaviors()
-    {
+class SysconfigmainController extends Controller {
+
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -30,14 +31,13 @@ class SysconfigmainController extends Controller
      * Lists all Sysconfigmain models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new SysconfigmainSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -46,10 +46,9 @@ class SysconfigmainController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -58,15 +57,14 @@ class SysconfigmainController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Sysconfigmain();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -77,15 +75,22 @@ class SysconfigmainController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
+        $ampcode = $model->district_code;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            /*
+            $ampur = Campur::find()->where(['ampurcodefull'=>$ampcode])->one();
+            $acode = substr($ampur->ampurcodefull, 3, 2);
+            $model->distcode = $acode;
+            $model->district_name =$ampur->ampurname;
+            */
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -96,8 +101,7 @@ class SysconfigmainController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -110,12 +114,23 @@ class SysconfigmainController extends Controller
      * @return Sysconfigmain the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Sysconfigmain::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionListamp($provcode) {
+        
+        $amp=Campur::find()->where(['changwatcode'=>$provcode])->all();
+        foreach ($amp as $a) {
+            echo "<option value='$a->ampurcodefull'>$a->ampurname</option>";
+        }
+        
+        
+        
+    }
+
 }
