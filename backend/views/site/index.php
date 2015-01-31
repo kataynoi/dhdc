@@ -9,8 +9,9 @@ $this->title = 'DHDC Backend';
         <h1>ระบบ District HDC BACK-END</h1>
         <p>frontend version:  2015-01-31</p>
         <p>backend version: 2015-01-31</p>
+        <p><a href="" class="btn btn-danger">Check</a></p>
     </div>
-    <div class="container">
+    <div class="container well">
         <div class="row">
             <div class="col-sm-4">
                 <?php
