@@ -7,7 +7,6 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
 
-
 /* @var $this \yii\web\View */
 /* @var $content string */
 
@@ -41,9 +40,9 @@ AppAsset::register($this);
                 $submenuItems[] = ['label' => 'สมัครผู้ใช้', 'url' => ['/site/signup']];
                 $submenuItems[] = ['label' => 'เข้าระบบ', 'url' => ['/site/login']];
             } else {
-                
+
                 //$submenuItems[] = ['label' => 'ตั้งค่า', 'url' => ['/user/index']];
-                
+
                 $submenuItems[] = [
                     'label' => 'ออกจากระบบ',
                     'url' => ['/site/logout'],
@@ -80,17 +79,17 @@ AppAsset::register($this);
                 ['label' => '<span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน ' . $username,
                     'items' => $submenuItems
                 ],
-                ['label' => 'เกี่ยวกับ','url'=>['site/about']],
+                ['label' => 'เกี่ยวกับ', 'url' => ['site/about']],
             ];
-           
-           
-            $config_main=  backend\models\Sysconfigmain::find()->one();
-            
-           
+
+
+            $config_main = backend\models\Sysconfigmain::find()->one();
+
+            $center = isset($config_main->district_name) ? $config_main->district_name : 'Not set';
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-left'],
                 'encodeLabels' => false,
-                'items' => [['label' => 'DHDC : ศูนย์ข้อมูล43แฟ้ม อ.' . Html::encode($config_main->district_name)]],
+                'items' => [['label' => 'DHDC : ศูนย์ข้อมูล43แฟ้ม อ.' . Html::encode($center)]],
             ]);
 
             echo Nav::widget([
@@ -98,13 +97,12 @@ AppAsset::register($this);
                 'encodeLabels' => false,
                 'items' => $menuItems,
             ]);
-            
-             echo Nav::widget([
+
+            echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'encodeLabels' => false,
-                
             ]);
-            
+
             NavBar::end();
             ?>
 
@@ -121,8 +119,8 @@ AppAsset::register($this);
 
         <footer class="footer">
             <div class="container">
-                <p class="pull-left">&copy; <?=$config_main->district_name?> <?= date('Y') ?></p>
-                <p class="pull-right"><?=  Html::a('DHDC TEAM', ['site/index'])?></p>
+                <p class="pull-left">&copy; <?=  Html::encode($center)?> <?= date('Y') ?></p>
+                <p class="pull-right"><?= Html::a('DHDC TEAM', ['site/index']) ?></p>
             </div>
         </footer>
 
