@@ -16,6 +16,7 @@ RECOMMEND
 - apt-get install git
 - git clone https://github.com/utehnphnu2015/dhdc.git
 - git pull
+- composer update
 
 [composer]
 var/www# curl -sS https://getcomposer.org/installer | php
