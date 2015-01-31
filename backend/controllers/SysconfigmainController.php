@@ -26,6 +26,18 @@ class SysconfigmainController extends Controller {
             ],
         ];
     }
+    function adjust($districtcode){
+        
+        $camp = Campur::find()->where(['ampurcodefull'=>$districtcode])->one();
+        $distcode = $camp->ampurcode;
+        $district_name = $camp->ampurname;
+        
+        $config_main = Sysconfigmain::find()->where(['district_code'=>$districtcode])->one();
+        $config_main->distcode = $distcode;
+        $config_main->district_name=$district_name;
+        $config_main->update();
+        
+    }
 
     /**
      * Lists all Sysconfigmain models.
@@ -61,6 +73,7 @@ class SysconfigmainController extends Controller {
         $model = new Sysconfigmain();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->adjust($model->district_code);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -77,16 +90,12 @@ class SysconfigmainController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        $ampcode = $model->district_code;
+     
 
-        if ($model->load(Yii::$app->request->post())) {
-            /*
-            $ampur = Campur::find()->where(['ampurcodefull'=>$ampcode])->one();
-            $acode = substr($ampur->ampurcodefull, 3, 2);
-            $model->distcode = $acode;
-            $model->district_name =$ampur->ampurname;
-            */
-            $model->save();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+             $this->adjust($model->district_code);
+           
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

@@ -17,28 +17,25 @@ use kartik\widgets\DepDrop;
 
     <?=
     $form->field($model, 'provcode')->dropDownList(
-            ArrayHelper::map(Campur::find()->all(), 'changwatcode', 'changwatcode'),
-            array(
-                'id' => 'provcode',
-                'onchange'=>                       
-                '$.post("index.php?r=sysconfigmain/listamp&provcode="+this.value,function(data){
+            ArrayHelper::map(Campur::find()->all(), 'changwatcode', 'changwatcode'), array(
+        'id' => 'provcode',
+        'onchange' =>
+        '$.post("index.php?r=sysconfigmain/listamp&provcode="+this.value,function(data){
                     $("#ampurcodefull").html(data);
                      $("#sysconfigmain-distcode").val(data.substring(3,4));
                 });'
-                
-                )
+            )
     );
     ?>
-    
 
-    <?php
-    echo $form->field($model, 'district_code')->dropDownList(
-             ArrayHelper::map(Campur::find()->all(), 'ampurcodefull', 'ampurname'),
-            array(
-        'id' => 'ampurcodefull',
-        'prompt'=>'--อำเภอ--'
-    ));
-    ?>
+
+<?php
+echo $form->field($model, 'district_code')->dropDownList(
+        array(), array(
+    'id' => 'ampurcodefull',
+    'prompt' => '--อำเภอ--'
+));
+?>
 
 
 
@@ -48,6 +45,6 @@ use kartik\widgets\DepDrop;
 <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-<?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
 
 </div>
