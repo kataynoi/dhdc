@@ -40,7 +40,7 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = $p['filename'];
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
-                if ($ext === 'txt') {
+                if ($ext === 'txt' && $ftxt !== 'office') {
                     $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
                     $sql.= " REPLACE INTO TABLE $ftxt";
                     $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
@@ -103,7 +103,7 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = $p['filename'];
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
-                if ($ext === 'txt') {
+                if ($ext === 'txt' && $ftxt !== 'office') {
                     $sql = "LOAD DATA LOCAL INFILE '$rootpath$folder_without_ext/$file'";
                     $sql.= " REPLACE INTO TABLE $ftxt";
                     $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
