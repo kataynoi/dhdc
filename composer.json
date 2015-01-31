@@ -34,7 +34,7 @@
         "yiisoft/yii2-faker": "*"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 3600
     },
     "extra": {
         "asset-installer-paths": {
