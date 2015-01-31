@@ -1,3 +1,18 @@
+RECOMMEND
+[UBUNTU14]
+- nano /etc/ssh/sshd_config , PermitRootLogin yes
+- php dhdc/chmod.php
+- apt-get update;
+- sudo apt-get install mcrypt php5-mcrypt
+- sudo php5enmod mcrypt
+
+- sudo apt-get install php5-mysqlnd; //LOAD DATA LOCAL
+- sudo service apache2 restart
+
+- database ,utf8_general_ci;;
+- nano ../common/config/main-local.php
+
+
 [php.ini]
 max_execution_time=360000
 post_max_size=64M
@@ -5,10 +20,8 @@ upload_max_filesize = 64M
 memory_limit=1024M
 max_input_time=3600
 
-[UBUNTU14]
 
-sudo php5enmod mcrypt;
-sudo apt-get install php5-mysqlnd; //LOAD DATA LOCAL
+[MYSQL]
 [mysqld]
 local-infile=1
 [mysql]
