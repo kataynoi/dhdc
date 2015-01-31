@@ -23,20 +23,18 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     public function actionExecute() {
-        
+
         $sql = "SET GLOBAL event_scheduler = ON;";
         \Yii::$app->db->createCommand($sql)->execute();
         $running = \backend\models\SysProcessRunning::find()->one();
-        
+
         //echo $running->is_running;
         //return;
 
-        if ($running->is_running == 'false') {
-
+        if ($running->is_running == 'false')
             $sql = "call all_execute;";
 
-            \Yii::$app->db->createCommand($sql)->execute();
-        }
+        \Yii::$app->db->createCommand($sql)->execute();
     }
 
 }
