@@ -27,11 +27,14 @@ class ExecuteController extends \yii\web\Controller {
        
         $running = \backend\models\SysProcessRunning::find()->one();
 
-        //echo $running->is_running;
-        //return;
 
         if ($running->is_running == 'false')
-            $sql = "call all_execute;";
+            $sys=\backend\models\Sysconfigmain::find ()->one();
+            $prov=$sys->provcode;
+            $amp =$sys->distcode;
+            $year = '2014';
+           
+            $sql = "call all_execute($prov,$amp,$year);";
 
         \Yii::$app->db->createCommand($sql)->execute();
     }
