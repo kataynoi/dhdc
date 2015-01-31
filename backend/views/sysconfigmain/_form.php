@@ -31,7 +31,7 @@ use kartik\widgets\DepDrop;
 
 <?php
 echo $form->field($model, 'district_code')->dropDownList(
-        array(), array(
+        ArrayHelper::map(Campur::find()->where(['changwatcode'=>$model->provcode])->all(), 'ampurcodefull', 'ampurname'), array(
     'id' => 'ampurcodefull',
     'prompt' => '--อำเภอ--'
 ));
