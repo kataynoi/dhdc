@@ -12,7 +12,10 @@ RECOMMEND
 - database ,utf8_general_ci;;
 - nano ../common/config/main-local.php
 
+[GIT]
 - apt-get install git
+- git clone https://github.com/utehnphnu2015/dhdc.git
+- git pull
 
 [php.ini]
 max_execution_time=360000
