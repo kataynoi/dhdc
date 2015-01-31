@@ -49,7 +49,7 @@ class Sysconfigmain extends \yii\db\ActiveRecord
             'distcode' => 'Distcode',
             'district_code' => 'District Code',
             'district_name' => 'District Name',
-            'note1' => 'Note1',
+            'note1' => 'ผู้ดูแลระบบ',
             'note2' => 'Note2',
             'note3' => 'Note3',
             'note4' => 'Note4',

@@ -36,8 +36,7 @@ echo $form->field($model, 'district_code')->dropDownList(
     'prompt' => '--อำเภอ--'
 ));
 ?>
-
-
+<?=$form->field($model,'note1')->textInput()?>
 
 
 
