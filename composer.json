@@ -24,7 +24,8 @@
         "kartik-v/yii2-krajee-base": "@dev",
         "kartik-v/yii2-mpdf": "@dev",
         "kartik-v/yii2-widgets": "*",
-        "kartik-v/dependent-dropdown": "dev-master"
+        "kartik-v/dependent-dropdown": "dev-master",
+        "kartik-v/yii2-widget-timepicker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
