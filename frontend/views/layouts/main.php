@@ -66,6 +66,10 @@ AppAsset::register($this);
                 $username = '(' . Html::encode(Yii::$app->user->identity->username) . ')';
             }
 
+            $report_mnu_check_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> PERSON TYPE', 'url' => ['#']];
+            $report_mnu_check_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> PERSON CID', 'url' => ['#']];
+            $report_mnu_check_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> PERSON ต่างด้าว', 'url' => ['#']];
+
             $menuItems = [
                 ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/uploadfortythree/index']],
                 ['label' =>
@@ -75,6 +79,10 @@ AppAsset::register($this);
                 ['label' =>
                     '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน',
                     'items' => $report_mnu_itms
+                ],
+                ['label' =>
+                    '<span class="glyphicon glyphicon-check"></span> ตรวจสอบข้อมูล',
+                    'items' => $report_mnu_check_itms
                 ],
                 ['label' => '<span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน ' . $username,
                     'items' => $submenuItems
