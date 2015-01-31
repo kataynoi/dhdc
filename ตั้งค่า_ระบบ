@@ -12,6 +12,7 @@ RECOMMEND
 - database ,utf8_general_ci;;
 - nano ../common/config/main-local.php
 
+- apt-get install git
 
 [php.ini]
 max_execution_time=360000
