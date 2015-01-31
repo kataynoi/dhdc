@@ -7,8 +7,8 @@ $this->title = 'DHDC Backend';
 
     <div class="well">
         <h1>ระบบ District HDC BACK-END</h1>
-        <p>frontend version  1.0</p>
-        <p>backend version 1.0</p>
+        <p>frontend version:  2015-01-31</p>
+        <p>backend version: 2015-01-31</p>
     </div>
     <div class="container">
         <div class="row">
