@@ -6,10 +6,7 @@ class ExecuteController extends \yii\web\Controller {
 
     public function actionIndex() {
         $sql = "show processlist;";
-
         $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-
-        //return;
 
         $dataProvider = new \yii\data\ArrayDataProvider([
             // 'key' => 'hoscode',
@@ -26,13 +23,20 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     public function actionExecute() {
-
+        
         $sql = "SET GLOBAL event_scheduler = ON;";
         \Yii::$app->db->createCommand($sql)->execute();
+        $running = \backend\models\SysProcessRunning::find()->one();
+        
+        //echo $running->is_running;
+        //return;
 
-        $sql = "call all_execute;";
+        if ($running->is_running == 'false') {
 
-        \Yii::$app->db->createCommand($sql)->execute();
+            $sql = "call all_execute;";
+
+            \Yii::$app->db->createCommand($sql)->execute();
+        }
     }
 
 }
