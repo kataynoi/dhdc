@@ -67,6 +67,7 @@ AppAsset::register($this);
             }
 
             $menuItems = [
+                ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/uploadfortythree/index']],
                 ['label' =>
                     '<span class="glyphicon glyphicon-folder-open"></span> ปริมาณข้อมูล',
                     'url' => ['summary/index']
@@ -75,7 +76,6 @@ AppAsset::register($this);
                     '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน',
                     'items' => $report_mnu_itms
                 ],
-                ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/uploadfortythree/index']],
                 ['label' => '<span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน ' . $username,
                     'items' => $submenuItems
                 ],
@@ -119,7 +119,7 @@ AppAsset::register($this);
 
         <footer class="footer">
             <div class="container">
-                <p class="pull-left">&copy; <?=  Html::encode($center)?> <?= date('Y') ?></p>
+                <p class="pull-left">&copy; <?= Html::encode($center) ?> <?= date('Y') ?></p>
                 <p class="pull-right"><?= Html::a('DHDC TEAM', ['site/index']) ?></p>
             </div>
         </footer>
