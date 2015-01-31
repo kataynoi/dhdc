@@ -1,7 +1,7 @@
 RECOMMEND
 [UBUNTU14]
 - nano /etc/ssh/sshd_config , PermitRootLogin yes
-- php dhdc/chmod.php
+
 - apt-get update;
 - sudo apt-get install mcrypt php5-mcrypt
 - sudo php5enmod mcrypt
@@ -16,6 +16,12 @@ RECOMMEND
 - apt-get install git
 - git clone https://github.com/utehnphnu2015/dhdc.git
 - git pull
+
+[composer]
+var/www# curl -sS https://getcomposer.org/installer | php
+var/www# sudo mv composer.phar /usr/local/bin/composer
+
+- php dhdc/chmod.php
 
 [php.ini]
 max_execution_time=360000
