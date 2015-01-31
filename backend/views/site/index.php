@@ -64,7 +64,7 @@ $this->title = 'DHDC Backend';
             </div>
             <div class="col-sm-4">
                 <?php
-                $route = \Yii::$app->urlManager->createUrl('settime/index');
+                $route = \Yii::$app->urlManager->createUrl('syssettime/index');
                 ?>
                 <a class="btn btn-success" id="btn_set_process" href="<?=$route?>"> 
                     ตั้งเวลาประมวลผลรายงาน
