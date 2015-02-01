@@ -10,7 +10,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\Campur;
 
-
 /**
  * SysconfigmainController implements the CRUD actions for Sysconfigmain model.
  */
@@ -26,17 +25,32 @@ class SysconfigmainController extends Controller {
             ],
         ];
     }
-    function adjust($districtcode){
-        
-        $camp = Campur::find()->where(['ampurcodefull'=>$districtcode])->one();
+
+    function adjust($districtcode) {
+
+        $camp = Campur::find()->where(['ampurcodefull' => $districtcode])->one();
         $distcode = $camp->ampurcode;
         $district_name = $camp->ampurname;
-        
-        $config_main = Sysconfigmain::find()->where(['district_code'=>$districtcode])->one();
+
+        $config_main = Sysconfigmain::find()->where(['district_code' => $districtcode])->one();
         $config_main->distcode = $distcode;
-        $config_main->district_name=$district_name;
+        $config_main->district_name = $district_name;
         $config_main->update();
+    }
+
+    function add_hospital() {
+        $cfg_main = Sysconfigmain::find()->one();
+
+        $sql = "DROP TABLE IF EXISTS chospital_amp;";
+        \yii::$app->db->createCommand($sql)->execute();
+
+       echo $sql = "CREATE TABLE chospital_amp SELECT * from chospital h 
+                WHERE h.provcode = $cfg_main->provcode 
+                and h.distcode=$cfg_main->distcode
+                and h.hostype NOT in (01,02,10,13,15,16);";
         
+        \yii::$app->db->createCommand($sql)->execute();
+        return;
     }
 
     /**
@@ -74,6 +88,7 @@ class SysconfigmainController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->adjust($model->district_code);
+            $this->add_hospital();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -90,12 +105,13 @@ class SysconfigmainController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-     
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            
-             $this->adjust($model->district_code);
-           
+
+            $this->adjust($model->district_code);
+            $this->add_hospital();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -132,14 +148,11 @@ class SysconfigmainController extends Controller {
     }
 
     public function actionListamp($provcode) {
-        
-        $amp=Campur::find()->where(['changwatcode'=>$provcode])->all();
+
+        $amp = Campur::find()->where(['changwatcode' => $provcode])->all();
         foreach ($amp as $a) {
             echo "<option value='$a->ampurcodefull'>$a->ampurname</option>";
         }
-        
-        
-        
     }
 
 }

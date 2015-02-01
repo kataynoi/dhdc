@@ -29,6 +29,7 @@ class ExecuteController extends \yii\web\Controller {
 
 
         if ($running->is_running == 'false')
+            
             $sys=\backend\models\Sysconfigmain::find ()->one();
             $prov=$sys->provcode;
             $amp =$sys->distcode;
