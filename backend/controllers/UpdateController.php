@@ -11,16 +11,18 @@ use linslin\yii2\curl;
  */
 class UpdateController extends \yii\web\Controller {
 
+    //
+
     public function actionDatabase() {
 
         $curl = new curl\Curl();
-        $sql = $curl->get("http://utehn.plkhealth.go.th/update/database/update.sql");
+        $sql = $curl->get("http://utehn.plkhealth.go.th/update/databases/db.sql");
         \yii::$app->db->createCommand($sql)->execute();
     }
 
-    public function actionProgram() {
+    public function actionFrontendmodels() {
 
-        $source = "http://utehn.plkhealth.go.th/demo/files/f1.txt";
+        $source = "http://utehn.plkhealth.go.th/update/frontend/";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $source);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -34,5 +36,14 @@ class UpdateController extends \yii\web\Controller {
         fputs($file, $data);
         fclose($file);
     }
+
+    public function actionFrontendviews() {
+        
+    }
+    
+    public function actionFrontendcontrollers() {
+        
+    }
+
 
 }
