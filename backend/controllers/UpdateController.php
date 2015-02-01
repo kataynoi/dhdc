@@ -11,8 +11,7 @@ use linslin\yii2\curl;
  */
 class UpdateController extends \yii\web\Controller {
 
-    //
-
+   
     public function actionDatabase() {
 
         $curl = new curl\Curl();
