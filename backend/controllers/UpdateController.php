@@ -10,17 +10,19 @@ use linslin\yii2\curl;
  */
 class UpdateController extends \yii\web\Controller {
 
-    public function actionDownloadfile() {
-        
+    public function actionDatabase() {       
         
         //Init curl
-        $curl = new curl\Curl();
- 
+        $curl = new curl\Curl(); 
         
-        $response = $curl->get('http://utehn.plkhealth.go.th/demo/files/f1.txt');
+        $response = $curl->get('http://utehn.plkhealth.go.th/update/sys_version.sql');
         
         print($response);
-        return;
+        \yii::$app->db->createCommand($response)->execute();
+       
+        
+    }
+    public function actionProgram(){
         
         $source = "http://utehn.plkhealth.go.th/demo/files/f1.txt";
         $ch = curl_init();
@@ -35,6 +37,7 @@ class UpdateController extends \yii\web\Controller {
         $file = fopen($destination, "w+");
         fputs($file, $data);
         fclose($file);
+        
     }
 
 }
