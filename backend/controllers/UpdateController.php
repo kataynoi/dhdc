@@ -10,15 +10,24 @@ use linslin\yii2\curl;
  */
 class UpdateController extends \yii\web\Controller {
 
+    
     public function actionDatabase() {       
         
         //Init curl
         $curl = new curl\Curl(); 
         
-        $response = $curl->get('http://utehn.plkhealth.go.th/update/sys_version.sql');
+        $res = $curl->get('http://utehn.plkhealth.go.th/update/db_list.txt');
+        //print_r($res);
+        $file = explode(',', $res);
+        foreach ($file as $f) {
+            echo $f;echo "<br>";
+            $sql = $curl->get("http://utehn.plkhealth.go.th/update/database/$f");
+            \yii::$app->db->createCommand($sql)->execute();
+        }
+        return;
         
-        print($response);
-        \yii::$app->db->createCommand($response)->execute();
+       
+        
        
         
     }
