@@ -1,6 +1,7 @@
 <?php
 
 namespace backend\controllers;
+use linslin\yii2\curl;
 
 /**
  * Description of TestController
@@ -10,6 +11,17 @@ namespace backend\controllers;
 class UpdateController extends \yii\web\Controller {
 
     public function actionDownloadfile() {
+        
+        
+        //Init curl
+        $curl = new curl\Curl();
+ 
+        
+        $response = $curl->get('http://utehn.plkhealth.go.th/demo/files/f1.txt');
+        
+        print($response);
+        return;
+        
         $source = "http://utehn.plkhealth.go.th/demo/files/f1.txt";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $source);

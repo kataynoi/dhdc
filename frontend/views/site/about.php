@@ -24,5 +24,8 @@ $sys=Sysconfigmain::find()->one();
 </div>
 
 <div class="site-about">
-    <h3>Version: 2015-01-31</h3>
+    <?php
+        $version = \backend\models\SysVersion::find()->one();
+    ?>
+    <h3>frontend version: <?=$version->frontend?></h3>
 </div>

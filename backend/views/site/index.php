@@ -6,18 +6,22 @@ $this->title = 'DHDC Backend';
 <div class="site-index">
 
     <div class="well">
+        <?php
+        $version = \backend\models\SysVersion::find()->one();
+        ?>
         <h1>ระบบ District HDC BACK-END</h1>
-        <p>frontend version:  2015-01-31</p>
-        <p>backend version: 2015-01-31</p>
+        <p>frontend :  <?=$version->frontend;?></p>
+        <p>backend : <?=$version->backend;?></p>
+        <p>database : <?=$version->database;?></p>
         <p><a href="" class="btn btn-danger">Check</a></p>
     </div>
     <div class="container well">
         <div class="row">
             <div class="col-sm-4">
                 <?php
-                $route=\Yii::$app->urlManager->createUrl('sysconfigmain/index');
+                $route = \Yii::$app->urlManager->createUrl('sysconfigmain/index');
                 ?>
-                <a class="btn btn-success" id="btn_1" href="<?=$route?>"> 
+                <a class="btn btn-success" id="btn_1" href="<?= $route ?>"> 
                     ตั้งค่าอำเภอ
                 </a>
 
@@ -67,7 +71,7 @@ $this->title = 'DHDC Backend';
                 <?php
                 $route = \Yii::$app->urlManager->createUrl('syssettime/index');
                 ?>
-                <a class="btn btn-success" id="btn_set_process" href="<?=$route?>"> 
+                <a class="btn btn-success" id="btn_set_process" href="<?= $route ?>"> 
                     ตั้งเวลาประมวลผลรายงาน
                 </a>
             </div>

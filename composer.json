@@ -25,7 +25,8 @@
         "kartik-v/yii2-mpdf": "@dev",
         "kartik-v/yii2-widgets": "*",
         "kartik-v/dependent-dropdown": "dev-master",
-        "kartik-v/yii2-widget-timepicker": "*"
+        "kartik-v/yii2-widget-timepicker": "*",
+        "linslin/yii2-curl": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
