@@ -13,17 +13,19 @@
 
 $this->title = 'DHDC Backend';
 ?>
-<div class="site-index">
+<div class="site-index container">
 
     <div class="well">
         <?php
         $version = \backend\models\SysVersion::find()->one();
         ?>
         <h1>ระบบ District HDC BACK-END</h1>
+        <div class="alert alert-danger">
         <p>frontend :  <?= $version->frontend; ?></p>
         <p>backend : <?= $version->backend; ?></p>
         <p>database : <?= $version->database; ?></p>
         <p><a href="" class="btn btn-danger">Check</a></p>
+        </div>
     </div>
     <div class="well">
         <div class="row">
@@ -65,11 +67,11 @@ $this->title = 'DHDC Backend';
                 if ($onoff->status === 'on'):
                     ?>
                     <a class="btn btn-danger btn-xlarge" href="<?= $route_off ?>">
-                        <i class="glyphicon glyphicon-folder-open"></i> Close Upload
+                        <i class="glyphicon glyphicon-folder-open"></i> ปิด Upload
                     </a>
                 <?php else: ?>
-                    <a class="btn btn-success btn-xlarge" href="<?= $route_on ?>">
-                        <i class="glyphicon glyphicon-folder-open"></i> Open Upload
+                    <a class="btn btn-primary btn-xlarge" href="<?= $route_on ?>">
+                        <i class="glyphicon glyphicon-folder-open"></i> เปิด Upload
                     </a>
                 <?php endif; ?>
             </div>

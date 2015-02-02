@@ -24,20 +24,21 @@ class ExecuteController extends \yii\web\Controller {
 
     public function actionExecute() {
 
-       
+
         $running = \backend\models\SysProcessRunning::find()->one();
 
 
-        if ($running->is_running == 'false')
-            
-            $sys=\backend\models\Sysconfigmain::find ()->one();
-            $prov=$sys->provcode;
-            $amp =$sys->distcode;
+        if ($running->is_running == 'false') {
+
+            $sys = \backend\models\Sysconfigmain::find()->one();
+            $prov = $sys->provcode;
+            $amp = $sys->distcode;
             $year = '2014';
-           
+
             $sql = "call all_execute($prov,$amp,$year);";
 
-        \Yii::$app->db->createCommand($sql)->execute();
+            \Yii::$app->db->createCommand($sql)->execute();
+        }
     }
 
 }
