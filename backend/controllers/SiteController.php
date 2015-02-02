@@ -18,17 +18,31 @@ class SiteController extends Controller
      */
     public function behaviors()
     {
+        
+        $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+
+        $arr = array();
+        if ($role == 1) {
+            $arr = ['login','logout','index','error'];
+        } else {
+            $arr = ['logout','login','error'];
+        }
         return [
-            'access' => [
-                'class' => AccessControl::className(),
+           'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'denyCallback' => function ($rule, $action) {
+                    throw new \yii\web\ForbiddenHttpException("ไม่ได้รับอนุญาต");
+                },
+                'only' => ['login','logout','index','error'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
+                        'allow' => TRUE,
+                        'actions' => $arr,
+                        'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
+                        'allow' => TRUE,
+                        'actions' => $arr,
                         'roles' => ['@'],
                     ],
                 ],
@@ -67,7 +81,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            //return $this->goBack();
+            $this->redirect(['index']);
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -79,6 +94,6 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(['login']);
     }
 }

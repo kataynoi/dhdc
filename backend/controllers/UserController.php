@@ -24,7 +24,7 @@ class UserController extends Controller {
         } else {
             $arr = [''];
         }
-        //print_r($arr);
+     
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
