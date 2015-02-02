@@ -1,15 +1,16 @@
-<style>
-    .btn-xlarge {
+
+<?php
+/* @var $this yii\web\View */
+     
+
+$this->registerCss(".btn-xlarge {
         padding: 18px 28px;
         font-size: 22px; //change this to your desired size
         line-height: normal;
         -webkit-border-radius: 8px;
         -moz-border-radius: 8px;
         border-radius: 8px;
-    }
-</style>
-<?php
-/* @var $this yii\web\View */
+    }");
 
 $this->title = 'DHDC Backend';
 ?>
