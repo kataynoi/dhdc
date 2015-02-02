@@ -24,11 +24,10 @@ class UploadfortythreeController extends Controller {
             $role = Yii::$app->user->identity->role;
         }
         $arr = array();
-        if ($role == 1) {
-            $arr = ['index', 'view', 'create', 'update', 'delete',];
-        }
-        if ($role == 0) {
-            $arr = ['index', 'view'];
+        if ($role == 1 || $role == 2) {
+            $arr = ['index', 'view', 'create', 'update', 'delete'];
+        } else {
+            $arr = ['index'];
         }
 
         return [
