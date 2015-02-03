@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2015-02-03 22:33:40
+Date: 2015-02-03 23:11:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,8 +21,10 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `sys_count_import`;
 CREATE TABLE `sys_count_import` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `import_date` varchar(255) DEFAULT NULL,
   `filename` varchar(255) DEFAULT NULL,
+  `upload_date` varchar(255) DEFAULT NULL,
+  `upload_time` varchar(255) DEFAULT NULL,
+  `import_date` varchar(255) DEFAULT NULL,
   `person` int(11) DEFAULT NULL,
   `address` int(11) DEFAULT NULL,
   `death` int(255) DEFAULT NULL,
@@ -67,4 +69,4 @@ CREATE TABLE `sys_count_import` (
   `community_activity` int(255) DEFAULT NULL,
   `community_service` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
