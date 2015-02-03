@@ -8,8 +8,10 @@ use Yii;
  * This is the model class for table "sys_count_import".
  *
  * @property integer $id
- * @property string $import_date
  * @property string $filename
+ * @property string $upload_date
+ * @property string $upload_time
+ * @property string $import_date
  * @property integer $person
  * @property integer $address
  * @property integer $death
@@ -70,8 +72,9 @@ class SysCountImport extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            
             [['person', 'address', 'death', 'chronic', 'card', 'home', 'village', 'disability', 'provider', 'women', 'drugallergy', 'functional', 'icf', 'service', 'diagnosis_opd', 'drug_opd', 'procedure_opd', 'charge_opd', 'surveillance', 'accident', 'labfu', 'chronicfu', 'admission', 'diagnosis_ipd', 'drug_ipd', 'procedure_ipd', 'charge_ipd', 'appointment', 'dental', 'rehabilitation', 'ncdscreen', 'fp', 'prenatal', 'anc', 'labor', 'postnatal', 'newborn', 'newborn_care', 'epi', 'nutrition', 'specialpp', 'community_activity', 'community_service'], 'integer'],
-            [['import_date', 'filename'], 'string', 'max' => 255]
+            [['filename','upload_date', 'upload_time', 'import_date'], 'string', 'max' => 255]
         ];
     }
 
@@ -82,8 +85,10 @@ class SysCountImport extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'import_date' => 'ImportDate',
             'filename' => 'Filename',
+            'upload_date' => 'Upload Date',
+            'upload_time' => 'Upload Time',
+            'import_date' => 'Import Date',
             'person' => 'Person',
             'address' => 'Address',
             'death' => 'Death',
@@ -98,18 +103,18 @@ class SysCountImport extends \yii\db\ActiveRecord
             'functional' => 'Functional',
             'icf' => 'Icf',
             'service' => 'Service',
-            'diagnosis_opd' => 'DiagnosisOpd',
+            'diagnosis_opd' => 'Diagnosis Opd',
             'drug_opd' => 'Drug Opd',
-            'procedure_opd' => 'ProcedureOpd',
+            'procedure_opd' => 'Procedure Opd',
             'charge_opd' => 'Charge Opd',
             'surveillance' => 'Surveillance',
             'accident' => 'Accident',
             'labfu' => 'Labfu',
             'chronicfu' => 'Chronicfu',
             'admission' => 'Admission',
-            'diagnosis_ipd' => 'DiagnosisIpd',
+            'diagnosis_ipd' => 'Diagnosis Ipd',
             'drug_ipd' => 'Drug Ipd',
-            'procedure_ipd' => 'ProcedureIpd',
+            'procedure_ipd' => 'Procedure Ipd',
             'charge_ipd' => 'Charge Ipd',
             'appointment' => 'Appointment',
             'dental' => 'Dental',
@@ -121,12 +126,12 @@ class SysCountImport extends \yii\db\ActiveRecord
             'labor' => 'Labor',
             'postnatal' => 'Postnatal',
             'newborn' => 'Newborn',
-            'newborn_care' => 'NewbornCare',
+            'newborn_care' => 'Newborn Care',
             'epi' => 'Epi',
             'nutrition' => 'Nutrition',
             'specialpp' => 'Specialpp',
-            'community_activity' => 'CommunityActivity',
-            'community_service' => 'CommunityService',
+            'community_activity' => 'Community Activity',
+            'community_service' => 'Community Service',
         ];
     }
 }

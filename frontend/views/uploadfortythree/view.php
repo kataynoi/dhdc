@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo "กำลังนำเข้า";
             } else { 
             ?>
-            <a href="<?=  Yii::$app->urlManager->createUrl('uploadfortythree/detail',array('file'=>'aaa'))?>">รายการ</a>
+            <a href="<?=  ''?>">รายการ</a>
             <?php 
             }
             ?>
@@ -73,7 +73,7 @@ $('#btn_import').on('click', function(e) {
         
     $.ajax({
        url: "$action_route",
-       data: {fortythree:"$model->file_name",oldname:"$model->note1",id:"$model->id"},
+       data: {fortythree:"$model->file_name",upload_date:"$model->upload_date",upload_time:"$model->upload_time",id:"$model->id"},
        success: function(data) {
             $('#res').toggle(); 
             $('#info').toggle(); 

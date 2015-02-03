@@ -11,7 +11,7 @@ class AjaxController extends \yii\web\Controller {
         return $this->render('index');
     }
 
-    public function actionImport($fortythree, $oldname, $id) {
+    public function actionImport($fortythree, $upload_date,$upload_time, $id) {
 
         $model = UploadFortythree::findOne($id);
         $model->note2 = 'กำลังนำเข้า';
@@ -34,8 +34,10 @@ class AjaxController extends \yii\web\Controller {
         $dir = opendir($full_dir);
 
         $cfmodel = new SysCountImport();
-        $cfmodel->import_date = date('Y-m-d H:i:s');
+        $cfmodel->import_date = date('YmdHis');
         $cfmodel->filename = $fortythree;
+        $cfmodel->upload_date =$upload_date;
+        $cfmodel->upload_time=$upload_time;
 
         while (($file = readdir($dir)) !== false) {
             if ($file !== "." && $file !== "..") {
@@ -83,7 +85,7 @@ class AjaxController extends \yii\web\Controller {
         return $fortythree;
     }
 
-    public function actionImport2($fortythree, $oldname, $id) {
+    public function actionImport2($fortythree,$upload_date,$upload_time, $id) {
 
         $model = UploadFortythree::findOne($id);
         $model->note2 = 'กำลังนำเข้า';
@@ -108,8 +110,11 @@ class AjaxController extends \yii\web\Controller {
         $dir = opendir($full_dir);
 
         $cfmodel = new SysCountImport();
-        $cfmodel->import_date = date('Y-m-d H:i:s');
+        $cfmodel->import_date = date('YmdHis');
         $cfmodel->filename = $fortythree;
+        $cfmodel->upload_date =$upload_date;
+        $cfmodel->upload_time=$upload_time;
+
 
         while (($file = readdir($dir)) !== false) {
             if ($file !== "." && $file !== "..") {
