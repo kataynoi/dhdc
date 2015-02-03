@@ -9,8 +9,12 @@ RECOMMEND
 - sudo apt-get install php5-mysqlnd; //LOAD DATA LOCAL
 - sudo service apache2 restart
 
-- database ,utf8_general_ci;;
+- CREATE DATABASE dhdc CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+- mysql -u root -p dhdc<dhdc.sql
+
 - nano ../common/config/main-local.php
+- php dhdc/chmod.php
 
 [GIT]
 - apt-get install git
@@ -19,8 +23,8 @@ RECOMMEND
 
 
 
-PHP
-- php dhdc/chmod.php
+
+
 
 [php.ini]
 max_execution_time=360000

@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class PersonController extends Controller {
 
     public function behaviors() {
-        $role=0;
+        $role = 0;
         if (!Yii::$app->user->isGuest) {
             $role = Yii::$app->user->identity->role;
         }
@@ -44,6 +44,7 @@ class PersonController extends Controller {
                         'allow' => true,
                         'actions' => $arr,
                         'roles' => ['@'],
+                        
                     ],
                 ],
             ],
