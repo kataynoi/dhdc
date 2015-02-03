@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
 
 /**
  * UploadFortythreeController implements the CRUD actions for UploadFortythree model.
@@ -181,6 +182,23 @@ class UploadfortythreeController extends Controller {
     protected function findModel($id) {
         if (($model = UploadFortythree::findOne($id)) !== null) {
             return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionDetail($filename, $upload_date, $upload_time) {
+
+        $model = \frontend\models\SysCountImport::find()
+                ->where(['filename' => $filename,
+                    'upload_date' => $upload_date,
+                    'upload_time' => $upload_time])
+                ->one();
+        if ($model) {
+
+            return $this->render('detail', [
+                        'model' => $model,
+            ]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

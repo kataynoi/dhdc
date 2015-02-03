@@ -47,10 +47,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php
             if ($model->note2 === 'กำลังนำเข้า') {
                 echo "กำลังนำเข้า";
-            } else { 
-            ?>
-            <a href="<?=  ''?>">รายการ</a>
-            <?php 
+            } else {
+                echo Html::a('นำเข้าแล้ว', ['detail',
+                    'filename' => $model->file_name,
+                    'upload_date' => $model->upload_date,
+                    'upload_time' => $model->upload_time
+                ]);
             }
             ?>
         </div>    
