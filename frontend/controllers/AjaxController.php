@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\UploadFortythree;
+use frontend\models\SysCountImport;
 
 class AjaxController extends \yii\web\Controller {
 
@@ -15,6 +16,7 @@ class AjaxController extends \yii\web\Controller {
         $model = UploadFortythree::findOne($id);
         $model->note2 = 'กำลังนำเข้า';
         $model->update();
+
 
 
         $filefortythree = "fortythree/$fortythree";
@@ -31,6 +33,10 @@ class AjaxController extends \yii\web\Controller {
         $full_dir = "fortythree/$folder_without_ext";
         $dir = opendir($full_dir);
 
+        $cfmodel = new SysCountImport();
+        $cfmodel->import_date = date('Y-m-d H:i:s');
+        $cfmodel->filename = $fortythree;
+
         while (($file = readdir($dir)) !== false) {
             if ($file !== "." && $file !== "..") {
                 $model->note3 = $file;
@@ -45,10 +51,17 @@ class AjaxController extends \yii\web\Controller {
                     $sql.= " REPLACE INTO TABLE $ftxt";
                     $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
                 }
-                \Yii::$app->db->createCommand($sql)->execute();
+                $count = \Yii::$app->db->createCommand($sql)->execute();
+                if($cfmodel->hasAttribute($ftxt)){
+                    $cfmodel->setAttribute ($ftxt, $count);
+                }
             }
+            
         }
+        $cfmodel->save();
+
         closedir($dir);
+
 
         $dir = opendir($full_dir);
         while (($file = readdir($dir)) !== false) {
