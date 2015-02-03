@@ -47,8 +47,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php
             if ($model->note2 === 'กำลังนำเข้า') {
                 echo "กำลังนำเข้า";
-            } else {
-                echo "นำเข้าแล้ว";
+            } else { 
+            ?>
+            <a href="<?=  Yii::$app->urlManager->createUrl('uploadfortythree/detail',array('file'=>'aaa'))?>">รายการ</a>
+            <?php 
             }
             ?>
         </div>    

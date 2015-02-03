@@ -52,11 +52,10 @@ class AjaxController extends \yii\web\Controller {
                     $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
                 }
                 $count = \Yii::$app->db->createCommand($sql)->execute();
-                if($cfmodel->hasAttribute($ftxt)){
-                    $cfmodel->setAttribute ($ftxt, $count);
+                if ($cfmodel->hasAttribute($ftxt)) {
+                    $cfmodel->setAttribute($ftxt, $count);
                 }
             }
-            
         }
         $cfmodel->save();
 
@@ -101,11 +100,16 @@ class AjaxController extends \yii\web\Controller {
         }
         //rename($path . $oldname, $path . $fortythree);
 
+
         $folder_with_ext = explode('.', $fortythree);
         $folder_without_ext = $folder_with_ext[0];
 
         $full_dir = "$rootpath/$folder_without_ext";
         $dir = opendir($full_dir);
+
+        $cfmodel = new SysCountImport();
+        $cfmodel->import_date = date('Y-m-d H:i:s');
+        $cfmodel->filename = $fortythree;
 
         while (($file = readdir($dir)) !== false) {
             if ($file !== "." && $file !== "..") {
@@ -121,9 +125,13 @@ class AjaxController extends \yii\web\Controller {
                     $sql.= " REPLACE INTO TABLE $ftxt";
                     $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
                 }
-                \Yii::$app->db->createCommand($sql)->execute();
+                $count = \Yii::$app->db->createCommand($sql)->execute();
+                if ($cfmodel->hasAttribute($ftxt)) {
+                    $cfmodel->setAttribute($ftxt, $count);
+                }
             }
         }
+        $cfmodel->save();
         closedir($dir);
 
         $dir = opendir($full_dir);
