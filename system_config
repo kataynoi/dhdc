@@ -24,13 +24,8 @@ upload_max_filesize = 64M
 memory_limit=1024M
 max_input_time=3600
 
-[GIT]
-- apt-get install git
-- git clone https://github.com/utehnphnu2015/dhdc.git
-- git pull
 
-
-[MYSQL MariaBD]
+[MariaBD]
 #my.ini
-sql_mode=NO_ENGINE_SUBSTITUTION
+-sql_mode=NO_ENGINE_SUBSTITUTION
 
