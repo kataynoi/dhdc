@@ -162,10 +162,6 @@ class AjaxController extends \yii\web\Controller {
 
     public function actionImport3($fortythree, $upload_date, $upload_time) {
 
-
-
-
-
         $filefortythree = "fortythree/$fortythree";
         $zip = new \ZipArchive();
         if ($zip->open($filefortythree) === TRUE) {
