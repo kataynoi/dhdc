@@ -41,4 +41,12 @@ class ExecuteController extends \yii\web\Controller {
         }
     }
 
+    public function actionRuncountfile($ym='201410') {
+       
+        
+        $sql = "call run_sys_count_all($ym);";
+
+        \Yii::$app->db->createCommand($sql)->execute();
+    }
+
 }

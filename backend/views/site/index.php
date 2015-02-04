@@ -1,7 +1,10 @@
 
 <?php
 /* @var $this yii\web\View */
-     
+
+//$js_url = Yii::getAlias('@web');
+
+//$this->registerJsFile($js_url."/js/bootbox.min.js");
 
 $this->registerCss(".btn-xlarge {
         padding: 18px 28px;
@@ -22,12 +25,17 @@ $this->title = 'DHDC Backend';
         ?>
         <h1>ระบบ District HDC BACK-END</h1>
         <div class="alert alert-danger">
-        <p>frontend :  <?= $version->frontend; ?></p>
-        <p>backend : <?= $version->backend; ?></p>
-        <p>database : <?= $version->database; ?></p>
-        <p><a href="" class="btn btn-danger">Check</a></p>
+            frontend :  <?= $version->frontend; ?>,
+            backend : <?= $version->backend; ?>,
+            database : <?= $version->database; ?>
+            <p><a href="" class="btn btn-danger">Check</a></p>
         </div>
     </div>
+    <center> 
+        <div id="res" style="display: none">
+            <img src="images/busy.gif">
+        </div>
+    </center>
     <div class="well">
         <div class="row">
             <div class="col-sm-4">
@@ -52,9 +60,7 @@ $this->title = 'DHDC Backend';
                 <button class="btn btn-danger btn-xlarge" id="btn_process"> 
                     <i class="glyphicon glyphicon-refresh"></i> ประมวลผลรายงาน
                 </button>
-                <div id="res" style="display: none">
-                    <img src="images/busy.gif">
-                </div>
+
 
             </div>
         </div>
@@ -93,15 +99,33 @@ $this->title = 'DHDC Backend';
                 </a>
             </div>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <?php
+                $route = \Yii::$app->urlManager->createUrl('execute/runcountfile');
+                ?>
+                <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#" onclick="run_count_all()"> 
+                    <i class="glyphicon glyphicon-circle-arrow-up"></i> จำนวนแฟ้ม
+                </a>
+            </div>
+        </div>
+
+
     </div>
 
 
 </div>
 
-
+<script>
+function run_count_all(){
+    
+   
+}
+</script>
 
 <?php
-$route = Yii::$app->urlManager->createUrl('execute/execute');
+$route1 = Yii::$app->urlManager->createUrl('execute/execute');
 $script = <<< JS
 $('#btn_process').on('click', function(e) {
                 
@@ -115,7 +139,7 @@ $('#btn_process').on('click', function(e) {
     
         
     $.ajax({
-       url: "$route",
+       url: "$route1",
        //data: {a:'1'},
        success: function(data) {
             $('#res').toggle();
