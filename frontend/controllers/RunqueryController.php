@@ -22,26 +22,32 @@ class RunqueryController extends \yii\web\Controller {
         if (\Yii::$app->request->isPost) {
 
             $sql = trim($_POST['sql_code']);
+           
+            $break = FALSE;
 
             if ('delete' === substr($sql, 0, 6)) {
-                throw new \yii\web\ConflictHttpException;
+                $break = true;
             }
             if ('insert' === substr($sql, 0, 6)) {
-                throw new \yii\web\ConflictHttpException;
+                 $break = true;
             }
 
-            if ('update' === substr($sql, 0, 5)) {
-                throw new \yii\web\ConflictHttpException;
+            if ('update' === substr($sql, 0, 6)) {
+                $break = true;
             }
 
             if ('alter' === substr($sql, 0, 5)) {
-                throw new \yii\web\ConflictHttpException;
+                 $break = true;
             }
             if ('drop' === substr($sql, 0, 4)) {
-                throw new \yii\web\ConflictHttpException;
+                 $break = true;
             }
             if ('show' === substr($sql, 0, 4)) {
+                 $break = true;
+            }
+            if ($break) {
                 throw new \yii\web\ConflictHttpException;
+                
             }
 
             try {
