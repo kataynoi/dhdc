@@ -74,7 +74,7 @@ AppAsset::register($this);
                 ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/uploadfortythree/index']],
                 ['label' =>
                     '<span class="glyphicon glyphicon-folder-open"></span> ปริมาณข้อมูล',
-                    'url' => ['summary/index']
+                    'url' => ['syscountall/index']
                 ],
                 ['label' =>
                     '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน',
