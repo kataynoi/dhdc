@@ -19,8 +19,11 @@ class SyscountallController extends Controller
     public function actionIndex()
     {
         $searchModel = new SysCountAllSearch();
+       
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+         //$searchModel->month = date('Ym');
+         //$dataProvider->month = date('Ym');
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

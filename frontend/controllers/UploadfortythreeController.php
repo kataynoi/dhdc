@@ -203,5 +203,9 @@ class UploadfortythreeController extends Controller {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionImportall(){
+        return $this->render('importall');
+    }
 
 }
