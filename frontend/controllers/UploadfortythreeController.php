@@ -24,11 +24,12 @@ class UploadfortythreeController extends Controller {
         if (!Yii::$app->user->isGuest) {
             $role = Yii::$app->user->identity->role;
         }
-        $arr = array();
-        if ($role == 1 || $role == 2) {
-            $arr = ['index', 'view', 'create', 'update', 'delete'];
-        } else {
-            $arr = ['index'];
+        $arr = ['index'];
+        if ($role == 1 ) {
+            $arr = ['index', 'view', 'create', 'update', 'delete','importall'];
+        }
+        if( $role == 2) {
+             $arr = ['index', 'view', 'create'];
         }
 
         return [
@@ -37,7 +38,7 @@ class UploadfortythreeController extends Controller {
                 'denyCallback' => function ($rule, $action) {
                     throw new \yii\web\ForbiddenHttpException("ไม่ได้รับอนุญาต");
                 },
-                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'only' => ['index', 'view', 'create', 'update', 'delete','importall'],
                 'rules' => [
                     [
                         'allow' => true,
