@@ -61,6 +61,8 @@ class AjaxController extends \yii\web\Controller {
         }
         $cfmodel->save();
 
+
+
         closedir($dir);
 
 
@@ -206,6 +208,9 @@ class AjaxController extends \yii\web\Controller {
         }
         $cfmodel->save();
 
+        
+
+
         $upload = new UploadFortythree;
         $upload->file_name = $fortythree;
         $fff = explode('_', $fortythree);
@@ -215,6 +220,14 @@ class AjaxController extends \yii\web\Controller {
         $upload->note2 = 'OK';
         $upload->note3 = 'admin do import all';
         $upload->save();
+
+        $up = UploadFortythree::findOne(['file_name'=>$fortythree]);
+        if ($up) {
+            $up->note2='OK';
+            $up->note3 =  'admin do import all';
+            $up->update();
+        }
+
 
         closedir($dir);
 
@@ -286,6 +299,7 @@ class AjaxController extends \yii\web\Controller {
         }
         $cfmodel->save();
 
+
         $upload = new UploadFortythree;
         $upload->file_name = $fortythree;
         $fff = explode('_', $fortythree);
@@ -295,6 +309,15 @@ class AjaxController extends \yii\web\Controller {
         $upload->note2 = 'OK';
         $upload->note3 = 'admin do import all';
         $upload->save();
+
+
+        $up = UploadFortythree::findOne(['file_name'=>$fortythree]);
+        if ($up) {
+            $up->note2='OK';
+            $up->note3 =  'admin do import all';
+            $up->update();
+        }
+
 
         closedir($dir);
 
