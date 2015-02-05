@@ -162,8 +162,8 @@ class AjaxController extends \yii\web\Controller {
 
     public function actionImport3($fortythree, $upload_date, $upload_time) {
 
-        
-        
+
+
         $filefortythree = "fortythree/$fortythree";
         $zip = new \ZipArchive();
         if ($zip->open($filefortythree) === TRUE) {
@@ -205,14 +205,14 @@ class AjaxController extends \yii\web\Controller {
             }
         }
         $cfmodel->save();
-        
+
         $upload = new UploadFortythree;
         $upload->file_name = $fortythree;
-        $fff=explode('_', $fortythree);
+        $fff = explode('_', $fortythree);
         $upload->hospcode = $fff[1];
         $upload->upload_date = date('Ymd');
         $upload->upload_time = date('His');
-        $upload->note2 ='OK';
+        $upload->note2 = 'OK';
         $upload->note3 = 'admin do import all';
         $upload->save();
 
@@ -285,6 +285,17 @@ class AjaxController extends \yii\web\Controller {
             }
         }
         $cfmodel->save();
+
+        $upload = new UploadFortythree;
+        $upload->file_name = $fortythree;
+        $fff = explode('_', $fortythree);
+        $upload->hospcode = $fff[1];
+        $upload->upload_date = date('Ymd');
+        $upload->upload_time = date('His');
+        $upload->note2 = 'OK';
+        $upload->note3 = 'admin do import all';
+        $upload->save();
+
         closedir($dir);
 
         $dir = opendir($full_dir);
@@ -316,7 +327,7 @@ class AjaxController extends \yii\web\Controller {
 
         \Yii::$app->db->createCommand("truncate sys_upload_fortythree;")->execute();
         \Yii::$app->db->createCommand("truncate sys_count_import;")->execute();
-         \Yii::$app->db->createCommand("truncate sys_count_all;")->execute();
+        \Yii::$app->db->createCommand("truncate sys_count_all;")->execute();
     }
 
 }
