@@ -10,7 +10,7 @@ class AjaxController extends \yii\web\Controller {
     public function actionIndex() {
         return $this->render('index');
     }
-
+    //import on window
     public function actionImport($fortythree, $upload_date, $upload_time, $id) {
 
         $model = UploadFortythree::findOne($id);
@@ -87,6 +87,7 @@ class AjaxController extends \yii\web\Controller {
         return $fortythree;
     }
 
+    //import on linux
     public function actionImport2($fortythree, $upload_date, $upload_time, $id) {
 
         $model = UploadFortythree::findOne($id);
@@ -162,6 +163,7 @@ class AjaxController extends \yii\web\Controller {
         return $fortythree;
     }
 
+    //import all on window
     public function actionImport3($fortythree, $upload_date, $upload_time) {
 
 
@@ -249,6 +251,7 @@ class AjaxController extends \yii\web\Controller {
         return $fortythree;
     }
 
+    //import all on linux
     public function actionImport4($fortythree, $upload_date, $upload_time) {
 
 
