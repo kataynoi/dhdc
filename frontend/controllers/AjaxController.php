@@ -224,4 +224,73 @@ class AjaxController extends \yii\web\Controller {
         return $fortythree;
     }
 
+    public function actionImport4($fortythree, $upload_date, $upload_time) {
+
+
+
+        //$ubuntu_path = "/var/lib/mysql/fortythree/";
+
+        $rootpath = \Yii::getAlias('@webroot') . "/fortythree/";
+        $filefortythree = $rootpath . $fortythree;
+        $zip = new \ZipArchive();
+        if ($zip->open($filefortythree) === TRUE) {
+            $zip->extractTo($rootpath);
+            $zip->close();
+        }
+        //rename($path . $oldname, $path . $fortythree);
+        unlink("$rootpath$fortythree");
+
+        $folder_with_ext = explode('.', $fortythree);
+        $folder_without_ext = $folder_with_ext[0];
+
+        $full_dir = "$rootpath/$folder_without_ext";
+        $dir = opendir($full_dir);
+
+        $cfmodel = new SysCountImport();
+        $cfmodel->import_date = date('YmdHis');
+        $cfmodel->filename = $fortythree;
+        $cfmodel->upload_date = $upload_date;
+        $cfmodel->upload_time = $upload_time;
+
+
+        while (($file = readdir($dir)) !== false) {
+            if ($file !== "." && $file !== "..") {
+
+
+                $p = pathinfo($file);
+                $ftxt = $p['filename'];
+                $ftxt = strtolower($ftxt);
+                $ext = $p['extension'];
+                if ($ext === 'txt' && $ftxt !== 'office') {
+                    $sql = "LOAD DATA LOCAL INFILE '$rootpath$folder_without_ext/$file'";
+                    $sql.= " REPLACE INTO TABLE $ftxt";
+                    $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                }
+                $count = \Yii::$app->db->createCommand($sql)->execute();
+                if ($cfmodel->hasAttribute($ftxt)) {
+                    $cfmodel->setAttribute($ftxt, $count);
+                }
+            }
+        }
+        $cfmodel->save();
+        closedir($dir);
+
+        $dir = opendir($full_dir);
+        while (($file = readdir($dir)) !== false) {
+            if ($file !== "." && $file !== "..") {
+                if ($file !== "." && $file !== "..") {
+                    unlink("$rootpath$folder_without_ext/$file");
+                }
+            }
+        }
+
+        closedir($dir);
+
+        rmdir("$rootpath$folder_without_ext");
+
+
+
+        return $fortythree;
+    }
+
 }
