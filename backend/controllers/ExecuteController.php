@@ -22,8 +22,14 @@ class ExecuteController extends \yii\web\Controller {
         ]);
     }
 
-    public function actionExecute() {
+    protected function run_sys_count_all($ym = '201410') {
 
+        $sql = "call run_sys_count_all($ym);";
+
+        \Yii::$app->db->createCommand($sql)->execute();
+    }
+
+    public function actionExecute() {
 
         $running = \backend\models\SysProcessRunning::find()->one();
 
@@ -32,19 +38,11 @@ class ExecuteController extends \yii\web\Controller {
             $running->is_running = 'true';
             $running->update();
 
-            $this->run_count_all();
-            
+            $this->run_sys_count_all('201410');
+
             $running->is_running = 'false';
             $running->update();
         }
-    }
-
-    protected function run_count_all($ym = '201410') {
-
-
-        $sql = "call run_sys_count_all($ym);";
-
-        \Yii::$app->db->createCommand($sql)->execute();
     }
 
 }
