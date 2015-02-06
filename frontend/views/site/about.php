@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use backend\models\Sysconfigmain;
 
 /* @var $this yii\web\View */
-$this->title = 'ทีมพัฒนาโปรแกรม';
+$this->title = 'เกียวกับ';
 $this->params['breadcrumbs'][] = $this->title;
 $sys=Sysconfigmain::find()->one();
 ?>
