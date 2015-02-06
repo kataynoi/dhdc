@@ -29,21 +29,19 @@ class ExecuteController extends \yii\web\Controller {
 
 
         if ($running->is_running == 'false') {
+            $running->is_running = 'true';
+            $running->update();
 
-            $sys = \backend\models\Sysconfigmain::find()->one();
-            $prov = $sys->provcode;
-            $amp = $sys->distcode;
-            $year = '2014';
-
-            $sql = "call all_execute($prov,$amp,$year);";
-
-            \Yii::$app->db->createCommand($sql)->execute();
+            $this->run_count_all();
+            
+            $running->is_running = 'false';
+            $running->update();
         }
     }
 
-    public function actionRuncountall($ym='201410') {
-       
-        
+    protected function run_count_all($ym = '201410') {
+
+
         $sql = "call run_sys_count_all($ym);";
 
         \Yii::$app->db->createCommand($sql)->execute();
