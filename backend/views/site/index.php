@@ -117,12 +117,6 @@ $this->title = 'DHDC Backend';
 
 </div>
 
-<script>
-function run_count_all(){
-    
-   
-}
-</script>
 
 <?php
 $route1 = Yii::$app->urlManager->createUrl('execute/execute');

@@ -40,8 +40,9 @@ class ExecuteController extends \yii\web\Controller {
             $running->is_running = 'true';
             $running->update();
             foreach ($month as $m) {
-
-                $this->run_sys_count_all($m->month);
+                if($m->month <= date('Ym')){
+                    $this->run_sys_count_all($m->month);
+                }
             }
 
             $running->is_running = 'false';
