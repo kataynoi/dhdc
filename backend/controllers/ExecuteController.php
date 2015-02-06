@@ -31,14 +31,18 @@ class ExecuteController extends \yii\web\Controller {
 
     public function actionExecute() {
 
+        $month = \backend\models\SysMonth::find()->all();
+
         $running = \backend\models\SysProcessRunning::find()->one();
 
 
         if ($running->is_running == 'false') {
             $running->is_running = 'true';
             $running->update();
+            foreach ($month as $m) {
 
-            $this->run_sys_count_all('201410');
+                $this->run_sys_count_all($m->month);
+            }
 
             $running->is_running = 'false';
             $running->update();
