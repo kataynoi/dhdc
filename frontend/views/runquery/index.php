@@ -10,7 +10,7 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
 ?>
 <form method="POST" >
 
-    <textarea name="sql_code" id="sql_code" class="form-control"><?=@$sql_code?></textarea>
+    <textarea name="sql_code" id="sql_code" class="form-control" rows='6'><?=@$sql_code?></textarea>
 
     <button class="btn btn-danger"><i class="glyphicon glyphicon-apple"></i> ทดสอบคำสั่ง</button>
     <button class="btn btn-primary" ><i class="glyphicon glyphicon-check"></i> ตกลง</button>  
