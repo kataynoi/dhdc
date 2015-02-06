@@ -10,26 +10,27 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
 ?>
 <form method="POST" >
 
-    <textarea name="sql_code" id="sql_code" class="form-control" rows='6'><?=@$sql_code?></textarea>
+    <textarea name="sql_code" id="sql_code" class="form-control" rows='6'><?= @$sql_code ?></textarea>
 
-    <button class="btn btn-danger"><i class="glyphicon glyphicon-apple"></i> ทดสอบคำสั่ง</button>
+    <button class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> ทดสอบคำสั่ง</button>
     <button class="btn btn-primary" ><i class="glyphicon glyphicon-check"></i> ตกลง</button>  
 
 </form>
 <hr>
-
-<?php
-    if(isset($dataProvider))
-    echo \kartik\grid\GridView::widget([
-        'dataProvider' => $dataProvider,
-        
-        'responsive' => FALSE,
-        //'hover' => true,
-        'panel' => [
-            'before' => '',
-        //'after'=>''
-        ],
-    ]);
-
-?>
+<div style="overflow: auto">
+    <?php
+    if (isset($dataProvider))
+        echo \kartik\grid\GridView::widget([
+            'dataProvider' => $dataProvider,
+            'responsive' => FALSE,
+            //'hover' => true,
+            'panel' => [
+                'before' => '',
+                'type' => \kartik\grid\GridView::TYPE_INFO
+                
+            //'after'=>''
+            ],
+        ]);
+    ?>
+</div>
 
