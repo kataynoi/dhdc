@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 
 //$js_url = Yii::getAlias('@web');
-
 //$this->registerJsFile($js_url."/js/bootbox.min.js");
 
 $this->registerCss(".btn-xlarge {
@@ -105,7 +104,7 @@ $this->title = 'DHDC Backend';
                 <?php
                 $route = \Yii::$app->urlManager->createUrl('execute/runcountfile');
                 ?>
-                <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#" onclick="run_count_all()"> 
+                <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#"> 
                     <i class="glyphicon glyphicon-circle-arrow-up"></i> จำนวนแฟ้ม
                 </a>
             </div>
@@ -119,31 +118,27 @@ $this->title = 'DHDC Backend';
 
 
 <?php
-$route1 = Yii::$app->urlManager->createUrl('execute/execute');
-$script = <<< JS
-$('#btn_process').on('click', function(e) {
-                
+$route1 = Yii::$app->urlManager->createUrl('execute/execute_count');
+$script1 = <<< JS
+        
+$('#btn_count_all').on('click', function(e) {                
     if(!confirm('ประมวลผลรายงาน')){
         return false;
     }
     $('#btn_process').hide();
-   
     //$("html, body").animate({ scrollTop: $(document).height() }, "slow");
-    $('#res').toggle();  
-    
-        
+    $('#res').toggle();          
     $.ajax({
        url: "$route1",
        //data: {a:'1'},
        success: function(data) {
             $('#res').toggle();
-            $('#btn_process').show();
-           
+            $('#btn_process').show();           
             alert(data+' สำเร็จ');
             //window.location.reload();
        }
     });
 });
 JS;
-$this->registerJs($script);
+$this->registerJs($script1);
 ?>

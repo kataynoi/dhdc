@@ -23,24 +23,36 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     protected function run_sys_count_all($ym = '201410') {
-
         $sql = "call run_sys_count_all($ym);";
 
         \Yii::$app->db->createCommand($sql)->execute();
     }
 
-    public function actionExecute() {
-
-        $month = \backend\models\SysMonth::find()->all();
-
+    public function actionExecute_count() {
         $running = \backend\models\SysProcessRunning::find()->one();
-
-
+        $month = \backend\models\SysMonth::find()->all();
         if ($running->is_running == 'false') {
             $running->is_running = 'true';
             $running->update();
             foreach ($month as $m) {
-                if($m->month <= date('Ym')){
+                if ($m->month <= date('Ym')) {
+                    $this->run_sys_count_all($m->month);
+                }
+            }
+            $running->is_running = 'false';
+            $running->update();
+        }
+    }
+
+    public function actionExecute() {
+        $running = \backend\models\SysProcessRunning::find()->one();
+
+        $month = \backend\models\SysMonth::find()->all();
+        if ($running->is_running == 'false') {
+            $running->is_running = 'true';
+            $running->update();
+            foreach ($month as $m) {
+                if ($m->month <= date('Ym')) {
                     $this->run_sys_count_all($m->month);
                 }
             }
