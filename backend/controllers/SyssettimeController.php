@@ -31,7 +31,6 @@ class SyssettimeController extends Controller {
      */
     public function create_event() {
 
-
         \Yii::$app->db->createCommand("SET GLOBAL event_scheduler = ON;")->execute();
         \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event1;")->execute();
 
