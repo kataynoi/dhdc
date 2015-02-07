@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'chronicfu',
             'labfu',
             'chronic',
-            /*
+            
             'fp',
             'epi',
             'nutrition',
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'dental',
             'admission',
             'diagnosis_ipd',
-            'procedure_ipd',*/
+            'procedure_ipd',
         ],
     ]);
     ?>
