@@ -6,11 +6,11 @@ use backend\models\Sysconfigmain;
 /* @var $this yii\web\View */
 $this->title = 'เกียวกับ';
 $this->params['breadcrumbs'][] = $this->title;
-$sys=Sysconfigmain::find()->one();
+$sys = Sysconfigmain::find()->one();
 ?>
 <div class="site-about">
     <h1>ผู้ดูแลระบบ</h1>
-    <p>- <?=$sys->note1?></p>
+    <p>- <?= $sys->note1 ?></p>
 </div>
 <div class="site-about">
     <h3><?= Html::encode($this->title) ?></h3>
@@ -26,7 +26,8 @@ $sys=Sysconfigmain::find()->one();
 
 <div class="site-about">
     <?php
-        $version = \backend\models\SysVersion::find()->one();
+    $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
+    $ver = explode(',', $ver);
     ?>
-    <h3>frontend version: <?=$version->frontend?></h3>
+    <h3>frontend version: <?= $ver[0] ?></h3>
 </div>

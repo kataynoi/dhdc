@@ -129,7 +129,17 @@ AppAsset::register($this);
 
         <footer class="footer">
             <div class="container">
-                <p class="pull-left">&copy; <?= Html::encode($center) ?> <?= date('Y') ?></p>
+                <p class="pull-left">
+                    <?= Html::encode($center) ?> ,
+
+                    <?php
+                    $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
+                    $ver = explode(',', $ver);
+                    ?>
+                    เวอร์ชั่น: <?= $ver[0] ?>
+
+                </p>
+
                 <p class="pull-right"><?= Html::a('DHDC TEAM', ['site/about']) ?></p>
             </div>
         </footer>
