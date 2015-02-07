@@ -22,41 +22,44 @@ class RunqueryController extends \yii\web\Controller {
         if (\Yii::$app->request->isPost) {
 
             $sql = trim($_POST['sql_code']);
-           
+
             $break = FALSE;
-            
-            
-            
+
+
+
             if ('delete' === substr($sql, 0, 6)) {
                 $break = true;
             }
             if ('insert' === substr($sql, 0, 6)) {
-                 $break = true;
+                $break = true;
             }
             if ('update' === substr($sql, 0, 6)) {
                 $break = true;
             }
             if ('alter' === substr($sql, 0, 5)) {
-                 $break = true;
+                $break = true;
             }
             if ('drop' === substr($sql, 0, 4)) {
-                 $break = true;
+                $break = true;
             }
             if ('show' === substr($sql, 0, 4)) {
-                 $break = true;
+                $break = true;
             }
-             if ('trun' === substr($sql, 0, 4)) {
-                 $break = true;
+            if ('trun' === substr($sql, 0, 4)) {
+                $break = true;
             }
-             if ('empty' === substr($sql, 0, 5)) {
-                 $break = true;
+            if ('empty' === substr($sql, 0, 5)) {
+                $break = true;
             }
-             if ('create' === substr($sql, 0, 6)) {
-                 $break = true;
+            if ('create' === substr($sql, 0, 6)) {
+                $break = true;
             }
-            
+            if ('replace' === substr($sql, 0, 7)) {
+                $break = true;
+            }
+
             if ($break) {
-                throw new \yii\web\ConflictHttpException('ไม่อนุญาตคำสั่งนี้');                
+                throw new \yii\web\ConflictHttpException('ไม่อนุญาตคำสั่งนี้');
             }
 
             try {
