@@ -51,6 +51,9 @@ class RunqueryController extends \yii\web\Controller {
              if ('empty' === substr($sql, 0, 5)) {
                  $break = true;
             }
+             if ('create' === substr($sql, 0, 6)) {
+                 $break = true;
+            }
             
             if ($break) {
                 throw new \yii\web\ConflictHttpException('ไม่อนุญาตคำสั่งนี้');                
