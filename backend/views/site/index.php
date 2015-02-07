@@ -18,26 +18,25 @@ $this->title = 'DHDC Backend';
 ?>
 <div class="site-index container">
 
-    <div class="well">
-        <?php
-        $version = \backend\models\SysVersion::find()->one();
-        ?>
+    <div class="well">        
         <h1>ระบบ District HDC BACK-END</h1>
         <div class="alert alert-danger">
-            <div id="version_old">
-                frontend:<?= $version->frontend; ?>,
-                backend:<?= $version->backend; ?>,
-                database:<?= $version->database; ?>
+            <div id="version_current">
+                <?php
+                        $ver=file_get_contents(Yii::getAlias('@version/version.txt'));
+                        $ver = explode(',', $ver);
+                ?>
+                frontend:<?= $ver[0]; ?>,backend:<?= $ver[1]; ?>,databases:<?= $ver[2]; ?>
             </div>
             <div>
                 <button class="btn btn-danger" id="btn_chk_ver">
                     <i class="glyphicon glyphicon-check"></i> Check
                 </button>
-                <button class="btn btn-primary" id="btn_up_ver">
-                    <i class="glyphicon glyphicon-arrow-up"></i> Up Version
-                </button>
+                <a class="btn btn-primary" href="http://203.157.118.117/dhdc_zip/" target="_blank">
+                    <i class="glyphicon glyphicon-arrow-up"></i> download
+                </a>
             </div>
-            <div id="version_new">..</div>
+            <font color="blue"><div id="version_new"></div></font>
         </div>
     </div>
     <center> 
