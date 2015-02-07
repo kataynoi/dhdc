@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $event_time
+ * @property integer $days
  */
 class SysSetTime extends \yii\db\ActiveRecord
 {
@@ -26,6 +27,7 @@ class SysSetTime extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['days'], 'integer'],
             [['event_time'], 'string', 'max' => 255]
         ];
     }
@@ -37,7 +39,8 @@ class SysSetTime extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'event_time' => 'เวลาประมวลผล',
+            'event_time' => 'เวลาเริ่มประมวลผล',
+            'days' => 'ทุกๆ(วัน)',
         ];
     }
 }

@@ -40,17 +40,15 @@ class SyssettimeController extends Controller {
         if (count($t) > 0) {
             $date = date('Y-m-d');
             $time = $t->event_time;
+            $days = $t->days;
 
-            $sys = \backend\models\Sysconfigmain::find()->one();
-            $prov = $sys->provcode;
-            $amp = $sys->distcode;
-            $year = '2014';
+            
 
             $sql = "CREATE EVENT event1
-            ON SCHEDULE EVERY '1' DAY
+            ON SCHEDULE EVERY '$days' DAY
             STARTS '$date $time'
             DO
-                call all_execute($prov,$amp,$year);";
+                call all_execute();";
 
             \Yii::$app->db->createCommand($sql)->execute();
         }

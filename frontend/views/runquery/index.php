@@ -13,8 +13,8 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
         <textarea name="sql_code" id="sql_code" class="form-control" rows='6'><?= @$sql_code ?></textarea>
     </div>
     <div>
-        <button class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> ทดสอบคำสั่ง</button>
-        <button class="btn btn-primary" ><i class="glyphicon glyphicon-check"></i> ตกลง</button>  
+        <button class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> รันชุดคำสั่ง</button>
+         
     </div>
 </form>
 <hr>
