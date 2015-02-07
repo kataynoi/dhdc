@@ -4,7 +4,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\Pjax;
 ?>
 
-<h3>สร้างรายงาน</h3>
+<h3>คำสั่ง SQL</h3>
 <?php
 $route = Yii::$app->urlManager->createUrl('runquery/result');
 ?>
