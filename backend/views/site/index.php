@@ -28,6 +28,7 @@ $this->title = 'DHDC Backend';
                 ?>
                 frontend:<?= $ver[0]; ?>,backend:<?= $ver[1]; ?>,databases:<?= $ver[2]; ?>
             </div>
+            <font color="blue"><div id="version_new"></div></font>
             <div>
                 <button class="btn btn-danger" id="btn_chk_ver">
                     <i class="glyphicon glyphicon-check"></i> Version
@@ -36,7 +37,7 @@ $this->title = 'DHDC Backend';
                     <i class="glyphicon glyphicon-arrow-up"></i> download
                 </a>
             </div>
-            <font color="blue"><div id="version_new"></div></font>
+            
         </div>
     </div>
     <center> 

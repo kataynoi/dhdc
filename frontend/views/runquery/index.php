@@ -9,12 +9,13 @@ use yii\widgets\Pjax;
 $route = Yii::$app->urlManager->createUrl('runquery/result');
 ?>
 <form method="POST" >
-
-    <textarea name="sql_code" id="sql_code" class="form-control" rows='6'><?= @$sql_code ?></textarea>
-
-    <button class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> ทดสอบคำสั่ง</button>
-    <button class="btn btn-primary" ><i class="glyphicon glyphicon-check"></i> ตกลง</button>  
-
+    <div style="margin-bottom: 3px">
+        <textarea name="sql_code" id="sql_code" class="form-control" rows='6'><?= @$sql_code ?></textarea>
+    </div>
+    <div>
+        <button class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> ทดสอบคำสั่ง</button>
+        <button class="btn btn-primary" ><i class="glyphicon glyphicon-check"></i> ตกลง</button>  
+    </div>
 </form>
 <hr>
 <div style="overflow: auto">
@@ -27,7 +28,7 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
             'panel' => [
                 'before' => '',
                 'type' => \kartik\grid\GridView::TYPE_INFO
-                
+
             //'after'=>''
             ],
         ]);
