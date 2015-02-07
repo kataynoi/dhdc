@@ -24,10 +24,13 @@ $this->title = 'DHDC Backend';
         ?>
         <h1>ระบบ District HDC BACK-END</h1>
         <div class="alert alert-danger">
-            frontend :  <?= $version->frontend; ?>,
-            backend : <?= $version->backend; ?>,
-            database : <?= $version->database; ?>
-            <p><a href="" class="btn btn-danger">Check</a></p>
+            <div id="version_old">
+                frontend :  <?= $version->frontend; ?>,
+                backend : <?= $version->backend; ?>,
+                database : <?= $version->database; ?>
+            </div>
+            <div><a href="" class="btn btn-danger">Check</a></div>
+            <div id="version_new">..</div>
         </div>
     </div>
     <center> 
