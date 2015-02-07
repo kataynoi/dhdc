@@ -21,10 +21,12 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
 <div style="overflow: auto">
     <?php
     if (isset($dataProvider))
+        //echo yii\grid\GridView::widget([
         echo \kartik\grid\GridView::widget([
             'dataProvider' => $dataProvider,
-            'responsive' => FALSE,
+            //'responsive' => FALSE,
             //'hover' => true,
+            
             'panel' => [
                 'before' => '',
                 'type' => \kartik\grid\GridView::TYPE_INFO
