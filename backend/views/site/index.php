@@ -25,11 +25,18 @@ $this->title = 'DHDC Backend';
         <h1>ระบบ District HDC BACK-END</h1>
         <div class="alert alert-danger">
             <div id="version_old">
-                frontend :  <?= $version->frontend; ?>,
-                backend : <?= $version->backend; ?>,
-                database : <?= $version->database; ?>
+                frontend:<?= $version->frontend; ?>,
+                backend:<?= $version->backend; ?>,
+                database:<?= $version->database; ?>
             </div>
-            <div><a href="" class="btn btn-danger">Check</a></div>
+            <div>
+                <button class="btn btn-danger" id="btn_chk_ver">
+                    <i class="glyphicon glyphicon-check"></i> Check
+                </button>
+                <button class="btn btn-primary" id="btn_up_ver">
+                    <i class="glyphicon glyphicon-arrow-up"></i> Up Version
+                </button>
+            </div>
             <div id="version_new">..</div>
         </div>
     </div>
@@ -121,8 +128,19 @@ $this->title = 'DHDC Backend';
 
 
 <?php
+$route2 = Yii::$app->urlManager->createUrl('update/checkver');
 $route1 = Yii::$app->urlManager->createUrl('execute/execute_count');
 $script1 = <<< JS
+        
+ $('#btn_chk_ver').on('click', function () {
+    $.ajax({
+       url: "$route2",       
+       success: function(data) {
+        
+            $('#version_new').html(data);
+       }
+    });
+ });
         
 $('#btn_count_all').on('click', function(e) {                
     if(!confirm('ประมวลผลรายงาน')){
