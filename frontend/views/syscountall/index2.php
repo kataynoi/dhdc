@@ -7,16 +7,25 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\SysCountAllSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'ผลรวมข้อมูลรายแฟ้ม';
+$this->title = 'รายแฟ้มรายเดือน';
+$this->params['breadcrumbs'][]= ['label' => 'ผลรวมข้อมูลรายแฟ้ม','url' => ['syscountall/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="sys-count-all-index">
     <div style="overflow: auto;">
     <?=
     kartik\grid\GridView::widget([
-        'dataProvider' => $dataProvider,        
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'condensed' => true,
-        
+        'pjax' => true,
+        'pjaxSettings' => [
+            //'neverTimeout' => true,
+            'options' => [
+                'enablePushState' => false,
+            ],
+        ],
         'responsive' => TRUE,
         
         'panel' => [
@@ -27,27 +36,22 @@ $this->params['breadcrumbs'][] = $this->title;
         
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            
+            'hospcode',
             [
-                'attribute' => 'hospcode',
-                'format' => 'raw',
-                'value'=>function($model){
-                    $hospcode= $model['hospcode'];
-                     return Html::a(Html::encode($hospcode),['syscountall/index2','hospcode'=>$hospcode]);
-                }
+                'attribute' => 'month',
                 
             ],
             'person',
             'death',
             'service',
-            /*
             'accident',
             'diagnosis_opd',
             'procedure_opd',
             'ncdscreen',
             'chronicfu',
             'labfu',
-            'chronic',            
+            'chronic',
+            
             'fp',
             'epi',
             'nutrition',
@@ -60,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'dental',
             'admission',
             'diagnosis_ipd',
-            'procedure_ipd',*/
+            'procedure_ipd',
         ],
     ]);
     ?>
