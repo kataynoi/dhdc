@@ -1,3 +1,7 @@
+<?php
+$this->params['breadcrumbs'][]=['label' => 'รวมรายงานของ knott', 'url' => ['knott/index']];
+$this->params['breadcrumbs'][] ='รายงานนี้';
+?>
 <div class="alert alert-danger">
     รายงาน........
 </div>

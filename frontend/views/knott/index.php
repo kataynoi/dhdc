@@ -4,6 +4,19 @@
 <h1>knott/index</h1>
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+    <?php
+    echo \yii\helpers\Html::a('1)รายงานแพทย......', ['knott/panthai_1']);
+    ?>
+</p>
+
+<p>
+    <?php
+    echo \yii\helpers\Html::a('1)รายงานแพทย......', ['knott/panthai_2']);
+    ?>
+</p>
+
+<p>
+    <?php
+    echo \yii\helpers\Html::a('1)รายงานแพทย......', ['knott/panthai_3']);
+    ?>
 </p>
