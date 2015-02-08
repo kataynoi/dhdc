@@ -58,6 +58,38 @@ limit 10";
                     'sql' => $sql
         ]);
     }
+    
+            public function actionPanthai_3() {
+
+        $sql = "SELECT concat(ins.instypecode,' : ',ins.instypename) as 'right',count(p.PID) as person
+FROM person p,card c,cinstype_new ins
+where (p.HOSPCODE=c.HOSPCODE and p.PID=c.PID) and c.INSTYPE_NEW=ins.instypecode 
+and p.TYPEAREA in ('1','3') and p.DISCHARGE=9 
+GROUP BY c.INSTYPE_NEW
+UNION
+SELECT 'Total' as 'right',count(p.PID) as person
+FROM person p,card c,cinstype_new ins
+where (p.HOSPCODE=c.HOSPCODE and p.PID=c.PID) and c.INSTYPE_NEW=ins.instypecode 
+and p.TYPEAREA in ('1','3') and p.DISCHARGE=9";
+        
+        
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('panthai_3', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql
+        ]);
+    }
 
  
 }
