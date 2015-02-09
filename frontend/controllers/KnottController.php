@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 class KnottController extends \yii\web\Controller {
+    
+    public $enableCsrfValidation = false;
 
     public function actionIndex() {
         return $this->render('index');

@@ -16,7 +16,7 @@ if (isset($dataProvider))
         'responsive' => TRUE,
         'hover' => true,
         'panel' => [
-            'before' => '',
+            'before' => '<form method=POST><input type=text></form>',
             'type' => \kartik\grid\GridView::TYPE_SUCCESS,
             'after' => ''
         ],
