@@ -33,12 +33,7 @@ class KnottController extends \yii\web\Controller {
     
         public function actionPanthai_2() {
 
-        $sql = "select d.PROCEDCODE,i.desc_r as oper,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
-from procedure_opd d,cicd9ttm_planthai i
-where d.PROCEDCODE=i.`code` and d.DATE_SERV 
-group by d.PROCEDCODE
-order by visit DESC
-limit 10";
+        $sql = "select * from knott_panthai_2";
         
         
         try {
@@ -61,16 +56,7 @@ limit 10";
     
             public function actionPanthai_3() {
 
-        $sql = "SELECT concat(ins.instypecode,' : ',ins.instypename) as 'right',count(p.PID) as person
-FROM person p,card c,cinstype_new ins
-where (p.HOSPCODE=c.HOSPCODE and p.PID=c.PID) and c.INSTYPE_NEW=ins.instypecode 
-and p.TYPEAREA in ('1','3') and p.DISCHARGE=9 
-GROUP BY c.INSTYPE_NEW
-UNION
-SELECT 'Total' as 'right',count(p.PID) as person
-FROM person p,card c,cinstype_new ins
-where (p.HOSPCODE=c.HOSPCODE and p.PID=c.PID) and c.INSTYPE_NEW=ins.instypecode 
-and p.TYPEAREA in ('1','3') and p.DISCHARGE=9";
+        $sql = "select * from knott_panthai_3";
         
         
         try {

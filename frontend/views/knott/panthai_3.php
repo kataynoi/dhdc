@@ -1,9 +1,9 @@
 <?php
 $this->params['breadcrumbs'][]=['label' => 'รวมรายงานของ knott', 'url' => ['knott/index']];
-$this->params['breadcrumbs'][] ='รายงานนี้';
+$this->params['breadcrumbs'][] ='รายงานสิทธิการรักษาของประชากรในเขตพื้นที่รับผิดชอบ';
 ?>
 <div class="alert alert-danger">
-    รายงาน........
+    รายงานสิทธิการรักษาของประชากรในเขตพื้นที่รับผิดชอบ
 </div>
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
 <div id="sql" style="display: none"><?= $sql ?></div>
