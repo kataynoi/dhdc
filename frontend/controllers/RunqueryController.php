@@ -65,7 +65,7 @@ class RunqueryController extends \yii\web\Controller {
             try {
                 $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
             } catch (\yii\db\Exception $e) {
-                throw new \yii\web\ConflictHttpException;
+                throw new \yii\web\ConflictHttpException('SQL ERROR');
             }
 
 
