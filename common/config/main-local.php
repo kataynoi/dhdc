@@ -6,7 +6,7 @@ return [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=dhdc;port=3306',
             'username' => 'root',
-            'password' => '',
+            'password' => '1234',
             'charset' => 'utf8',
             'attributes' => array(
                 PDO::MYSQL_ATTR_LOCAL_INFILE => true
