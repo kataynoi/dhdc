@@ -33,13 +33,13 @@ GROUP BY t.hospcode";
         ]);
     }
 
-    public function actionIndex2($hospcode) {
+    public function actionIndex2() {
         $searchModel = new SysCountAllSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         //$searchModel->month = date('Ym');
         //$dataProvider->month = date('Ym');
-        $searchModel->hospcode=$hospcode;
+        //$searchModel->hospcode=$hospcode;
 
         return $this->render('index2', [
                     'searchModel' => $searchModel,

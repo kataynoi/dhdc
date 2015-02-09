@@ -13,32 +13,17 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sys-count-all-index">
     <div style="overflow: auto;">
-        <?=
-        kartik\grid\GridView::widget([
+        <?php
+        \yii\widgets\Pjax::begin();
+        echo \yii\grid\GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
-            'condensed' => true,
-            'pjax' => true,
-           // 'showPageSummary' => true,
-            'pjaxSettings' => [
-                //'neverTimeout' => true,
-                'options' => [
-                    'enablePushState' => false,
-                ],
-            ],
-            'responsive' => TRUE,
-            'panel' => [
-                'before' => '',
-                'after'=>''
-            ],
-            'floatHeader' => true,
             'columns' => [
-                ['class' => 'kartik\grid\SerialColumn'],
+                ['class' => 'yii\grid\SerialColumn'],
                 'hospcode',
                 [
                     'attribute' => 'month',
                 ],
-               
                 'person',
                 'death',
                 'service',
@@ -64,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'procedure_ipd',
             ],
         ]);
+        \yii\widgets\Pjax::end();
         ?>
     </div>
 </div>

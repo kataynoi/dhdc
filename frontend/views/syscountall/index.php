@@ -12,57 +12,48 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sys-count-all-index">
     <div style="overflow: auto;">
-    <?=
-    kartik\grid\GridView::widget([
-        'dataProvider' => $dataProvider,        
-        'condensed' => true,
-        
-        'responsive' => TRUE,
-        
-        'panel' => [
-            'before' => '',
-            
-        ],
-        'floatHeader' => true,
-        
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            
-            [
-                'attribute' => 'hospcode',
-                'format' => 'raw',
-                'value'=>function($model){
-                    $hospcode= $model['hospcode'];
-                     return Html::a(Html::encode($hospcode),['syscountall/index2','hospcode'=>$hospcode]);
-                }
-                
-            ],
-            'person',
-            'death',
-            'service',
-            /*
-            'accident',
-            'diagnosis_opd',
-            'procedure_opd',
-            'ncdscreen',
-            'chronicfu',
-            'labfu',
-            'chronic',            
-            'fp',
-            'epi',
-            'nutrition',
-            'prenatal',
-            'anc',
-            'labor',
-            'postnatal',
-            'newborn',
-            'newborncare',
-            'dental',
-            'admission',
-            'diagnosis_ipd',
-            'procedure_ipd',*/
-        ],
-    ]);
-    ?>
+        <?=
+        yii\grid\GridView::widget([
+            'dataProvider' => $dataProvider,
+            //'condensed' => true,
+            //'responsive' => TRUE,
+            //'panel' => ['before' => '',],
+            //'floatHeader' => true,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                [
+                    'attribute' => 'hospcode',
+                    'format' => 'raw',
+                    'value' => function($model) {
+                        $hospcode = $model['hospcode'];
+                        return Html::a(Html::encode($hospcode), ['syscountall/index2']);
+                    }
+                        ],
+                        'person',
+                        'death',
+                        'service',
+                        'accident',
+                        'diagnosis_opd',
+                        'procedure_opd',
+                        'ncdscreen',
+                        'chronicfu',
+                        'labfu',
+                        'chronic',
+                        'fp',
+                        'epi',
+                        'nutrition',
+                        'prenatal',
+                        'anc',
+                        'labor',
+                        'postnatal',
+                        'newborn',
+                        'newborncare',
+                        'dental',
+                        'admission',
+                        'diagnosis_ipd',
+                        'procedure_ipd',
+                    ],
+                ]);
+                ?>
     </div>
 </div>
