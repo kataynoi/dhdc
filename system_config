@@ -7,6 +7,7 @@ RECOMMEND
 - sudo php5enmod mcrypt
 - sudo apt-get install php5-curl
 - sudo apt-get install php5-mysqlnd; //LOAD DATA LOCAL
+- sudo apt-get install php-mbstring
 - sudo service apache2 restart
 
 - CREATE DATABASE dhdc CHARACTER SET utf8 COLLATE utf8_general_ci;
