@@ -54,7 +54,7 @@ from chospital_amp h";
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
-        $dataProvider=[];
+        
         return $this->render('report1', [
                     'dataProvider' => $dataProvider,
                     'sql' => $sql

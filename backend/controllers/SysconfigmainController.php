@@ -50,6 +50,9 @@ class SysconfigmainController extends Controller {
                 and h.hostype NOT in (01,02,10,13,15,16);";
         
         \yii::$app->db->createCommand($sql)->execute();
+        
+        $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'โรงพยาบาลส่งเสริมสุขภาพตำบล', 'รพ.สต.');";
+         \yii::$app->db->createCommand($sql)->execute();
         return;
     }
 
