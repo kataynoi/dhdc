@@ -28,7 +28,7 @@ join person as p on p.PID=c.PID and p.HOSPCODE=c.HOSPCODE
 and c.TYPEDISCH='03'
 GROUP BY p.CID) as p_target
 where p_target.HOSPCODE=h.hoscode
-GROUP BY p_target.HOSPCODE) as chronic,
+GROUP BY p_target.HOSPCODE) as ผู้ป่วยทั้งหมด,
 (select count(distinct hhv.CID) as num from 
 (SELECT
 comserv.HOSPCODE,
@@ -43,7 +43,7 @@ community_service as comserv
 where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
 and comserv.DATE_SERV between '$date1' and '$date2' 
 and comserv.COMSERVICE like '1A%'
-group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as comm_serv
+group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as เยี่ยมบ้าน
 from chospital_amp h";
 
         
