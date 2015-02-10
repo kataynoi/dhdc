@@ -6,26 +6,25 @@ $this->params['breadcrumbs'][] = 'ร้อยละผู้ป่วยโร�
 
 <div class='well'>
     <form method="POST">
-วันเริ่ม:
-<?=
-    yii\jui\DatePicker::widget([
-        'name' => 'date1',
-        'value' => '',
-        'language' => 'th',
-        'dateFormat' => 'yyyy-MM-dd',
-        
-    ]);
-    ?>
-วันสิ้นสุด:
-    <?=
-    yii\jui\DatePicker::widget([
-        'name' => 'date2',
-        'value' => '',
-        'language' => 'th',
-        'dateFormat' => 'yyyy-MM-dd',
-    ]);
-    ?>
-<button class='btn btn-danger'>ประมวลผล</button>
+        วันเริ่ม:
+        <?=
+        yii\jui\DatePicker::widget([
+            'name' => 'date1',
+            'value' => '',
+            'language' => 'th',
+            'dateFormat' => 'yyyy-MM-dd',
+        ]);
+        ?>
+        วันสิ้นสุด:
+        <?=
+        yii\jui\DatePicker::widget([
+            'name' => 'date2',
+            'value' => '',
+            'language' => 'th',
+            'dateFormat' => 'yyyy-MM-dd',
+        ]);
+        ?>
+        <button class='btn btn-danger'>ประมวลผล</button>
     </form>
 </div>
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
