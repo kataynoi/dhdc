@@ -45,6 +45,7 @@ echo \kartik\grid\GridView::widget([
     ],
 ]);
 ?>
+
 <?php
 $script = <<< JS
 $('#btn_sql').on('click', function(e) {
