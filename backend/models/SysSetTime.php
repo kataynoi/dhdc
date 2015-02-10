@@ -27,6 +27,7 @@ class SysSetTime extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+             [['days'], 'required'],
             [['days'], 'integer'],
             [['event_time'], 'string', 'max' => 255]
         ];
