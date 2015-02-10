@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>kukks/report</h1>
+<h3>หมวดรายงาน-หมอประจำครอบครัว</h3>
 
 <p>
     <?php
