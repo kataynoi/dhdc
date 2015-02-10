@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = 'ร้อยละผู้ป่วยโร�
         <?=
         yii\jui\DatePicker::widget([
             'name' => 'date1',
-            'value' => '',
+            'value' => $date1,
             'language' => 'th',
             'dateFormat' => 'yyyy-MM-dd',
         ]);
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = 'ร้อยละผู้ป่วยโร�
         <?=
         yii\jui\DatePicker::widget([
             'name' => 'date2',
-            'value' => '',
+            'value' => $date2,
             'language' => 'th',
             'dateFormat' => 'yyyy-MM-dd',
         ]);

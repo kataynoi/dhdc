@@ -1,7 +1,7 @@
 <?php
 
 namespace frontend\controllers;
-
+use Yii;
 class KukksController extends \yii\web\Controller {
 
     public $enableCsrfValidation = false;
@@ -13,6 +13,10 @@ class KukksController extends \yii\web\Controller {
     public function actionReport1() {//ร้อยละผู้ป่วยโรคเรื้อรังได้รับการเยี่ยมบ้าน
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
+        if(Yii::$app->request->isPost){
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
         
         $sql = "select h.hoscode,h.hosname,
 (select COUNT(DISTINCT p_target.cid) from 
@@ -37,7 +41,7 @@ FROM
 community_service as comserv
 ,person as p
 where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
-and comserv.DATE_SERV between $date1 and $date2 
+and comserv.DATE_SERV between '$date1' and '$date2' 
 and comserv.COMSERVICE like '1A%'
 group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as comm_serv
 from chospital_amp h";
@@ -57,7 +61,9 @@ from chospital_amp h";
         
         return $this->render('report1', [
                     'dataProvider' => $dataProvider,
-                    'sql' => $sql
+                    'sql' => $sql,
+                    'date1'=>$date1,
+                    'date2'=>$date2
         ]);
     }
 
