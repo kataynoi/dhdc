@@ -43,6 +43,33 @@ echo \kartik\grid\GridView::widget([
         'type' => \kartik\grid\GridView::TYPE_SUCCESS,
         'after' => 'โดย ' . $dev
     ],
+    'columns' => [
+        'hoscode',
+        'hosname',
+        [
+            'attribute'=>'chronic',
+            'header'=>'ผู้ป่วยโรคเรื้อรัง(คน)'
+        ],
+         [
+            'attribute'=>'visit',
+            'header'=>'ได้รับการเยี่ยมบ้าน(คน)'
+        ],
+        
+        [
+            'class' => '\kartik\grid\FormulaColumn',
+            'header'=>'ร้อยละ',
+            'value' => function ($model, $key, $index, $widget) {
+                $p = compact('model', 'key', 'index');
+                // Write your formula below
+                if($widget->col(2, $p)>0){
+                    $persent = $widget->col(3, $p)/$widget->col(2, $p)*100;
+                    $persent = number_format($persent, 2);
+                    return $persent;
+                }
+                
+            }
+        ]
+    ]
 ]);
 ?>
 
