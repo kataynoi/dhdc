@@ -2,9 +2,7 @@
 $this->params['breadcrumbs'][] = ['label' => 'รวมรายงานของ knott', 'url' => ['knott/index']];
 $this->params['breadcrumbs'][] = 'รายงานอัตราส่วนการให้รหัสวินิจฉัยแพทย์แผนไทย';
 ?>
-<div class="alert alert-danger">
-    รายงานอัตราส่วนการให้รหัสวินิจฉัยแพทย์แผนไทย
-</div>
+
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
 <div id="sql" style="display: none"><?= $sql ?></div>
 
