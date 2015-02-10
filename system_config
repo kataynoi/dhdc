@@ -7,9 +7,10 @@ memory_limit=1024M
 max_input_time=3600
 
 [Window]
-C:\Windows\System32\drivers\etc\hosts 
-127.0.0.1 localhost
+edit C:\Windows\System32\drivers\etc\hosts 
 - add on first line
+127.0.0.1 localhost
+
 
 [MariaBD]
 #my.ini
