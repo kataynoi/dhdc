@@ -5,7 +5,7 @@ $this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อ�
 
 <div class='well'>
     <form method="POST">
-        วันเริ่ม:
+        ระหว่าง:
         <?=
         yii\jui\DatePicker::widget([
             'name' => 'date1',
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อ�
             'dateFormat' => 'yyyy-MM-dd',
         ]);
         ?>
-        วันสิ้นสุด:
+        ถึง:
         <?=
         yii\jui\DatePicker::widget([
             'name' => 'date2',
