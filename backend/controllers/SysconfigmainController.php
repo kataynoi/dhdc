@@ -53,6 +53,16 @@ class SysconfigmainController extends Controller {
         
         $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'โรงพยาบาลส่งเสริมสุขภาพตำบล', 'รพ.สต.');";
          \yii::$app->db->createCommand($sql)->execute();
+         
+         $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'โรงพยาบาล', 'รพ.');";
+         \yii::$app->db->createCommand($sql)->execute();
+         
+         $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'สถานีอนามัย', 'สอ.');";
+         \yii::$app->db->createCommand($sql)->execute();
+         
+          $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'ศูนย์สุขภาพชุมชน', 'ศสช.');";
+         \yii::$app->db->createCommand($sql)->execute();
+         
         return;
     }
 
