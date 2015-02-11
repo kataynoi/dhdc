@@ -1,9 +1,10 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>sos/index</h1>
+<h3>หมวดรายงาน-ประชากร</h3>
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+    <?php
+    echo \yii\helpers\Html::a('1) ปิรามิดประชากร', ['sos/pyramid']);
+    ?>
 </p>

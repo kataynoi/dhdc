@@ -52,7 +52,7 @@ AppAsset::register($this);
                 ];
             }
 
-            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ประชากร', 'url' => ['#']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ประชากร', 'url' => ['sos/index']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> โรคติดต่อ', 'url' => ['site/about']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> โรคไม่ติดต่อ', 'url' => ['site/about']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> แม่และเด็ก', 'url' => ['site/about']];
