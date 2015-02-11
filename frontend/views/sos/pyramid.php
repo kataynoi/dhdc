@@ -4,21 +4,30 @@ $this->params['breadcrumbs'][] = 'ปิรามิดประชากร';
 ?>
 
 <div class="well">
-    <?php
-        $list = yii\helpers\ArrayHelper::map(frontend\models\ChospitalAmp::find()->all(), 'hoscode', 'hosname');
-        echo yii\helpers\Html::dropDownList('pyramid_hospcode','',$list,[
-            'prompt'=>'สถานบริการ',
-            //'htmloptions'=>['class'=>'form-control']
-        ]);
-    ?>
-    <button class="btn btn-danger">ตกลง</button>
-    
+    <form method="POST">
+    <div class="row">
+        <div class="col-sm-3">
+            <?php
+            $list = yii\helpers\ArrayHelper::map(frontend\models\ChospitalAmp::find()->all(), 'hoscode', 'hosname');
+            echo yii\helpers\Html::dropDownList('hospcode',$hospcode, $list, [
+                'prompt' => 'เลือกสถานบริการ',
+                'class' => 'form-control'
+            ]);
+            ?>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-danger">ตกลง</button>
+        </div>
+    </div>
+    </form>
 </div>
 
 
 <?php
-
-
+if(count($rawData) < 21){
+    echo "<div class='alert alert-info'>ไม่มีข้อมูล</div>";
+    return;
+}
 use miloschuman\highcharts\Highcharts;
 
 $male = [
@@ -33,13 +42,13 @@ $male = [
 $js_male = implode(',', $male);
 
 $female = [
-    $rawData[0]['female'] , $rawData[1]['female'] , $rawData[2]['female'] 
-    , $rawData[3]['female'] , $rawData[4]['female'] , $rawData[5]['female'] 
-    , $rawData[6]['female'], $rawData[7]['female'] , $rawData[8]['female'] 
-    , $rawData[9]['female'] , $rawData[10]['female'] , $rawData[11]['female'] 
-    , $rawData[12]['female'] , $rawData[13]['female'] , $rawData[14]['female'] 
-    , $rawData[15]['female'] , $rawData[16]['female'] , $rawData[17]['female'] 
-    , $rawData[18]['female'] , $rawData[19]['female'] , $rawData[20]['female'] 
+    $rawData[0]['female'], $rawData[1]['female'], $rawData[2]['female']
+    , $rawData[3]['female'], $rawData[4]['female'], $rawData[5]['female']
+    , $rawData[6]['female'], $rawData[7]['female'], $rawData[8]['female']
+    , $rawData[9]['female'], $rawData[10]['female'], $rawData[11]['female']
+    , $rawData[12]['female'], $rawData[13]['female'], $rawData[14]['female']
+    , $rawData[15]['female'], $rawData[16]['female'], $rawData[17]['female']
+    , $rawData[18]['female'], $rawData[19]['female'], $rawData[20]['female']
 ];
 
 $js_female = implode(',', $female);
@@ -150,9 +159,8 @@ echo \kartik\grid\GridView::widget([
         'type' => \kartik\grid\GridView::TYPE_SUCCESS,
         'after' => 'โดย ' . $dev
     ],
-    
     'columns' => [
-       
+
         [
             'attribute' => 'age',
             'label' => 'ช่วงอายุ (ปี)'
@@ -171,14 +179,11 @@ echo \kartik\grid\GridView::widget([
             'value' => function ($model, $key, $index, $widget) {
                 $p = compact('model', 'key', 'index');
                 // เขียนสูตร
-                
-                    return $widget->col(1, $p) + $widget->col(2, $p);
-                  
-                 
+
+                return $widget->col(1, $p) + $widget->col(2, $p);
             }
         ]
     ]
-    
 ]);
 ?>
 

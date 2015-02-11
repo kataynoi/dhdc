@@ -4,15 +4,23 @@ namespace frontend\controllers;
 
 class SosController extends \yii\web\Controller {
 
+    public $enableCsrfValidation = false;
+
     public function actionIndex() {
         return $this->render('index');
     }
 
     public function actionPyramid() {//คำนวนอายุประชากร
-        
         $sql = "SELECT  SUBSTR(t.age_range,3,10) as age ,SUM(t.male) as male,SUM(t.female)as female from sys_pyramid_level_3 t
 #WHERE t.hospcode ='10612'
 GROUP BY t.age_range";
+
+        if (!empty($_POST['hospcode'])) {
+            $h = $_POST['hospcode'];
+            $sql = "SELECT  SUBSTR(t.age_range,3,10) as age ,SUM(t.male) as male,SUM(t.female)as female from sys_pyramid_level_3 t
+WHERE t.hospcode =$h
+GROUP BY t.age_range";
+        }
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
@@ -29,8 +37,9 @@ GROUP BY t.age_range";
 
                     'dataProvider' => $dataProvider,
                     'rawData' => $rawData,
-                    //'date1' => $date1,
-                    //'date2' => $date2
+                    'hospcode'=>isset($_POST['hospcode'])?$_POST['hospcode']:''
+                        //'date1' => $date1,
+                        //'date2' => $date2
         ]);
     }
 
