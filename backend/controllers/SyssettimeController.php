@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
  * SysSetTimeController implements the CRUD actions for SysSetTime model.
  */
 class SyssettimeController extends Controller {
+
 //
     public function behaviors() {
         return [
@@ -33,6 +34,9 @@ class SyssettimeController extends Controller {
 
         \Yii::$app->db->createCommand("SET GLOBAL event_scheduler = ON;")->execute();
         \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event1;")->execute();
+        \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event2;")->execute();
+        \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event3;")->execute();
+        \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event4;")->execute();
 
 
         $t = SysSetTime::find()->one();
@@ -40,8 +44,6 @@ class SyssettimeController extends Controller {
             $date = date('Y-m-d');
             $time = $t->event_time;
             $days = $t->days;
-
-            
 
             $sql = "CREATE EVENT event1
             ON SCHEDULE EVERY '$days' DAY
