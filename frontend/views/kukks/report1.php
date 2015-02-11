@@ -6,8 +6,8 @@ $this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อ�
 <div class='well'>
     <form method="POST">
         ระหว่าง:
-        <?=
-        yii\jui\DatePicker::widget([
+        <?php
+        echo yii\jui\DatePicker::widget([
             'name' => 'date1',
             'value' => $date1,
             'language' => 'th',
@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อ�
         ]);
         ?>
         ถึง:
-        <?=
-        yii\jui\DatePicker::widget([
+        <?php
+        echo yii\jui\DatePicker::widget([
             'name' => 'date2',
             'value' => $date2,
             'language' => 'th',
@@ -39,8 +39,8 @@ $this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อ�
 <?php
 if (isset($dataProvider))
     $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
-
-
+    
+    
 //echo yii\grid\GridView::widget([
 echo \kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
