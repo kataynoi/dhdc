@@ -24,9 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?=
-    GridView::widget([
+    kartik\grid\GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'floatHeader' => true,
+        'pjax' => TRUE,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
@@ -35,25 +37,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'file_name',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a($data->file_name,array('view','id'=>$data->id));
+                    return Html::a($data->file_name, array('view', 'id' => $data->id));
                 },
-            ],
-            'file_size',
-            'upload_date',
-            'upload_time',
-            // 'note1',
-            array(
-                'attribute' => 'note2',
-                'value' => function ($data) {
-                    return $data->note2;
-                    
-                }
-            ),
-        'note3',
-        // 'note4',
-        // 'note5',
-        ],
-    ]);
-    ?>
+                    ],
+                    'file_size',
+                    'upload_date',
+                    'upload_time',
+                    // 'note1',
+                    array(
+                        'attribute' => 'note2',
+                        'label' => 'status',
+                        'value' => function ($data) {
+                            return $data->note2;
+                        },
+                    ),
+                    //'note3',
+                    array(
+                        'attribute' => 'note3',
+                        'label' => 'note',
+                        'value' => function ($data) {
+                            return $data->note3;
+                        },
+                    ),
+                // 'note4',
+                // 'note5',
+                ],
+            ]);
+            ?>
 
 </div>

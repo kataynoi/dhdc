@@ -48,7 +48,7 @@ where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
 and comserv.DATE_SERV between '$date1' and '$date2' 
 and comserv.COMSERVICE like '1A%'
 group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as visit
-from chospital_amp h ORDER BY chronic DESC limit 5";
+from chospital_amp h ORDER BY chronic DESC";
 
 
 

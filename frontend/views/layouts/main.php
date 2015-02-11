@@ -68,7 +68,7 @@ AppAsset::register($this);
                 $username = '(' . Html::encode(Yii::$app->user->identity->username) . ')';
             }
 
-            $report_mnu_check_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> PERSON TYPE', 'url' => ['#']];
+            $report_mnu_check_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> PERSON TYPE', 'url' => ['personcheck/checktype']];
             $report_mnu_check_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> PERSON CID', 'url' => ['#']];
             $report_mnu_check_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> PERSON ต่างด้าว', 'url' => ['#']];
 
