@@ -37,7 +37,7 @@ use kartik\widgets\FileInput;
         <button class="btn btn-primary"><i class="glyphicon glyphicon-upload"></i> Upload</button>
         <?php ActiveForm::end(); ?>
     <?php else: ?>
-        <div class="alert alert-danger">Admin ปิดระบบนำเข้า </div>
+        <div class="alert alert-danger">ผู้ดูแลระบบ ปิดการนำเข้า </div>
     <?php endif; ?>
 
 </div>
