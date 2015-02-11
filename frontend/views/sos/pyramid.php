@@ -2,37 +2,53 @@
 $this->params['breadcrumbs'][] = ['label' => 'ประชากร', 'url' => ['sos/index']];
 $this->params['breadcrumbs'][] = 'ปิรามิดประชากร';
 ?>
-<pre>
+
+<div class="well">
+    <?php
+        $list = yii\helpers\ArrayHelper::map(frontend\models\ChospitalAmp::find()->all(), 'hoscode', 'hosname');
+        echo yii\helpers\Html::dropDownList('pyramid_hospcode','',$list,[
+            'prompt'=>'สถานบริการ',
+            //'htmloptions'=>['class'=>'form-control']
+        ]);
+    ?>
+    <button class="btn btn-danger">ตกลง</button>
+    
+</div>
+
+
 <?php
-//print_r($rawData);
-echo (int)($rawData[0]['male'])*(-1);
-
-?>
-</pre>
 
 
-
-<?php
 use miloschuman\highcharts\Highcharts;
 
-$male = [$rawData[0]['male']*(-1), $rawData[1]['male']*(-1), $rawData[2]['male']*(-1)
-        ,$rawData[3]['male']*(-1),$rawData[4]['male']*(-1),$rawData[5]['male']*(-1)
-        ,$rawData[6]['male']*(-1),
-    $rawData[7]['male']*(-1), $rawData[8]['male']*(-1), -36801, -312, -272, -2281, -2268,
-    -200, -168, -84, -384, -9069, -287, -38];
+$male = [
+    $rawData[0]['male'] * (-1), $rawData[1]['male'] * (-1), $rawData[2]['male'] * (-1)
+    , $rawData[3]['male'] * (-1), $rawData[4]['male'] * (-1), $rawData[5]['male'] * (-1)
+    , $rawData[6]['male'] * (-1), $rawData[7]['male'] * (-1), $rawData[8]['male'] * (-1)
+    , $rawData[9]['male'] * (-1), $rawData[10]['male'] * (-1), $rawData[11]['male'] * (-1)
+    , $rawData[12]['male'] * (-1), $rawData[13]['male'] * (-1), $rawData[14]['male'] * (-1)
+    , $rawData[15]['male'] * (-1), $rawData[16]['male'] * (-1), $rawData[17]['male'] * (-1)
+    , $rawData[18]['male'] * (-1), $rawData[19]['male'] * (-1), $rawData[20]['male'] * (-1)
+];
 $js_male = implode(',', $male);
 
-$female = [1656, 1787, 198, 21, 2403, 236, 230, 251,
-    336, 3493, 305, 27, 230, 242, 25, 1785,
-    1447, 100, 33, 1306, 21];
+$female = [
+    $rawData[0]['female'] , $rawData[1]['female'] , $rawData[2]['female'] 
+    , $rawData[3]['female'] , $rawData[4]['female'] , $rawData[5]['female'] 
+    , $rawData[6]['female'], $rawData[7]['female'] , $rawData[8]['female'] 
+    , $rawData[9]['female'] , $rawData[10]['female'] , $rawData[11]['female'] 
+    , $rawData[12]['female'] , $rawData[13]['female'] , $rawData[14]['female'] 
+    , $rawData[15]['female'] , $rawData[16]['female'] , $rawData[17]['female'] 
+    , $rawData[18]['female'] , $rawData[19]['female'] , $rawData[20]['female'] 
+];
 
 $js_female = implode(',', $female);
 
 
 //คำนวณค่า max , min 
-    $max_female = max($female);
-    $max_male = abs(min($male));
-    $max = $max_female > $max_male ? $max_female : $max_male;
+$max_female = max($female);
+$max_male = abs(min($male));
+$max = $max_female > $max_male ? $max_female : $max_male;
 
 $categories = ['0-4', '5-9', '10-14', '15-19',
     '20-24', '25-29', '30-34', '35-39', '40-44',
@@ -54,7 +70,7 @@ $this->registerJs("
                 text: 'ปิรามิดประชากร ปี '+2558
             },
             subtitle: {
-                text: 'person 43 แฟ้ม'
+                text: 'แฟ้ม person'
             },
             xAxis: [{
                 categories: categories,
@@ -80,8 +96,8 @@ $this->registerJs("
                         return (Math.abs(this.value));
                     }
                 },
-                min: -$max-10,
-                max: $max-10
+                min: -$max,
+                max: $max
             },
             plotOptions: {
                 series: {
@@ -121,7 +137,7 @@ $this->registerJs("
 
 <?php
 if (isset($dataProvider))
-    $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
+    $dev = \yii\helpers\Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn', ['target' => '_blank']);
 
 
 //echo yii\grid\GridView::widget([
@@ -134,7 +150,35 @@ echo \kartik\grid\GridView::widget([
         'type' => \kartik\grid\GridView::TYPE_SUCCESS,
         'after' => 'โดย ' . $dev
     ],
-   
+    
+    'columns' => [
+       
+        [
+            'attribute' => 'age',
+            'label' => 'ช่วงอายุ (ปี)'
+        ],
+        [
+            'attribute' => 'male',
+            'label' => 'เพศชาย (คน)'
+        ],
+        [
+            'attribute' => 'female',
+            'label' => 'เพศหญิง (คน)'
+        ],
+        [
+            'class' => '\kartik\grid\FormulaColumn',
+            'label' => 'รวม (คน)',
+            'value' => function ($model, $key, $index, $widget) {
+                $p = compact('model', 'key', 'index');
+                // เขียนสูตร
+                
+                    return $widget->col(1, $p) + $widget->col(2, $p);
+                  
+                 
+            }
+        ]
+    ]
+    
 ]);
 ?>
 
