@@ -23,8 +23,8 @@ $this->title = 'DHDC Backend';
         <div class="alert alert-danger">
             <div id="version_current">
                 <?php
-                        $ver=file_get_contents(Yii::getAlias('@version/version.txt'));
-                        $ver = explode(',', $ver);
+                $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
+                $ver = explode(',', $ver);
                 ?>
                 frontend:<?= $ver[0]; ?>,backend:<?= $ver[1]; ?>,databases:<?= $ver[2]; ?>
             </div>
@@ -37,7 +37,7 @@ $this->title = 'DHDC Backend';
                     <i class="glyphicon glyphicon-arrow-up"></i> download
                 </a>
             </div>
-            
+
         </div>
     </div>
     <center> 
@@ -75,6 +75,33 @@ $this->title = 'DHDC Backend';
         </div>
         <br>
         <div class="row">
+
+            <div class="col-sm-4">
+                <?php
+                $route = \Yii::$app->urlManager->createUrl('execute/runcountfile');
+                ?>
+                <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#"> 
+                    <i class="glyphicon glyphicon-circle-arrow-up"></i> จำนวนแฟ้ม
+                </a>
+            </div>
+
+            <div class="col-sm-4">
+
+                <a class="btn btn-warning btn-xlarge" href="<?= Yii::$app->urlManager->createUrl('execute/index') ?>"> 
+                    <i class="glyphicon glyphicon-play"></i> MySQL Load
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <?php
+                $route = \Yii::$app->urlManager->createUrl('syssettime/index');
+                ?>
+                <a class="btn btn-success btn-xlarge" id="btn_set_process" href="<?= $route ?>"> 
+                    <i class="glyphicon glyphicon-time"></i> ตั้งเวลาประมวลผล
+                </a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
             <div class="col-sm-4">
                 <?php
                 $onoff = \frontend\models\SysOnoffUpload::findOne(1);
@@ -91,35 +118,9 @@ $this->title = 'DHDC Backend';
                     </a>
                 <?php endif; ?>
             </div>
-            <div class="col-sm-4">
-
-                <a class="btn btn-warning btn-xlarge" href="<?= Yii::$app->urlManager->createUrl('execute/index') ?>"> 
-                    <i class="glyphicon glyphicon-play"></i> MySQL Load
-                </a>
 
 
-            </div>
             <div class="col-sm-4">
-                <?php
-                $route = \Yii::$app->urlManager->createUrl('syssettime/index');
-                ?>
-                <a class="btn btn-success btn-xlarge" id="btn_set_process" href="<?= $route ?>"> 
-                    <i class="glyphicon glyphicon-time"></i> ตั้งเวลาประมวลผล
-                </a>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-4">
-                <?php
-                $route = \Yii::$app->urlManager->createUrl('execute/runcountfile');
-                ?>
-                <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#"> 
-                    <i class="glyphicon glyphicon-circle-arrow-up"></i> จำนวนแฟ้ม
-                </a>
-            </div>
-            
-             <div class="col-sm-4">
                 <?php
                 $onoff = \frontend\models\SysOnoffSql::findOne(1);
                 $route_on = Yii::$app->urlManager->createUrl('onoff/onsql');
@@ -135,12 +136,12 @@ $this->title = 'DHDC Backend';
                     </a>
                 <?php endif; ?>
             </div>
-            
+
         </div>
 
 
     </div>
-   
+
 </div>
 
 
