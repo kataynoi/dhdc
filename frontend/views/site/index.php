@@ -23,7 +23,23 @@ $this->registerJsFile('./js/chart_dial.js');
     <div class="row">
         <div class="col-lg-4" style="text-align: center;">
             <?php
-            $a = 60.09;
+            $command = Yii::$app->db->createCommand("SELECT sum(target) FROM sys_chart_dial_1");
+            $target = $command->queryScalar();
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(chronic) FROM sys_chart_dial_1");
+            $chronic = $command->queryScalar();
+            
+            $target = $target-$chronic;
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(result) FROM sys_chart_dial_1");
+            $result = $command->queryScalar();        
+
+            $a=0.00;
+            if($target>0){
+                $a = $result/$target*100;
+                $a = number_format($a,2);
+            }
+            
             $this->registerJs("
                         var obj_div=$('#ch1');
                         gen_dial(obj_div,$a);
@@ -35,7 +51,18 @@ $this->registerJsFile('./js/chart_dial.js');
 
         <div class="col-lg-4" style="text-align: center;">
             <?php
-            $a = 55.56;
+            $command = Yii::$app->db->createCommand("SELECT sum(target) FROM sys_chart_dial_2");
+            $target = $command->queryScalar();
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(result) FROM sys_chart_dial_2");
+            $result = $command->queryScalar();  
+            
+            $a=0.00;
+            if($target>0){
+                $a = $result/$target*100;
+                $a = number_format($a,2);
+            }
+            
             $this->registerJs("
                         var obj_div=$('#ch2');
                         gen_dial(obj_div,$a);
@@ -47,7 +74,19 @@ $this->registerJsFile('./js/chart_dial.js');
 
         <div class="col-lg-4" style="text-align: center;">
             <?php
-            $a = 90.99;
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(target) FROM sys_chart_dial_3");
+            $target = $command->queryScalar();
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(result) FROM sys_chart_dial_3");
+            $result = $command->queryScalar();  
+            
+            $a=0.00;
+            if($target>0){
+                $a = $result/$target*100;
+                $a = number_format($a,2);
+            }
+            
             $this->registerJs("
                         var obj_div=$('#ch3');
                         gen_dial(obj_div,$a);
@@ -61,7 +100,19 @@ $this->registerJsFile('./js/chart_dial.js');
     <div class="row">
         <div class="col-lg-4" style="text-align: center;">
             <?php
-            $a = 56.02;
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(target) FROM sys_chart_dial_4");
+            $target = $command->queryScalar();
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(result) FROM sys_chart_dial_4");
+            $result = $command->queryScalar();  
+            
+            $a=0.00;
+            if($target>0){
+                $a = $result/$target*100;
+                $a = number_format($a,2);
+            }
+            
             $this->registerJs("
                         var obj_div=$('#ch4');
                         gen_dial(obj_div,$a);
@@ -73,7 +124,19 @@ $this->registerJsFile('./js/chart_dial.js');
 
         <div class="col-lg-4" style="text-align: center;">
             <?php
-            $a = 90.01;
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(target) FROM sys_chart_dial_5");
+            $target = $command->queryScalar();
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(result) FROM sys_chart_dial_5");
+            $result = $command->queryScalar();  
+            
+            $a=0.00;
+            if($target>0){
+                $a = $result/$target*100;
+                $a = number_format($a,2);
+            }
+            
             $this->registerJs("
                         var obj_div=$('#ch5');
                         gen_dial(obj_div,$a);
@@ -85,7 +148,19 @@ $this->registerJsFile('./js/chart_dial.js');
 
         <div class="col-lg-4" style="text-align: center;">
             <?php
-            $a = 80.98;
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(target) FROM sys_chart_dial_6");
+            $target = $command->queryScalar();
+            
+            $command = Yii::$app->db->createCommand("SELECT sum(result) FROM sys_chart_dial_6");
+            $result = $command->queryScalar();  
+            
+            $a=0.00;
+            if($target>0){
+                $a = $result/$target*100;
+                $a = number_format($a,2);
+            }
+             
             $this->registerJs("
                         var obj_div=$('#ch6');
                         gen_dial(obj_div,$a);
