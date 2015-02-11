@@ -12,6 +12,10 @@ $this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อ�
             'value' => $date1,
             'language' => 'th',
             'dateFormat' => 'yyyy-MM-dd',
+            'clientOptions' => [
+                'changeMonth' => true,
+                'changeYear' => true,
+            ]
         ]);
         ?>
         ถึง:
@@ -21,6 +25,10 @@ $this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อ�
             'value' => $date2,
             'language' => 'th',
             'dateFormat' => 'yyyy-MM-dd',
+            'clientOptions' => [
+                'changeMonth' => true,
+                'changeYear' => true,
+            ]
         ]);
         ?>
         <button class='btn btn-danger'>ประมวลผล</button>
@@ -47,26 +55,24 @@ echo \kartik\grid\GridView::widget([
         'hoscode',
         'hosname',
         [
-            'attribute'=>'chronic',
-            'header'=>'ผู้ป่วยโรคเรื้อรัง(คน)'
+            'attribute' => 'chronic',
+            'header' => 'ผู้ป่วยโรคเรื้อรัง(คน)'
         ],
-         [
-            'attribute'=>'visit',
-            'header'=>'ได้รับการเยี่ยมบ้าน(คน)'
+        [
+            'attribute' => 'visit',
+            'header' => 'ได้รับการเยี่ยมบ้าน(คน)'
         ],
-        
         [
             'class' => '\kartik\grid\FormulaColumn',
-            'header'=>'ร้อยละ',
+            'header' => 'ร้อยละ',
             'value' => function ($model, $key, $index, $widget) {
                 $p = compact('model', 'key', 'index');
                 // เขียนสูตร
-                if($widget->col(2, $p)>0){
-                    $persent = $widget->col(3, $p)/$widget->col(2, $p)*100;
+                if ($widget->col(2, $p) > 0) {
+                    $persent = $widget->col(3, $p) / $widget->col(2, $p) * 100;
                     $persent = number_format($persent, 2);
                     return $persent;
                 }
-                
             }
         ]
     ]
