@@ -69,9 +69,10 @@ $js_categories = implode("','", $categories);
 $this->registerJs("
         var categories = ['$js_categories'];    
         $('#ch1').highcharts({
+            colors: ['#ED921C', '#1F7CDB'],
             chart: {
                 type: 'bar',
-                plotBackgroundImage:'./images/bg_pop.png',
+                plotBackgroundImage:'./images/blue_bg.jpg',
                 height:460
             },
             credits:{'enabled':false},
