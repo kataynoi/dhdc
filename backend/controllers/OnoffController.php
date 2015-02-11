@@ -21,4 +21,23 @@ class OnoffController extends \yii\web\Controller {
         return $this->redirect(['site/index']);
         
     }
+    
+    public function actionOnsql(){
+        
+        $model = \frontend\models\SysOnoffSql::findOne(1);
+        $model->status='on';
+        $model->update();
+        return $this->redirect(['site/index']);
+        
+    }
+    
+     public function actionOffsql(){
+        
+        $model = \frontend\models\SysOnoffSql::findOne(1);
+        $model->status='off';
+        $model->update();
+        return $this->redirect(['site/index']);
+        
+    }
+    
 }
