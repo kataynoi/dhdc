@@ -23,7 +23,8 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     protected function run_sys_count_all($ym = '201410') {
-        $sql = "call run_sys_count_all($ym);";
+        $sql = "call cal_sys_count_all($ym);";
+        
 
         \Yii::$app->db->createCommand($sql)->execute();
     }
@@ -60,6 +61,16 @@ class ExecuteController extends \yii\web\Controller {
             $running->is_running = 'false';
             $running->update();
         }
+    }
+    
+    public function  actionTest(){
+        
+        $d = '2014-09-30';
+         $d = "'".$d."'";
+        $sql = " call cal_chart_dial_2($d)";
+
+        \Yii::$app->db->createCommand($sql)->execute();
+        
     }
 
 }
