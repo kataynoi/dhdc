@@ -76,7 +76,7 @@ $this->registerJs("
             },
             credits:{'enabled':false},
             title: {
-                text: 'ปิรามิดประชากร ปี '+2558
+                text: 'ปิรามิดประชากร $hosname ปี '+2558
             },
             subtitle: {
                 text: 'แฟ้ม person'
