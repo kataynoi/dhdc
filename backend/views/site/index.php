@@ -33,7 +33,7 @@ $this->title = 'DHDC Backend';
                 <button class="btn btn-danger" id="btn_chk_ver">
                     <i class="glyphicon glyphicon-check"></i> Version
                 </button>
-                <a class="btn btn-primary" href="ftp://203.157.118.117/zip/" target="_blank">
+                <a class="btn btn-primary" href="ftp://203.157.118.117/" target="_blank">
                     <i class="glyphicon glyphicon-arrow-up"></i> download
                 </a>
             </div>
