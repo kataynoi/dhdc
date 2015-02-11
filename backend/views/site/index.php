@@ -118,6 +118,24 @@ $this->title = 'DHDC Backend';
                     <i class="glyphicon glyphicon-circle-arrow-up"></i> จำนวนแฟ้ม
                 </a>
             </div>
+            
+             <div class="col-sm-4">
+                <?php
+                $onoff = \frontend\models\SysOnoffSql::findOne(1);
+                $route_on = Yii::$app->urlManager->createUrl('onoff/onsql');
+                $route_off = Yii::$app->urlManager->createUrl('onoff/offsql');
+                if ($onoff->status === 'on'):
+                    ?>
+                    <a class="btn btn-danger btn-xlarge" href="<?= $route_off ?>">
+                        <i class="glyphicon glyphicon-remove-sign"></i> ปิดใช้งาน SQL
+                    </a>
+                <?php else: ?>
+                    <a class="btn btn-primary btn-xlarge" href="<?= $route_on ?>">
+                        <i class="glyphicon glyphicon-refresh"></i> เปิดใช้งาน SQL
+                    </a>
+                <?php endif; ?>
+            </div>
+            
         </div>
 
 
