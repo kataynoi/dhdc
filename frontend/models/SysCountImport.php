@@ -49,7 +49,7 @@ use Yii;
  * @property integer $labor
  * @property integer $postnatal
  * @property integer $newborn
- * @property integer $newborn_care
+ * @property integer $newborncare
  * @property integer $epi
  * @property integer $nutrition
  * @property integer $specialpp
@@ -73,7 +73,7 @@ class SysCountImport extends \yii\db\ActiveRecord
     {
         return [
             
-            [['person', 'address', 'death', 'chronic', 'card', 'home', 'village', 'disability', 'provider', 'women', 'drugallergy', 'functional', 'icf', 'service', 'diagnosis_opd', 'drug_opd', 'procedure_opd', 'charge_opd', 'surveillance', 'accident', 'labfu', 'chronicfu', 'admission', 'diagnosis_ipd', 'drug_ipd', 'procedure_ipd', 'charge_ipd', 'appointment', 'dental', 'rehabilitation', 'ncdscreen', 'fp', 'prenatal', 'anc', 'labor', 'postnatal', 'newborn', 'newborn_care', 'epi', 'nutrition', 'specialpp', 'community_activity', 'community_service'], 'integer'],
+            [['person', 'address', 'death', 'chronic', 'card', 'home', 'village', 'disability', 'provider', 'women', 'drugallergy', 'functional', 'icf', 'service', 'diagnosis_opd', 'drug_opd', 'procedure_opd', 'charge_opd', 'surveillance', 'accident', 'labfu', 'chronicfu', 'admission', 'diagnosis_ipd', 'drug_ipd', 'procedure_ipd', 'charge_ipd', 'appointment', 'dental', 'rehabilitation', 'ncdscreen', 'fp', 'prenatal', 'anc', 'labor', 'postnatal', 'newborn', 'newborncare', 'epi', 'nutrition', 'specialpp', 'community_activity', 'community_service'], 'integer'],
             [['filename','upload_date', 'upload_time', 'import_date'], 'string', 'max' => 255]
         ];
     }
@@ -126,7 +126,7 @@ class SysCountImport extends \yii\db\ActiveRecord
             'labor' => 'Labor',
             'postnatal' => 'Postnatal',
             'newborn' => 'Newborn',
-            'newborn_care' => 'Newborn Care',
+            'newborncare' => 'NewbornCare',
             'epi' => 'Epi',
             'nutrition' => 'Nutrition',
             'specialpp' => 'Specialpp',
