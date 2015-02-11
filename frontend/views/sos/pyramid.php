@@ -1,50 +1,38 @@
 <?php
-$this->params['breadcrumbs'][] = ['label' => 'หมอประจำครอบครัว', 'url' => ['kukks/index']];
-$this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อรังได้รับการเยี่ยมบ้าน';
+$this->params['breadcrumbs'][] = ['label' => 'ประชากร', 'url' => ['sos/index']];
+$this->params['breadcrumbs'][] = 'ปิรามิดประชากร';
 ?>
-
-<div class='well'>
-    <form method="POST">
-      
-        ?>
-        <button class='btn btn-danger'>ประมวลผล</button>
-    </form>
-</div>
-<a href="#" id="btn_sql">ชุดคำสั่ง</a>
-<div id="sql" style="display: none"><?= $sql ?></div>
+<pre>
 <?php
-if (isset($dataProvider))
-    $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
+//print_r($rawData);
+echo (int)($rawData[0]['male'])*(-1);
 
-
-//echo yii\grid\GridView::widget([
-echo \kartik\grid\GridView::widget([
-    'dataProvider' => $dataProvider,
-    'responsive' => TRUE,
-    'hover' => true,
-    'panel' => [
-        'before' => '',
-        'type' => \kartik\grid\GridView::TYPE_SUCCESS,
-        'after' => 'โดย ' . $dev
-    ],
-   
-]);
 ?>
+</pre>
+
 
 
 <?php
 use miloschuman\highcharts\Highcharts;
 
-$male = [-1746181, -1884428, -2089758, -2222362, -2537431, -2507081, -2443179,
-    -2664537, -3556505, -3680231, -3143062, -2721122, -2229181, -2227768,
-    -2176300, -1329968, -836804, -354784, -90569, -28367, -3878];
+$male = [$rawData[0]['male']*(-1), $rawData[1]['male']*(-1), $rawData[2]['male']*(-1)
+        ,$rawData[3]['male']*(-1),$rawData[4]['male']*(-1),$rawData[5]['male']*(-1)
+        ,$rawData[6]['male']*(-1),
+    $rawData[7]['male']*(-1), $rawData[8]['male']*(-1), -36801, -312, -272, -2281, -2268,
+    -200, -168, -84, -384, -9069, -287, -38];
 $js_male = implode(',', $male);
 
-$female = [1656154, 1787564, 1981671, 2108575, 2403438, 2366003, 2301402, 2519874,
-    3360596, 3493473, 3050775, 2759560, 2304444, 2426504, 2568938, 1785638,
-    1447162, 1005011, 330870, 130632, 21208];
+$female = [1656, 1787, 198, 21, 2403, 236, 230, 251,
+    336, 3493, 305, 27, 230, 242, 25, 1785,
+    1447, 100, 33, 1306, 21];
 
 $js_female = implode(',', $female);
+
+
+//คำนวณค่า max , min 
+    $max_female = max($female);
+    $max_male = abs(min($male));
+    $max = $max_female > $max_male ? $max_female : $max_male;
 
 $categories = ['0-4', '5-9', '10-14', '15-19',
     '20-24', '25-29', '30-34', '35-39', '40-44',
@@ -89,11 +77,11 @@ $this->registerJs("
                 },
                 labels: {
                     formatter: function () {
-                        return (Math.abs(this.value) / 1000000);
+                        return (Math.abs(this.value));
                     }
                 },
-                min: -4000000,
-                max: 4000000
+                min: -$max-10,
+                max: $max-10
             },
             plotOptions: {
                 series: {
@@ -103,7 +91,7 @@ $this->registerJs("
             tooltip: {
                 formatter: function () {
                     return '<b>' + this.series.name + ', อายุ ' + this.point.category + '</b><br/>' +
-                        'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+                        'ประชากร: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
                 }
             },
             series: [{
@@ -129,6 +117,27 @@ $this->registerJs("
     ?>
 </div>
 <div id="ch1"></div>
+
+
+<?php
+if (isset($dataProvider))
+    $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
+
+
+//echo yii\grid\GridView::widget([
+echo \kartik\grid\GridView::widget([
+    'dataProvider' => $dataProvider,
+    'responsive' => TRUE,
+    'hover' => true,
+    'panel' => [
+        'before' => '',
+        'type' => \kartik\grid\GridView::TYPE_SUCCESS,
+        'after' => 'โดย ' . $dev
+    ],
+   
+]);
+?>
+
 
 
 
