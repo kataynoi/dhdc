@@ -79,7 +79,7 @@ AppAsset::register($this);
                     'url' => ['syscountall/index']
                 ],
                 ['label' =>
-                    '<span class="glyphicon glyphicon-list-alt"></span> กลุ่มรายงานมาตรฐาน',
+                    '<span class="glyphicon glyphicon-list-alt"></span> รายงานข้อมูลผลงาน',
                     'items' => $report_mnu_itms
                 ],
                 ['label' =>
