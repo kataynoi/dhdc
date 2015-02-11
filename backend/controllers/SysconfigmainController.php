@@ -63,6 +63,9 @@ class SysconfigmainController extends Controller {
           $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'ศูนย์สุขภาพชุมชน', 'ศสช.');";
          \yii::$app->db->createCommand($sql)->execute();
          
+         $sql = "delete from chospital_amp where hostype  not in ('03','04','05','07','08','09','12','13') ;";
+         \yii::$app->db->createCommand($sql)->execute();
+         
         return;
     }
 
