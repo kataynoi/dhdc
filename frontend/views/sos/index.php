@@ -23,3 +23,9 @@
     
     ?>
 </p>
+
+<div class="footerrow" style="padding-top: 60px">
+    <div class="alert alert-success">
+        หมายเหตุ : ระบบรายงานอยู่ระหว่างพัฒนาอย่างต่อเนื่อง
+    </div>
+</div>

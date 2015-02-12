@@ -14,3 +14,9 @@
     echo \yii\helpers\Html::a('2) สัดส่วนบุคลากรสาธารณสุขต่อประชากร', ['kukks/report2']);
     ?>
 </p>
+
+<div class="footerrow" style="padding-top: 60px">
+    <div class="alert alert-success">
+        หมายเหตุ : ระบบรายงานอยู่ระหว่างพัฒนาอย่างต่อเนื่อง
+    </div>
+</div>
