@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'district_code',
             'district_name',
             'note1',
-            // 'note2',
+            'note2',
             // 'note3',
             // 'note4',
             // 'note5',
