@@ -8,3 +8,9 @@
     echo \yii\helpers\Html::a('1) ร้อยละผู้ป่วยโรคเรื้อรังได้รับการเยี่ยมบ้าน', ['kukks/report1']);
     ?>
 </p>
+
+<p>
+    <?php
+    echo \yii\helpers\Html::a('2) สัดส่วนบุคลากรสาธารณสุขต่อประชากร', ['kukks/report2']);
+    ?>
+</p>

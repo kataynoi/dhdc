@@ -71,5 +71,46 @@ from chospital_amp h ORDER BY chronic DESC";
                     'date2' => $date2
         ]);
     }
+    
+        public function actionReport2() {//
+        
+
+        $sql = "select care_team.hoscode,care_team.hosname,care_team.pop,care_team.doctor,
+concat('1 : ',round((care_team.pop/care_team.doctor),0)) as raio from
+(select h.hoscode,h.hosname,
+(select count(distinct CID) 
+from person p 
+where p.DISCHARGE='9' 
+and p.TYPEAREA in ('1','3')
+and p.HOSPCODE=h.hoscode
+) as pop,
+(select count(distinct CID) as doc
+from provider pv
+where pv.CID is not null and pv.PROVIDERTYPE in ('03','04','05','06') 
+and pv.OUTDATE is null and pv.MOVETO is NULL and pv.HOSPCODE=h.hoscode) as doctor
+from chospital_amp h 
+) as care_team";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+       
+        return $this->render('report2', [
+                   
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    
+        ]);
+    }
+    
 
 }
