@@ -45,8 +45,7 @@ use kartik\widgets\DepDrop;
         'dateFormat' => 'yyyy-MM-dd',
         'clientOptions' => [
             'changeMonth' => true,
-            'changeYear' => true,
-           
+            'changeYear' => true,           
         ],
        
     ])
