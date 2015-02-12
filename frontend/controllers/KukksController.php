@@ -112,5 +112,45 @@ from chospital_amp h
         ]);
     }
     
+    
+            public function actionReport3() {//
+        
+
+        $sql = "select  h.hoscode,h.hosname,t.`จำนวนหลังคาเรือน`  ,t.`จำนวน อสม.`,t.`จำนวน อสม.ต่อหลังคาเรือน` from chospital_amp h 
+LEFT JOIN 
+(
+select h.hoscode,h.hosname,home2.num_house as 'จำนวนหลังคาเรือน'  ,
+home2.num_osm as 'จำนวน อสม.' ,
+concat('1 : ',round((home2.num_house/home2.num_osm),0)) as 'จำนวน อสม.ต่อหลังคาเรือน'
+from chospital_amp h
+join (select home.HOSPCODE,
+count(distinct home.HID) as num_house,
+count(distinct home.VHVID) as num_osm
+from
+home
+group by home.HOSPCODE) as home2 on home2.HOSPCODE=h.hoscode 
+) t on t.hoscode = h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+       
+        return $this->render('report3', [
+                   
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    
+        ]);
+    }
+    
 
 }

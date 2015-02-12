@@ -15,6 +15,12 @@
     ?>
 </p>
 
+<p>
+    <?php
+    echo \yii\helpers\Html::a('3) จำนวน อสม.ต่อหลังคาเรือน', ['kukks/report3']);
+    ?>
+</p>
+
 <div class="footerrow" style="padding-top: 60px">
     <div class="alert alert-success">
         หมายเหตุ : ระบบรายงานอยู่ระหว่างพัฒนาอย่างต่อเนื่อง
