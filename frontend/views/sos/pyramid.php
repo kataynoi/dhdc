@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 $this->params['breadcrumbs'][] = ['label' => 'ประชากร', 'url' => ['sos/index']];
 $this->params['breadcrumbs'][] = 'ปิรามิดประชากร';
 ?>
@@ -148,6 +149,7 @@ $this->registerJs("
 <?php
 if (isset($dataProvider))
     $dev = \yii\helpers\Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn', ['target' => '_blank']);
+    $dev2 = Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk', ['target' => '_blank']);
 
 
 //echo yii\grid\GridView::widget([
@@ -159,7 +161,7 @@ echo \kartik\grid\GridView::widget([
     'panel' => [
         'before' => '',
         'type' => \kartik\grid\GridView::TYPE_SUCCESS,
-        'after' => 'โดย ' . $dev
+        'after' => 'โดย ' . $dev ." & ".$dev2
     ],
     'columns' => [
 
