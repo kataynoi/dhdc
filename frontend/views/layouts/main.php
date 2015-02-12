@@ -56,7 +56,7 @@ AppAsset::register($this);
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> โรคติดต่อ', 'url' => ['cd/index']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> โรคไม่ติดต่อ', 'url' => ['ncd/index']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> แม่และเด็ก', 'url' => ['site/about']];
-            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ภูมิคุ้มกันโรค', 'url' => ['site/about']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ภูมิคุ้มกันโรค', 'url' => ['epi/index']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> แพทย์แผนไทยและแพทย์ทางเลือก', 'url' => ['knott/index']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> สุขภาพจิต', 'url' => ['site/about']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> หมอประจำครอบครัว', 'url' => ['kukks/index']];

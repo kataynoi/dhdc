@@ -1,6 +1,9 @@
 <?php
+use yii\helpers\Html;
+?>
+<?php
 $this->params['breadcrumbs'][] = ['label' => 'โรคไม่ติดต่อ', 'url' => ['ncd/index']];
-$this->params['breadcrumbs'][] = 'Color Chart ผู้ป่วยความดันโลหิต(ทราบผลคอเลสเตอรอล)';
+$this->params['breadcrumbs'][] = 'Color Chart ผู้ป่วยความดันโลหิต-HT(ไม่ทราบผลคอเลสเตอรอล)';
 ?>
 
 <div class='well'>
@@ -38,7 +41,7 @@ $this->params['breadcrumbs'][] = 'Color Chart ผู้ป่วยความ�
 <div id="sql" style="display: none"><?= $sql ?></div>
 <?php
 if (isset($dataProvider))
-    $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
+    $dev = Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk',['target'=>'_blank']);
     
     
 //echo yii\grid\GridView::widget([

@@ -3,7 +3,7 @@ use yii\helpers\Html;
 ?>
 <?php
 $this->params['breadcrumbs'][] = ['label' => 'โรคไม่ติดต่อ', 'url' => ['ncd/index']];
-$this->params['breadcrumbs'][] = 'Color Chart ผู้ป่วยความดันโลหิต-HT(ทราบผลคอเลสเตอรอล)';
+$this->params['breadcrumbs'][] = 'Color Chart ผู้ป่วยเบาหวาน-DM(ทราบผลคอเลสเตอรอล)';
 ?>
 
 <div class='well'>
