@@ -1,5 +1,5 @@
 <?php
-$this->params['breadcrumbs'][]=['label' => 'รวมรายงานของ knott', 'url' => ['pop/index']];
+$this->params['breadcrumbs'][]=['label' => 'ประชากร', 'url' => ['pop/index']];
 $this->params['breadcrumbs'][] ='รายงานสิทธิการรักษาของประชากรในเขตพื้นที่รับผิดชอบ';
 ?>
 
