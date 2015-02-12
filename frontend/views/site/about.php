@@ -28,6 +28,10 @@ $sys = Sysconfigmain::find()->one();
     <?=  Html::a('กลุ่ม Facebook DHDC','https://www.facebook.com/groups/1533692120236074/',['target'=>'_blank']) ?>
 </div>
 
+<div>
+    <?=  Html::a('Source Code','https://github.com/utehnphnu2015/',['target'=>'_blank']) ?>
+</div>
+
 <div class="site-about">
     <?php
     $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
