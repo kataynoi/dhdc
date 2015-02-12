@@ -52,7 +52,7 @@ class KnottController extends \yii\web\Controller {
 
     
 
-    public function actionPanthai_4() {
+    public function actionPanthai_3() {
         
          $sql = "SELECT sm.`month`,d.HOSPCODE,amp.hosname,count(d.SEQ) as total,
 sum(if(d.DIAGCODE like 'u%',1,0)) as panthai_diag,
@@ -88,7 +88,7 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
             'pagination' => FALSE,
         ]);
 
-        return $this->render('panthai_4', [
+        return $this->render('panthai_3', [
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
                     'select_year'=>  isset($_POST['year'])?$_POST['year']:''
