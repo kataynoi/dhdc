@@ -45,9 +45,8 @@ use kartik\widgets\DepDrop;
         'dateFormat' => 'yyyy-MM-dd',
         'clientOptions' => [
             'changeMonth' => true,
-            'changeYear' => true,           
+            'changeYear' => true,
         ],
-       
     ])
     ?>
 
@@ -56,9 +55,22 @@ use kartik\widgets\DepDrop;
 
 
     <div class="form-group">
-    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
+
+    <br>
+
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+    <br>
 
 </div>
