@@ -50,25 +50,7 @@ class KnottController extends \yii\web\Controller {
         ]);
     }
 
-    public function actionPanthai_3() {
-        $sql = "select * from knott_panthai_3";
-
-
-        try {
-            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-        } catch (\yii\db\Exception $e) {
-            throw new \yii\web\ConflictHttpException('sql error');
-        }
-        $dataProvider = new \yii\data\ArrayDataProvider([
-            //'key' => 'hoscode',
-            'allModels' => $rawData,
-            'pagination' => FALSE,
-        ]);
-        return $this->render('panthai_3', [
-                    'dataProvider' => $dataProvider,
-                    'sql' => $sql
-        ]);
-    }
+    
 
     public function actionPanthai_4() {
         

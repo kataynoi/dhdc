@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-$this->params['breadcrumbs'][] = ['label' => 'ประชากร', 'url' => ['sos/index']];
+$this->params['breadcrumbs'][] = ['label' => 'ประชากร', 'url' => ['pop/index']];
 $this->params['breadcrumbs'][] = 'ปิรามิดประชากร';
 ?>
 
