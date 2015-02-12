@@ -37,7 +37,7 @@ echo \kartik\grid\GridView::widget([
         ],
          [
             'attribute' => 'doctor',
-            'label' => 'เจ้าหน้าที่สาธารณสุข'
+            'label' => 'บุคลากรสาธารณสุข(คน)'
         ],
          [
             'attribute' => 'raio',

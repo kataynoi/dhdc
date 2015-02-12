@@ -5,7 +5,7 @@
 
 <p>
     <?php
-    echo \yii\helpers\Html::a('1) จำนวนประชากรแยกกลุ่มอายุ', ['sos/pyramid']);
+    echo \yii\helpers\Html::a('1) ปิรามิดประชากร(จำนวนประชากรแยกกลุ่มอายุ)', ['sos/pyramid']);
     
     ?>
 </p>
