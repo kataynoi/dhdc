@@ -13,6 +13,8 @@ class AjaxController extends \yii\web\Controller {
     //import on window
     public function actionImport($fortythree, $upload_date, $upload_time, $id) {
 
+        ini_set('max_execution_time', 0);
+        
         $model = UploadFortythree::findOne($id);
         $model->note2 = 'กำลังนำเข้า';
         $model->update();
@@ -90,6 +92,8 @@ class AjaxController extends \yii\web\Controller {
     //import on linux
     public function actionImport2($fortythree, $upload_date, $upload_time, $id) {
 
+        ini_set('max_execution_time', 0);
+        
         $model = UploadFortythree::findOne($id);
         $model->note2 = 'กำลังนำเข้า';
         $model->update();
@@ -166,7 +170,7 @@ class AjaxController extends \yii\web\Controller {
     //import all on window
     public function actionImport3($fortythree, $upload_date, $upload_time) {
 
-
+        ini_set('max_execution_time', 0);
 
         $filefortythree = "fortythree/$fortythree";
         $zip = new \ZipArchive();
@@ -254,7 +258,7 @@ class AjaxController extends \yii\web\Controller {
     //import all on linux
     public function actionImport4($fortythree, $upload_date, $upload_time) {
 
-
+        ini_set('max_execution_time', 0);
 
         //$ubuntu_path = "/var/lib/mysql/fortythree/";
 
@@ -343,6 +347,7 @@ class AjaxController extends \yii\web\Controller {
     }
 
     public function actionTruncate() {
+        ini_set('max_execution_time', 0);
         $model = \frontend\models\SysFiles::find()->asArray()->all();
         foreach ($model as $m) {
             $table = $m['file_name'];
