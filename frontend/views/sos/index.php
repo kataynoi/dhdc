@@ -16,3 +16,10 @@
     
     ?>
 </p>
+
+<p>
+    <?php
+    echo \yii\helpers\Html::a('3) ตรวจสอบ 13 หลัก', ['personcheck/checkcid']);
+    
+    ?>
+</p>
