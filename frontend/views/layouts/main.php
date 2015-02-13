@@ -53,6 +53,8 @@ AppAsset::register($this);
             }
 
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ประชากร', 'url' => ['pop/index']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> การรับบริการ', 'url' => ['opd/index']];
+
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> โรคไม่ติดต่อ', 'url' => ['ncd/index']];
 
 

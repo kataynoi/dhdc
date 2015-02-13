@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = 'การมารับบริการผ�
             'columns' => [
                 [
                     'attribute' => 'hoscode',
-                    'label' => '#'
+                    'label' => ''
                 ],
                 [
                     'attribute' => 'hosname',

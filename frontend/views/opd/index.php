@@ -1,9 +1,18 @@
 <?php
 /* @var $this yii\web\View */
+use yii\helpers\Html;
 ?>
-<h1>opd/index</h1>
+<h3>หมวดรายงาน-การรับบริการ</h3>
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+    <?php
+    echo Html::a('1) จำนวนผู้มารับบริการผู้ป่วยนอก', ['opd/report1']);
+    ?>
 </p>
+
+
+<div class="footerrow" style="padding-top: 60px">
+    <div class="alert alert-success">
+        หมายเหตุ : ระบบรายงานอยู่ระหว่างพัฒนาอย่างต่อเนื่อง
+    </div>
+</div>

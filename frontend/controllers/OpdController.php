@@ -28,9 +28,10 @@ class OpdController extends \yii\web\Controller {
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
-
+        $sql ="";
         return $this->render('report1', [
                     'dataProvider' => $dataProvider,
+                    'sql'=>$sql,
                     'selyear' => $selyear
         ]);
     }
