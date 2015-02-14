@@ -89,10 +89,10 @@ class ExecuteController extends \yii\web\Controller {
 
             $this->call("cal_sys_person_type");
             
-            $this->call("cal_count_service",'2014');
-            $this->call("cal_count_service",'2015');
-            $this->call("cal_count_service",'2016');
-            $this->call("cal_count_service",'2017');
+            $y = date('Y');
+            $this->call("cal_count_service",$y-1);
+            $this->call("cal_count_service",$y);
+           
             
 
 
