@@ -26,17 +26,35 @@ class SyssettimeController extends Controller {
         ];
     }
 
-    /**
-     * Lists all SysSetTime models.
-     * @return mixed
-     */
+    
+     protected function call($store_name, $arg = NULL) {
+        $sql = "";
+        if ($arg != NULL) {
+            $sql = "call " . $store_name . "(" . $arg . ");";
+        } else {
+            $sql = "call " . $store_name . "();";
+        }
+        $this->exec_sql($sql);
+    }
+
+    protected function exec_sql($sql) {
+        $affect_row = \Yii::$app->db->createCommand($sql)->execute();
+        return $affect_row;
+    }
+
+    protected function query_all($sql) {
+        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        return $rawData;
+    }
+    
+    
     public function create_event() {
 
-        \Yii::$app->db->createCommand("SET GLOBAL event_scheduler = ON;")->execute();
-        \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event1;")->execute();
-        \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event2;")->execute();
-        \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event3;")->execute();
-        \Yii::$app->db->createCommand("DROP EVENT IF EXISTS event4;")->execute();
+        $this->exec_sql("SET GLOBAL event_scheduler = ON;");
+        $this->exec_sql("DROP EVENT IF EXISTS event1;");
+        $this->exec_sql("DROP EVENT IF EXISTS event2;");
+        $this->exec_sql("DROP EVENT IF EXISTS event3;");
+        $this->exec_sql("DROP EVENT IF EXISTS event4;");
 
 
         $t = SysSetTime::find()->one();
@@ -51,7 +69,8 @@ class SyssettimeController extends Controller {
             DO
                 call all_execute();";
 
-            \Yii::$app->db->createCommand($sql)->execute();
+            
+            $this->exec_sql($sql);
         }
     }
 

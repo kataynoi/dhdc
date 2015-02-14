@@ -7,9 +7,9 @@ class ExecuteController extends \yii\web\Controller {
     protected function call($store_name, $arg = NULL) {
         $sql = "";
         if ($arg != NULL) {
-            $sql = "call " . $store_name . "(" . $arg . ")";
+            $sql = "call " . $store_name . "(" . $arg . ");";
         } else {
-            $sql = "call " . $store_name . "()";
+            $sql = "call " . $store_name . "();";
         }
         $this->exec_sql($sql);
     }
@@ -68,8 +68,12 @@ class ExecuteController extends \yii\web\Controller {
             $running->is_running = 'true';
             $running->update();
             //ใส่ excel store;
-
+            
             $bdg = '2014-09-30';
+            $model = \backend\models\Sysconfigmain::find()->one();
+            if($model){
+                $bdg=$model->note2;
+            }
             $bdg = "'" . $bdg . "'";
 
             $this->call("cal_chart_dial_1", $bdg);
