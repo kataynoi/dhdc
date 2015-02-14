@@ -170,11 +170,12 @@ $script1 = <<< JS
  });
         
  $('#btn_process_report').on('click', function () {
+          $('#res').toggle();   
     $.ajax({
        url: "$route_process_report",       
        success: function(data) {
-        
-            $('#version_new').html(data);
+           $('#res').toggle();               
+            alert(data+' สำเร็จ'); 
        }
     });
  });
