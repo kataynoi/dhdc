@@ -17,7 +17,8 @@ edit C:\Windows\System32\drivers\etc\hosts
 sql_mode=NO_ENGINE_SUBSTITUTION
 
 [UBUNTU14]
-- nano /etc/ssh/sshd_config , PermitRootLogin yes
+- nano /etc/ssh/sshd_config , PermitRootLogin yes 
+- service ssh restart;
 - apt-get update;
 - sudo apt-get install mcrypt php5-mcrypt
 - sudo php5enmod mcrypt
