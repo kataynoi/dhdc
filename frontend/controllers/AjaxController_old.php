@@ -1,8 +1,7 @@
 <?php
 
 namespace frontend\controllers;
-use yii;
-use yii\helpers\Html;
+
 use frontend\models\UploadFortythree;
 use frontend\models\SysCountImport;
 
@@ -11,12 +10,11 @@ class AjaxController extends \yii\web\Controller {
     public function actionIndex() {
         return $this->render('index');
     }
-
     //import on window
     public function actionImport($fortythree, $upload_date, $upload_time, $id) {
 
         ini_set('max_execution_time', 0);
-
+        
         $model = UploadFortythree::findOne($id);
         $model->note2 = 'กำลังนำเข้า';
         $model->update();
@@ -53,22 +51,13 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
                 if ($ext === 'txt' && $ftxt !== 'office') {
-
-                    $transaction = \Yii::$app->db->beginTransaction();
-                    try {
-
-                        $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
-                        $sql.= " REPLACE INTO TABLE $ftxt";
-                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
-                        $count = \Yii::$app->db->createCommand($sql)->execute();
-                        if ($cfmodel->hasAttribute($ftxt)) {
-                            $cfmodel->setAttribute($ftxt, $count);
-                        }
-
-                        //$transaction->commit();
-                    } catch (Exception $e) {
-                        $transaction->rollBack();
-                    }
+                    $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
+                    $sql.= " REPLACE INTO TABLE $ftxt";
+                    $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                }
+                $count = \Yii::$app->db->createCommand($sql)->execute();
+                if ($cfmodel->hasAttribute($ftxt)) {
+                    $cfmodel->setAttribute($ftxt, $count);
                 }
             }
         }
@@ -104,7 +93,7 @@ class AjaxController extends \yii\web\Controller {
     public function actionImport2($fortythree, $upload_date, $upload_time, $id) {
 
         ini_set('max_execution_time', 0);
-
+        
         $model = UploadFortythree::findOne($id);
         $model->note2 = 'กำลังนำเข้า';
         $model->update();
@@ -213,28 +202,19 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
                 if ($ext === 'txt' && $ftxt !== 'office') {
-
-                    $transaction = \Yii::$app->db->beginTransaction();
-                    try {
-
-                        $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
-                        $sql.= " REPLACE INTO TABLE $ftxt";
-                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
-                        $count = \Yii::$app->db->createCommand($sql)->execute();
-                        if ($cfmodel->hasAttribute($ftxt)) {
-                            $cfmodel->setAttribute($ftxt, $count);
-                        }
-
-                        $transaction->commit();
-                    } catch (Exception $e) {
-                        $transaction->rollBack();
-                    }
+                    $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
+                    $sql.= " REPLACE INTO TABLE $ftxt";
+                    $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                }
+                $count = \Yii::$app->db->createCommand($sql)->execute();
+                if ($cfmodel->hasAttribute($ftxt)) {
+                    $cfmodel->setAttribute($ftxt, $count);
                 }
             }
         }
         $cfmodel->save();
 
-
+        
 
 
         $upload = new UploadFortythree;
@@ -247,10 +227,10 @@ class AjaxController extends \yii\web\Controller {
         $upload->note3 = 'admin do import all';
         $upload->save();
 
-        $up = UploadFortythree::findOne(['file_name' => $fortythree]);
+        $up = UploadFortythree::findOne(['file_name'=>$fortythree]);
         if ($up) {
-            $up->note2 = 'OK';
-            $up->note3 = 'admin do import all';
+            $up->note2='OK';
+            $up->note3 =  'admin do import all';
             $up->update();
         }
 
@@ -338,10 +318,10 @@ class AjaxController extends \yii\web\Controller {
         $upload->save();
 
 
-        $up = UploadFortythree::findOne(['file_name' => $fortythree]);
+        $up = UploadFortythree::findOne(['file_name'=>$fortythree]);
         if ($up) {
-            $up->note2 = 'OK';
-            $up->note3 = 'admin do import all';
+            $up->note2='OK';
+            $up->note3 =  'admin do import all';
             $up->update();
         }
 
@@ -367,13 +347,7 @@ class AjaxController extends \yii\web\Controller {
     }
 
     public function actionTruncate() {
-
-        if (!\Yii::$app->user->isGuest) {
-            $user = Html::encode(Yii::$app->user->identity->username);
-           
-            if($user == 'admin'){
-                
-                 ini_set('max_execution_time', 0);
+        ini_set('max_execution_time', 0);
         $model = \frontend\models\SysFiles::find()->asArray()->all();
         foreach ($model as $m) {
             $table = $m['file_name'];
@@ -385,12 +359,6 @@ class AjaxController extends \yii\web\Controller {
         \Yii::$app->db->createCommand("truncate sys_upload_fortythree;")->execute();
         \Yii::$app->db->createCommand("truncate sys_count_import;")->execute();
         \Yii::$app->db->createCommand("truncate sys_count_all;")->execute();
-                
-               
-            }
-        }
-
-       
     }
 
 }
