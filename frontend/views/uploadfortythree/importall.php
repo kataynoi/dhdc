@@ -1,4 +1,7 @@
 <h1>รายการไฟล์</h1>
+<div class="alert alert-danger">
+    <h3>ควรนำเข้าครั้งละไม่เกิน 5 ไฟล์</h3>
+</div>
 <table class="table table-bordered table-striped">
     <tbody>
         <?php
