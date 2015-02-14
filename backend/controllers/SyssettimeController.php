@@ -26,28 +26,22 @@ class SyssettimeController extends Controller {
         ];
     }
 
-    
-     protected function call($store_name, $arg = NULL) {
-        $sql = "";
-        if ($arg != NULL) {
-            $sql = "call " . $store_name . "(" . $arg . ");";
-        } else {
-            $sql = "call " . $store_name . "();";
-        }
-        $this->exec_sql($sql);
-    }
-
     protected function exec_sql($sql) {
         $affect_row = \Yii::$app->db->createCommand($sql)->execute();
         return $affect_row;
     }
 
-    protected function query_all($sql) {
-        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-        return $rawData;
+    protected function call($store_name, $arg = NULL) {
+        $sql = "";
+        if ($arg != NULL) {
+            $sql = "call " . $store_name . "(" . $arg . ");\n";
+        } else {
+            $sql = "call " . $store_name . "();\n";
+        }
+        //$this->exec_sql($sql);
+        return $sql;
     }
-    
-    
+
     public function create_event() {
 
         $this->exec_sql("SET GLOBAL event_scheduler = ON;");
@@ -55,6 +49,16 @@ class SyssettimeController extends Controller {
         $this->exec_sql("DROP EVENT IF EXISTS event2;");
         $this->exec_sql("DROP EVENT IF EXISTS event3;");
         $this->exec_sql("DROP EVENT IF EXISTS event4;");
+
+
+        $bdg = '2014-09-30';
+        $model = \backend\models\Sysconfigmain::find()->one();
+        if ($model) {
+            $bdg = $model->note2;
+        }
+        $bdg = "'" . $bdg . "'";
+
+        $y = date('Y');
 
 
         $t = SysSetTime::find()->one();
@@ -66,10 +70,30 @@ class SyssettimeController extends Controller {
             $sql = "CREATE EVENT event1
             ON SCHEDULE EVERY '$days' DAY
             STARTS '$date $time'
-            DO
-                call all_execute();";
+            DO BEGIN\n\n";
+            $sql.="UPDATE sys_process_running s set s.is_running = 'true';\n";
+            $sql .= $this->call("cal_chart_dial_1", $bdg);
+            $sql .= $this->call("cal_chart_dial_2", $bdg);
+            $sql .= $this->call("cal_chart_dial_3", $bdg);
+            $sql .= $this->call("cal_chart_dial_4", NULL);
+            $sql .= $this->call("cal_chart_dial_5", NULL);
+            $sql .= $this->call("cal_chart_dial_6", NULL);
 
+            $sql .= $this->call("cal_ncd_cholesteral_colorchart", $bdg);
+            $sql .= $this->call("cal_ncd_nocholesteral_colorchart", $bdg);
+
+
+            $sql .= $this->call("cal_pyramid_level_1", $bdg);
+            $sql .= $this->call("cal_pyramid_level_2");
+            $sql .= $this->call("cal_pyramid_level_3");
+
+            $sql .= $this->call("cal_sys_person_type");
+            $sql .= $this->call("cal_count_service", $y - 1);
+            $sql .= $this->call("cal_count_service", $y);
             
+            $sql.="UPDATE sys_process_running s set s.is_running = 'false';\n";
+            $sql.="\nEND;";
+
             $this->exec_sql($sql);
         }
     }
@@ -84,22 +108,12 @@ class SyssettimeController extends Controller {
         ]);
     }
 
-    /**
-     * Displays a single SysSetTime model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id) {
         return $this->render('view', [
                     'model' => $this->findModel($id),
         ]);
     }
 
-    /**
-     * Creates a new SysSetTime model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate() {
         $model = new SysSetTime();
 
@@ -113,12 +127,6 @@ class SyssettimeController extends Controller {
         }
     }
 
-    /**
-     * Updates an existing SysSetTime model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
@@ -132,25 +140,12 @@ class SyssettimeController extends Controller {
         }
     }
 
-    /**
-     * Deletes an existing SysSetTime model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
         $this->create_event();
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the SysSetTime model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return SysSetTime the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id) {
         if (($model = SysSetTime::findOne($id)) !== null) {
             return $model;
