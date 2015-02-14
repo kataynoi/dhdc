@@ -11,6 +11,8 @@ edit C:\Windows\System32\drivers\etc\hosts
 - add on first line
 127.0.0.1 localhost
 
+[MySQL]
+#bind-address =127.0.0.1
 
 [MariaBD]
 #my.ini
@@ -27,5 +29,5 @@ sql_mode=NO_ENGINE_SUBSTITUTION
 - sudo service apache2 restart
 - CREATE DATABASE dhdc CHARACTER SET utf8 COLLATE utf8_general_ci;
 - mysql -u root -p dhdc<dhdc.sql
-- nano ../common/config/main-local.php
+- nano dhdc/common/config/main-local.php
 - php dhdc/chmod.php
