@@ -73,7 +73,7 @@ $this->registerJs("
             colors: ['#ED921C', '#1F7CDB'],
             chart: {
                 type: 'bar',
-                plotBackgroundImage:'./images/blue_bg.jpg',
+                plotBackgroundImage:'./images/bg_pop.png',
                 height:460
             },
             credits:{'enabled':false},

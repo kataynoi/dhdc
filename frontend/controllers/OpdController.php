@@ -12,10 +12,10 @@ class OpdController extends \yii\web\Controller {
 
     public function actionReport1() {//ผู้มารับบริการผู้ป่วยนอก คน/ครั้ง
         $selyear = date('Y');
-        $sql = "call count_service($selyear);";
+        $sql = "select * from sys_count_service where selyear=$selyear";
         if (!empty($_POST['selyear'])) {
             $selyear = $_POST['selyear'];
-            $sql = "call count_service($selyear);";
+             $sql = "select * from sys_count_service where selyear=$selyear";
         }
 
         try {
