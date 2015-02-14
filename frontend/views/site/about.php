@@ -16,22 +16,22 @@ $sys = Sysconfigmain::find()->one();
 <div class="site-about">
     <h3>ทีมพัฒนาโปรแกรม และรายงาน</h3>
 
-    <p>- <?=  Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn',['target'=>'_blank'])?> (สสจ.พิษณุโลก) Project Manager & Programmer</p>
-    <p>- <?=  Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk',['target'=>'_blank'])?> (สสจ.พิษณุโลก) Report Programmer</p>
-    <p>- <?=  Html::a('คุณสุจินต์ สุกกล้า', 'https://fb.com/jub.wifi',['target'=>'_blank'])?> (รพท.ศรีสังวรณ์ สุโขทัย) Co-Programmer</p>
-    <p>- <?=  Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205',['target'=>'_blank'])?> (รพสต.ผักตบ อ.หนองหาน จ.อุดรธานี) Report Programmer</p>
-    <p>- <?=  Html::a('คุณสันติ จีนะสอน', 'https://fb.com/gcantei',['target'=>'_blank'])?> (สสอ.เมือง จ.เพชรบูรณ์) Report Programmer</p>
-    <p>- <?=  Html::a('คุณนครินทร์ เกตุวีระพงศ์', 'https://fb.com/nakharin.knott',['target'=>'_blank'])?> (รพ.วัดโบสถ์ จ.พิษณุโลก) Co-Programmer</p>
-    <p>- <?=  Html::a('คุณวัชรพงษ์ วัชรินทร์', 'https://fb.com/profile.php?id=100001212955625',['target'=>'_blank'])?> (สสจ.แพร่) Report Programmer</p>
-    <p>- <?= Html::a('คุณจิรชาย นาบุญมี', 'https://www.facebook.com/jodonpeng',['target'=>'_blank'])?> (สสอ.ร้องกวาง จ.แพร่) Report Programmer</p>
+    <p>- <?= Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn', ['target' => '_blank']) ?> (สสจ.พิษณุโลก) Project Manager & Programmer</p>
+    <p>- <?= Html::a('คุณสุจินต์ สุกกล้า', 'https://fb.com/jub.wifi', ['target' => '_blank']) ?> (รพท.ศรีสังวรณ์ สุโขทัย) Co-Programmer</p>
+    <p>- <?= Html::a('คุณนครินทร์ เกตุวีระพงศ์', 'https://fb.com/nakharin.knott', ['target' => '_blank']) ?> (รพ.วัดโบสถ์ จ.พิษณุโลก) Co-Programmer</p>
+    <p>- <?= Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk', ['target' => '_blank']) ?> (สสจ.พิษณุโลก) Report Programmer & CUT Tool</p>
+    <p>- <?= Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']) ?> (รพสต.ผักตบ อ.หนองหาน จ.อุดรธานี) Report Programmer</p>
+    <p>- <?= Html::a('คุณสันติ จีนะสอน', 'https://fb.com/gcantei', ['target' => '_blank']) ?> (สสอ.เมือง จ.เพชรบูรณ์) Report Programmer</p>
+    <p>- <?= Html::a('คุณวัชรพงษ์ วัชรินทร์', 'https://fb.com/profile.php?id=100001212955625', ['target' => '_blank']) ?> (สสจ.แพร่) Report Programmer</p>
+    <p>- <?= Html::a('คุณจิรชาย นาบุญมี', 'https://www.facebook.com/jodonpeng', ['target' => '_blank']) ?> (สสอ.ร้องกวาง จ.แพร่) Report Programmer</p>
 
 </div>
 <div>
-    <?=  Html::a('กลุ่ม Facebook DHDC','https://www.facebook.com/groups/1533692120236074/',['target'=>'_blank']) ?>
+    <?= Html::a('กลุ่ม Facebook DHDC', 'https://www.facebook.com/groups/1533692120236074/', ['target' => '_blank']) ?>
 </div>
 
 <div>
-    <?=  Html::a('Source Code','https://github.com/utehnphnu2015/',['target'=>'_blank']) ?>
+    <?= Html::a('Source Code', 'https://github.com/utehnphnu2015/', ['target' => '_blank']) ?>
 </div>
 
 <div class="site-about">
