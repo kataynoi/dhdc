@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = 'การมารับบริการผ�
 </div>
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
 <div id="sql" style="display: none"><?= '' ?></div>
-<div style="overflow: auto;">
+
     <?php
     if (isset($dataProvider)) {
         $dev = Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn', ['target' => '_blank']);
@@ -163,7 +163,7 @@ $this->params['breadcrumbs'][] = 'การมารับบริการผ�
         ]);
     }
     ?>
-</div>
+
 <?php
 $script = <<< JS
 $('#btn_sql').on('click', function(e) {
