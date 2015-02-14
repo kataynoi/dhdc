@@ -1,6 +1,7 @@
 <?php
 
 namespace frontend\controllers;
+
 use yii;
 use yii\helpers\Html;
 use frontend\models\UploadFortythree;
@@ -61,13 +62,12 @@ class AjaxController extends \yii\web\Controller {
                         $sql.= " REPLACE INTO TABLE $ftxt";
                         $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
-                        if ($cfmodel->hasAttribute($ftxt)) {
-                            $cfmodel->setAttribute($ftxt, $count);
-                        }
-
-                        //$transaction->commit();
+                        $transaction->commit();
                     } catch (Exception $e) {
                         $transaction->rollBack();
+                    }
+                    if ($cfmodel->hasAttribute($ftxt)) {
+                        $cfmodel->setAttribute($ftxt, $count);
                     }
                 }
             }
@@ -144,13 +144,21 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
                 if ($ext === 'txt' && $ftxt !== 'office') {
-                    $sql = "LOAD DATA LOCAL INFILE '$rootpath$folder_without_ext/$file'";
-                    $sql.= " REPLACE INTO TABLE $ftxt";
-                    $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
-                }
-                $count = \Yii::$app->db->createCommand($sql)->execute();
-                if ($cfmodel->hasAttribute($ftxt)) {
-                    $cfmodel->setAttribute($ftxt, $count);
+
+                    $transaction = \Yii::$app->db->beginTransaction();
+                    try {
+
+                        $sql = "LOAD DATA LOCAL INFILE '$rootpath$folder_without_ext/$file'";
+                        $sql.= " REPLACE INTO TABLE $ftxt";
+                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                        $count = \Yii::$app->db->createCommand($sql)->execute();
+                        $transaction->commit();
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                    }
+                    if ($cfmodel->hasAttribute($ftxt)) {
+                        $cfmodel->setAttribute($ftxt, $count);
+                    }
                 }
             }
         }
@@ -221,13 +229,12 @@ class AjaxController extends \yii\web\Controller {
                         $sql.= " REPLACE INTO TABLE $ftxt";
                         $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
-                        if ($cfmodel->hasAttribute($ftxt)) {
-                            $cfmodel->setAttribute($ftxt, $count);
-                        }
-
                         $transaction->commit();
                     } catch (Exception $e) {
                         $transaction->rollBack();
+                    }
+                    if ($cfmodel->hasAttribute($ftxt)) {
+                        $cfmodel->setAttribute($ftxt, $count);
                     }
                 }
             }
@@ -314,13 +321,21 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
                 if ($ext === 'txt' && $ftxt !== 'office') {
-                    $sql = "LOAD DATA LOCAL INFILE '$rootpath$folder_without_ext/$file'";
-                    $sql.= " REPLACE INTO TABLE $ftxt";
-                    $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
-                }
-                $count = \Yii::$app->db->createCommand($sql)->execute();
-                if ($cfmodel->hasAttribute($ftxt)) {
-                    $cfmodel->setAttribute($ftxt, $count);
+
+                    $transaction = \Yii::$app->db->beginTransaction();
+                    try {
+
+                        $sql = "LOAD DATA LOCAL INFILE '$rootpath$folder_without_ext/$file'";
+                        $sql.= " REPLACE INTO TABLE $ftxt";
+                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                        $count = \Yii::$app->db->createCommand($sql)->execute();
+                        $transaction->commit();
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                    }
+                    if ($cfmodel->hasAttribute($ftxt)) {
+                        $cfmodel->setAttribute($ftxt, $count);
+                    }
                 }
             }
         }
@@ -370,27 +385,23 @@ class AjaxController extends \yii\web\Controller {
 
         if (!\Yii::$app->user->isGuest) {
             $user = Html::encode(Yii::$app->user->identity->username);
-           
-            if($user == 'admin'){
-                
-                 ini_set('max_execution_time', 0);
-        $model = \frontend\models\SysFiles::find()->asArray()->all();
-        foreach ($model as $m) {
-            $table = $m['file_name'];
-            $sql = "truncate $table";
-            \Yii::$app->db->createCommand($sql)->execute();
-            echo $sql . "<br>";
-        }
 
-        \Yii::$app->db->createCommand("truncate sys_upload_fortythree;")->execute();
-        \Yii::$app->db->createCommand("truncate sys_count_import;")->execute();
-        \Yii::$app->db->createCommand("truncate sys_count_all;")->execute();
-                
-               
+            if ($user == 'admin') {
+
+                ini_set('max_execution_time', 0);
+                $model = \frontend\models\SysFiles::find()->asArray()->all();
+                foreach ($model as $m) {
+                    $table = $m['file_name'];
+                    $sql = "truncate $table";
+                    \Yii::$app->db->createCommand($sql)->execute();
+                    echo $sql . "<br>";
+                }
+
+                \Yii::$app->db->createCommand("truncate sys_upload_fortythree;")->execute();
+                \Yii::$app->db->createCommand("truncate sys_count_import;")->execute();
+                \Yii::$app->db->createCommand("truncate sys_count_all;")->execute();
             }
         }
-
-       
     }
 
 }
