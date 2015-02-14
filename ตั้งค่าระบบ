@@ -11,8 +11,6 @@ edit C:\Windows\System32\drivers\etc\hosts
 - add on first line
 127.0.0.1 localhost
 
-[MySQL]
-#bind-address =127.0.0.1
 
 [MariaBD]
 #my.ini
@@ -31,3 +29,4 @@ sql_mode=NO_ENGINE_SUBSTITUTION
 - mysql -u root -p dhdc<dhdc.sql
 - nano dhdc/common/config/main-local.php
 - php dhdc/chmod.php
+- nano /etc/mysql/my.cnf  edit  #bind-address =127.0.0.1
