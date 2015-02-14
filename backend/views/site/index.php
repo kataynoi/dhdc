@@ -33,7 +33,7 @@ $this->title = 'DHDC Backend';
                 <button class="btn btn-danger" id="btn_chk_ver">
                     <i class="glyphicon glyphicon-check"></i> Version
                 </button>
-                <a class="btn btn-primary" href="ftp://203.157.118.117/" target="_blank">
+                <a class="btn btn-primary" href="ftp://utehn.plkhealth.go.th/" target="_blank">
                     <i class="glyphicon glyphicon-arrow-up"></i> download
                 </a>
             </div>
@@ -56,17 +56,17 @@ $this->title = 'DHDC Backend';
                 </a>
 
             </div>
-            <div class="col-sm-4">
-
-                <a class="btn btn-primary btn-xlarge" href="<?= Yii::$app->urlManager->createUrl('user/index') ?>"> 
-                    <i class="glyphicon glyphicon-user"></i> จัดการ USER   
+            
+             <div class="col-sm-4">
+                
+                <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#"> 
+                    <i class="glyphicon glyphicon-circle-arrow-up"></i> จำนวนแฟ้ม
                 </a>
-
-
             </div>
+           
             <div class="col-sm-4">
 
-                <button class="btn btn-danger btn-xlarge" id="btn_process"> 
+                <button class="btn btn-danger btn-xlarge" id="btn_process_report"> 
                     <i class="glyphicon glyphicon-refresh"></i> ประมวลผลรายงาน
                 </button>
 
@@ -75,19 +75,24 @@ $this->title = 'DHDC Backend';
         </div>
         <br>
         <div class="row">
-
-            <div class="col-sm-4">
-                <?php
-                $route = \Yii::$app->urlManager->createUrl('execute/runcountfile');
-                ?>
-                <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#"> 
-                    <i class="glyphicon glyphicon-circle-arrow-up"></i> จำนวนแฟ้ม
+            
+             <div class="col-sm-4">
+                 <?php 
+                 $route = Yii::$app->urlManager->createUrl('user/index'); 
+                 ?>
+                <a class="btn btn-primary btn-xlarge" href="<?=$route?>"> 
+                    <i class="glyphicon glyphicon-user"></i> จัดการผู้ใช้   
                 </a>
+
             </div>
 
-            <div class="col-sm-4">
+           
 
-                <a class="btn btn-warning btn-xlarge" href="<?= Yii::$app->urlManager->createUrl('execute/index') ?>"> 
+            <div class="col-sm-4">
+                <?php 
+                 $route = Yii::$app->urlManager->createUrl('execute/index'); 
+                 ?>
+                <a class="btn btn-warning btn-xlarge" href="<?=$route?>"> 
                     <i class="glyphicon glyphicon-play"></i> MySQL Load
                 </a>
             </div>
@@ -147,13 +152,26 @@ $this->title = 'DHDC Backend';
 
 
 <?php
-$route2 = Yii::$app->urlManager->createUrl('update/checkver');
-$route1 = Yii::$app->urlManager->createUrl('execute/execute_count');
+$route_chk_update = Yii::$app->urlManager->createUrl('update/checkver');
+$route_process_report = Yii::$app->urlManager->createUrl('execute/processreport');
+$route_file_count = Yii::$app->urlManager->createUrl('execute/filecount');
+
+
+
 $script1 = <<< JS
-        
- $('#btn_chk_ver').on('click', function () {
+       
+  $('#btn_chk_ver').on('click', function () {
     $.ajax({
-       url: "$route2",       
+       url: "$route_chk_update",       
+       success: function(data) {        
+            $('#version_new').html(data);
+       }
+    });
+ });
+        
+ $('#btn_process_report').on('click', function () {
+    $.ajax({
+       url: "$route_process_report",       
        success: function(data) {
         
             $('#version_new').html(data);
@@ -161,24 +179,21 @@ $script1 = <<< JS
     });
  });
         
+
+        
 $('#btn_count_all').on('click', function(e) {                
-    if(!confirm('ประมวลผลรายงาน')){
-        return false;
-    }
-    $('#btn_process').hide();
-    //$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    
     $('#res').toggle();          
     $.ajax({
-       url: "$route1",
-       //data: {a:'1'},
+       url: "$route_file_count",       
        success: function(data) {
-            $('#res').toggle();
-            $('#btn_process').show();           
-            alert(data+' สำเร็จ');
-            //window.location.reload();
+            $('#res').toggle();               
+            alert(data+' สำเร็จ');            
        }
     });
 });
 JS;
+
 $this->registerJs($script1);
+
 ?>

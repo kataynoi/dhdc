@@ -10,8 +10,7 @@ use yii\grid\GridView;
 $this->title = 'ผลรวมข้อมูลรายแฟ้ม';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sys-count-all-index">
-    <div style="overflow: auto;">
+
         <?=
         yii\grid\GridView::widget([
             'dataProvider' => $dataProvider,
@@ -55,5 +54,3 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]);
                 ?>
-    </div>
-</div>

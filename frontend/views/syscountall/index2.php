@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => 'ผลรวมข้อมูล�
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sys-count-all-index">
-    <div id='a-grid' style="overflow: auto;">
+   
         <?php
         \yii\widgets\Pjax::begin();
         echo \yii\grid\GridView::widget([
@@ -51,5 +51,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);
         \yii\widgets\Pjax::end();
         ?>
-    </div>
+   
 </div>

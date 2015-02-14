@@ -25,7 +25,7 @@ class SysMonth extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['month'], 'required'],
+            [['month','selyear'], 'required'],
             [['month'], 'string', 'max' => 6]
         ];
     }
@@ -37,6 +37,7 @@ class SysMonth extends \yii\db\ActiveRecord
     {
         return [
             'month' => 'Month',
+            'selyear'=>'SelYear'
         ];
     }
 }

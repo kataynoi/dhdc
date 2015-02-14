@@ -4,6 +4,16 @@ namespace backend\controllers;
 
 class ExecuteController extends \yii\web\Controller {
 
+    protected function exec_sql($sql) {
+        \Yii::$app->db->createCommand($sql)->execute();
+    }
+
+    protected function run_sys_count_all($ym) {
+
+        $sql = "call cal_sys_count_all($ym)";
+        $this->exec_sql($sql);
+    }
+
     public function actionIndex() {
         $sql = "show processlist;";
         $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
@@ -22,55 +32,39 @@ class ExecuteController extends \yii\web\Controller {
         ]);
     }
 
-    protected function run_sys_count_all($ym = '201410') {
-        $sql = "call cal_sys_count_all($ym);";
-        
+    public function actionFilecount() {
 
-        \Yii::$app->db->createCommand($sql)->execute();
+        $sql = "truncate sys_count_all";
+        $this->exec_sql($sql);
+
+        $month = \backend\models\SysMonth::find()->all();
+        foreach ($month as $m) {
+            if ($m->month <= date('Ym')) {
+                $this->run_sys_count_all($m->month);
+            }
+        }
     }
 
-    public function actionExecute_count() {
+    public function actionProcessreport() {
         $running = \backend\models\SysProcessRunning::find()->one();
-        $month = \backend\models\SysMonth::find()->all();
+
         if ($running->is_running == 'false') {
             $running->is_running = 'true';
             $running->update();
-            foreach ($month as $m) {
-                if ($m->month <= date('Ym')) {
-                    $this->run_sys_count_all($m->month);
-                }
-            }
+            //ใส่ sql
+            //จบใส่ sql
             $running->is_running = 'false';
             $running->update();
         }
     }
 
-    public function actionExecute() {
-        $running = \backend\models\SysProcessRunning::find()->one();
+    public function actionTest() {
 
-        $month = \backend\models\SysMonth::find()->all();
-        if ($running->is_running == 'false') {
-            $running->is_running = 'true';
-            $running->update();
-            foreach ($month as $m) {
-                if ($m->month <= date('Ym')) {
-                    $this->run_sys_count_all($m->month);
-                }
-            }
-
-            $running->is_running = 'false';
-            $running->update();
-        }
-    }
-    
-    public function  actionTest(){
-        
         $d = '2014-09-30';
-         $d = "'".$d."'";
+        $d = "'" . $d . "'";
         $sql = " call cal_chart_dial_2($d)";
 
-        \Yii::$app->db->createCommand($sql)->execute();
-        
+        $this->exec_sql($sql);
     }
 
 }
