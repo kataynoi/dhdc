@@ -5,7 +5,13 @@ namespace backend\controllers;
 class ExecuteController extends \yii\web\Controller {
 
     protected function exec_sql($sql) {
-        \Yii::$app->db->createCommand($sql)->execute();
+        $affect_row=\Yii::$app->db->createCommand($sql)->execute();
+        return $affect_row;
+    }
+    
+    protected function query_all($sql) {
+        $rawData= \Yii::$app->db->createCommand($sql)->queryAll();
+        return $rawData;
     }
 
     protected function run_sys_count_all($ym) {
@@ -16,7 +22,7 @@ class ExecuteController extends \yii\web\Controller {
 
     public function actionIndex() {
         $sql = "show processlist;";
-        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        $rawData = $this->query_all($sql);
 
         $dataProvider = new \yii\data\ArrayDataProvider([
             // 'key' => 'hoscode',
