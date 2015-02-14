@@ -42,13 +42,15 @@ class ExecuteController extends \yii\web\Controller {
 
         $sql = "truncate sys_count_all";
         $this->exec_sql($sql);
-
+        
         $month = \backend\models\SysMonth::find()->all();
         foreach ($month as $m) {
             if ($m->month <= date('Ym')) {
                 $this->run_sys_count_all($m->month);
             }
         }
+      
+        
     }
 
     public function actionProcessreport() {

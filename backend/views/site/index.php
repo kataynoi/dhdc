@@ -60,7 +60,7 @@ $this->title = 'DHDC Backend';
              <div class="col-sm-4">
                 
                 <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#"> 
-                    <i class="glyphicon glyphicon-circle-arrow-up"></i> จำนวนแฟ้ม
+                    <i class="glyphicon glyphicon-circle-arrow-up"></i> นับจำนวนแฟ้ม
                 </a>
             </div>
            
