@@ -1,6 +1,6 @@
 <?php
-$this->params['breadcrumbs'][] = ['label' => 'หมอประจำครอบครัว', 'url' => ['screen/index']];
-$this->params['breadcrumbs'][] = 'ผู้ป่วยโรคเรื้อรังได้รับการเยี่ยมบ้าน';
+$this->params['breadcrumbs'][] = ['label' => 'การคัดกรอง', 'url' => ['screen/index']];
+$this->params['breadcrumbs'][] = 'ประชาชนอายุ 35 ปีขึ้นไปได้รับการคัดกรองเบาหวาน-ความดันโลหิต';
 ?>
 
 <div class='well'>

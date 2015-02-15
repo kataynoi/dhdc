@@ -1,9 +1,17 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>หมวดรายงาน-คัดกรอง</h1>
+<h3>หมวดรายงาน-การคัดกรอง</h3>
 
 <p>
-<div class="alert alert-danger">อยู่ระหว่างดำเนินการ...</div>
+    <?php
+    echo \yii\helpers\Html::a('1) ประชาชนอายุ 35 ปีขึ้นไปได้รับการคัดกรองเบาหวาน-ความดันโลหิต', ['screen/report1']);
+    ?>
 </p>
 
+
+<div class="footerrow" style="padding-top: 60px">
+    <div class="alert alert-success">
+        หมายเหตุ : ระบบรายงานอยู่ระหว่างพัฒนาอย่างต่อเนื่อง
+    </div>
+</div>
