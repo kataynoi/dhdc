@@ -13,7 +13,9 @@ class NcdController extends \yii\web\Controller {
     }
 
     public function actionReport1() {//
-        $bdg_date = '2014-09-30';
+        $model = \backend\models\Sysconfigmain::find()->one();
+        $bdg = $model->note2;
+
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {
@@ -28,7 +30,7 @@ class NcdController extends \yii\web\Controller {
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid
            where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I15')  
-           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg_date') >= 35)  group by person.hospcode) as c
+           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35)  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,IFNULL(l1,0)as l1,IFNULL(l2,0)as l2,IFNULL(l3,0)as l3,IFNULL(l4,0)as l4,IFNULL(l5,0)as l5
 
@@ -42,8 +44,6 @@ LEFT JOIN
                    GROUP BY n.hospcode
 ) as result  on result.hospcode = h.hoscode
 
-
-where  hostype  in ('03','04','05','07','08','09','12','13')
 order by hoscode asc;";
 
 
@@ -69,7 +69,9 @@ order by hoscode asc;";
     }
 
     public function actionReport2() {//
-        $bdg_date = '2014-09-30';
+        $model = \backend\models\Sysconfigmain::find()->one();
+        $bdg = $model->note2;
+
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {
@@ -83,7 +85,7 @@ order by hoscode asc;";
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid         
            where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I15')  
-           and (TIMESTAMPDIFF(YEAR,person.birth,@bdg_date) >= 35  )  group by person.hospcode) as c
+           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35  )  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,IFNULL(l1,0)as l1,IFNULL(l2,0)as l2,IFNULL(l3,0)as l3,IFNULL(l4,0)as l4,IFNULL(l5,0)as l5
 
@@ -93,12 +95,11 @@ LEFT JOIN
 (select n.hospcode,sum(if(n.chart = '<10%',1,0)) as l1 ,sum(if(n.chart = '10-<20%',1,0)) as l2 ,
                    sum(if(n.chart = '20-<30%',1,0)) as l3 ,sum(if(n.chart = '30-<40%',1,0)) as l4 ,sum(if(n.chart = '>=40%',1,0)) as l5
                    from sys_ncd_nocholesteral_colorchart n
-                   where n.date_serv BETWEEN @start  and  @end
+                   where n.date_serv BETWEEN '$date1'  and  '$date2'
                    and  (n.chronic between 'I10' and 'I15') 
                    GROUP BY n.hospcode
 ) as result  on result.hospcode = h.hoscode
 
-where  hostype  in ('03','04','05','07','08','09','12','13')
 order by hoscode asc;";
 
 
@@ -124,7 +125,9 @@ order by hoscode asc;";
     }
 
     public function actionReport3() {//
-        $bdg_date = '2014-09-30';
+        $model = \backend\models\Sysconfigmain::find()->one();
+        $bdg = $model->note2;
+
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {
@@ -139,7 +142,7 @@ order by hoscode asc;";
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid
            where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E14')  
-           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg_date') >= 35  )  group by person.hospcode) as c
+           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35  )  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,IFNULL(l1,0)as l1,IFNULL(l2,0)as l2,IFNULL(l3,0)as l3,IFNULL(l4,0)as l4,IFNULL(l5,0)as l5
 
@@ -154,7 +157,7 @@ LEFT JOIN
                    GROUP BY n.hospcode
 ) as result  on result.hospcode = h.hoscode
 
-where  hostype  in ('03','04','05','07','08','09','12','13')
+
 order by hoscode asc;";
 
 
@@ -178,9 +181,12 @@ order by hoscode asc;";
                     'date2' => $date2
         ]);
     }
-    
-       public function actionReport4() {//
-        $bdg_date = '2014-09-30';
+
+    public function actionReport4() {//
+        $model = \backend\models\Sysconfigmain::find()->one();
+        $bdg = $model->note2;
+
+
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {
@@ -194,7 +200,7 @@ order by hoscode asc;";
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid
            where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E14')  
-           and (TIMESTAMPDIFF(YEAR,person.birth,@bdg_date) >= 35  )  group by person.hospcode) as c
+           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35  )  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,IFNULL(l1,0)as l1,IFNULL(l2,0)as l2,IFNULL(l3,0)as l3,IFNULL(l4,0)as l4,IFNULL(l5,0)as l5
 
@@ -204,12 +210,12 @@ LEFT JOIN
 (select n.hospcode,sum(if(n.chart = '<10%',1,0)) as l1 ,sum(if(n.chart = '10-<20%',1,0)) as l2 ,
                    sum(if(n.chart = '20-<30%',1,0)) as l3 ,sum(if(n.chart = '30-<40%',1,0)) as l4 ,sum(if(n.chart = '>=40%',1,0)) as l5
                    from sys_ncd_nocholesteral_colorchart n
-                   where n.date_serv BETWEEN @start  and  @end
+                   where n.date_serv BETWEEN '$date1'  and  '$date2'
                    and  (n.chronic between 'E10' and 'E14') 
                    GROUP BY n.hospcode
 ) as result  on result.hospcode = h.hoscode
 
-where  hostype  in ('03','04','05','07','08','09','12','13')
+
 order by hoscode asc;";
 
 
