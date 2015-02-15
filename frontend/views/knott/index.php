@@ -5,20 +5,20 @@
 
 <p>
     <?php
-    echo \yii\helpers\Html::a('1) รายงาน 10 อันดับการให้รหัสโรคแพทย์แผนไทย', ['knott/panthai_1']);
+    echo \yii\helpers\Html::a('1) รายงาน 10 อันดับการให้รหัสโรคแพทย์แผนไทย', ['knott/panthai1']);
     ?>
 </p>
 
 <p>
     <?php
-    echo \yii\helpers\Html::a('2) รายงาน 10 อันดับการให้รหัสหัตถการแพทย์แผนไทย', ['knott/panthai_2']);
+    echo \yii\helpers\Html::a('2) รายงาน 10 อันดับการให้รหัสหัตถการแพทย์แผนไทย', ['knott/panthai2']);
     ?>
 </p>
 
 
 <p>
     <?php
-    echo \yii\helpers\Html::a('3) รายงานอัตราส่วนการวินิจฉัยรหัสโรคแพทย์แผนไทย', ['knott/panthai_3']);
+    echo \yii\helpers\Html::a('3) รายงานอัตราส่วนการวินิจฉัยรหัสโรคแพทย์แผนไทย', ['knott/panthai3']);
     ?>
 </p>
 

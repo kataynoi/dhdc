@@ -69,13 +69,16 @@ class ExecuteController extends \yii\web\Controller {
             $running->update();
             //ใส่ excel store;
             
+            
             $bdg = '2014-09-30';
             $model = \backend\models\Sysconfigmain::find()->one();
             if($model){
                 $bdg=$model->note2;
             }
             $bdg = "'" . $bdg . "'";
-
+            
+            
+            
             $this->call("cal_chart_dial_1", $bdg);
             $this->call("cal_chart_dial_2", $bdg);
             $this->call("cal_chart_dial_3", $bdg);
@@ -99,6 +102,8 @@ class ExecuteController extends \yii\web\Controller {
            
             
 
+            
+            
 
 
             //จบใส่ store

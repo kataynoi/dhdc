@@ -1,7 +1,7 @@
 <?php
 
 namespace frontend\controllers;
-
+use yii;
 class KnottController extends \yii\web\Controller {
 
     public $enableCsrfValidation = false;
@@ -10,8 +10,35 @@ class KnottController extends \yii\web\Controller {
         return $this->render('index');
     }
 
-    public function actionPanthai_1() {
-        $sql = "select * from knott_panthai_1";
+    public function actionPanthai1() {
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        $hospcode='';
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+            $hospcode=$_POST['hospcode'];
+        }
+        
+        $sql = "select i.diseasethai as diag,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
+from diagnosis_opd d,cdisease i
+where d.DIAGCODE=i.diagcode and d.DATE_SERV between '$date1' and '$date2' 
+and d.DIAGCODE LIKE 'u%' 
+group by d.DIAGCODE
+order by visit DESC
+limit 10";
+        
+        if($hospcode !=''){
+            $sql = "select i.diseasethai as diag,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
+from diagnosis_opd d,cdisease i
+where d.DIAGCODE=i.diagcode and d.DATE_SERV between '$date1' and '$date2' 
+and d.DIAGCODE LIKE 'u%' and d.HOSPCODE=$hospcode
+group by d.DIAGCODE
+order by visit DESC
+limit 10";
+        }
+        
+        
 
 
         try {
@@ -24,9 +51,12 @@ class KnottController extends \yii\web\Controller {
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
-        return $this->render('panthai_1', [
+        return $this->render('panthai1', [
                     'dataProvider' => $dataProvider,
-                    'sql' => $sql
+                    'sql' => $sql,
+                    'date1'=>$date1,
+                    'date2'=>$date2,
+                    'hospcode'=>$hospcode
         ]);
     }
 
