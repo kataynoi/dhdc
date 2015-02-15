@@ -1,18 +1,18 @@
 <?php
-$this->params['breadcrumbs'][]=['label' => 'รวมรายงานของ knott', 'url' => ['knott/index']];
-$this->params['breadcrumbs'][] ='รายงาน 10 อันดับการให้รหัสโรคแพทย์แผนไทย';
+$this->params['breadcrumbs'][] = ['label' => 'รวมรายงานของ knott', 'url' => ['knott/index']];
+$this->params['breadcrumbs'][] = 'รายงาน 10 อันดับการให้รหัสโรคแพทย์แผนไทย';
+$this->title = 'DHDC-รายงาน 10 อันดับการให้รหัสโรคแพทย์แผนไทย';
 ?>
 <div class='well'>
     <form method="POST">
         สถานบริการ:
-         <?php
-            $list = yii\helpers\ArrayHelper::map(frontend\models\ChospitalAmp::find()->all(), 'hoscode', 'hosname');
-            echo yii\helpers\Html::dropDownList('hospcode',$hospcode, $list, [
-                'prompt' => 'ทุกสถานบริการ',
-                
-            ]);
-            ?>
-        
+        <?php
+        $list = yii\helpers\ArrayHelper::map(frontend\models\ChospitalAmp::find()->all(), 'hoscode', 'hosname');
+        echo yii\helpers\Html::dropDownList('hospcode', $hospcode, $list, [
+            'prompt' => 'ทุกสถานบริการ',
+        ]);
+        ?>
+
         ระหว่าง:
         <?php
         echo yii\jui\DatePicker::widget([
@@ -47,6 +47,8 @@ $this->params['breadcrumbs'][] ='รายงาน 10 อันดับกา�
 
 <?php
 if (isset($dataProvider))
+    $dev = \yii\helpers\Html::a('คุณนครินทร์ เกตุวีระพงศ์', 'https://fb.com/nakharin.knott', ['target' => '_blank']);
+    
 //echo yii\grid\GridView::widget([
     echo \kartik\grid\GridView::widget([
         'dataProvider' => $dataProvider,
@@ -55,8 +57,23 @@ if (isset($dataProvider))
         'panel' => [
             'before' => '',
             'type' => \kartik\grid\GridView::TYPE_SUCCESS,
-            'after' => ''
+            'after' => 'โดย ' . $dev
         ],
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute' => 'diag',
+                'header' => 'กลุ่มประชากรเป้าหมาย(คน)'
+            ],
+            [
+                'attribute' => 'person',
+                'header' => 'จำนวนผู้ป่วย(คน)'
+            ],
+            [
+                'attribute' => 'visit',
+                'header' => 'กลุ่มประชากรเป้าหมาย(คน)'
+            ],
+        ]
     ]);
 ?>
 <?php
