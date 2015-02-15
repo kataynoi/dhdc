@@ -24,6 +24,11 @@ use yii\helpers\Html;
     echo Html::a('4) Color chart ผู้ป่วยเบาหวาน-DM(ไม่ทราบผลคอเลสเตอรอล)', ['ncd/report4']);
     ?>
 </p>
+<p>
+    <?php
+    echo Html::a('5) ผู้ป่วยเบาหวานได้รับการตรวจ HbA1c และควบคุมน้ำตาลได้ดี)', ['ncd/report5']);
+    ?>
+</p>
 
 <div class="footerrow" style="padding-top: 60px">
     <div class="alert alert-success">
