@@ -29,6 +29,11 @@ use yii\helpers\Html;
     echo Html::a('5) ผู้ป่วยเบาหวานได้รับการตรวจ HbA1c และควบคุมน้ำตาลได้ดี)', ['ncd/report5']);
     ?>
 </p>
+<p>
+    <?php
+    echo Html::a('6) ผู้เป็นความดันโลหิตสูงความคุมความดันโลหิตได้ดี)', ['ncd/report6']);
+    ?>
+</p>
 
 <div class="footerrow" style="padding-top: 60px">
     <div class="alert alert-success">

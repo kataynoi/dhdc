@@ -302,5 +302,60 @@ order by distcode,hoscode asc;";
                     'date2' => $date2
         ]);
     }
+    
+    public function actionReport6(){
+        $model=  \backend\models\Sysconfigmain::find()->one();
+        $bdg=$model->note2;
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+        
+        $sql="select h.hoscode as hospcode ,h.hosname as hospname,
+(SELECT  hos_chronic from 
+          (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
+           inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid          
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I15')  
+           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35 )  group by person.hospcode) as c
+where c.hospcode  = h.hoscode
+) as target,
+(SELECT hos_doit from
+          (select person.hospcode,count(distinct(person.pid)) as hos_doit from chronic  
+           inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid 
+           inner join chronicfu on person.hospcode = chronicfu.hospcode and person.pid = chronicfu.pid 
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I15')  
+           and (chronicfu.sbp <140 and chronicfu.dbp < 90) and (chronicfu.date_serv BETWEEN '$date1' and '$date2' ) 
+           and (TIMESTAMPDIFF(YEAR,person.birth,chronicfu.date_serv) >= 35 )  group by person.hospcode) as r
+where r.hospcode = h.hoscode
+) as result 
+
+from chospital_amp h
+order by distcode,hoscode asc";
+        
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report6', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+        
+    }
+    
+    
+    
 
 }
