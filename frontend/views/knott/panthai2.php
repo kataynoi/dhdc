@@ -1,6 +1,6 @@
 <?php
 $this->params['breadcrumbs'][] = ['label' => 'รวมรายงานของ knott', 'url' => ['knott/index']];
-$this->params['breadcrumbs'][] = 'รายงาน 10 อันดับการให้รหัสโรคแพทย์แผนไทย';
+$this->params['breadcrumbs'][] = 'รายงาน 10 อันดับการให้รหัสหัตถการแพทย์แผนไทย';
 $this->title = 'DHDC-รายงานแพทย์แผนไทย';
 ?>
 <div class='well'>
@@ -62,8 +62,8 @@ if (isset($dataProvider))
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'attribute' => 'diag',
-                'header' => 'โรค'
+                'attribute' => 'oper',
+                'header' => 'หัตถการ'
             ],
             [
                 'attribute' => 'person',
@@ -71,7 +71,7 @@ if (isset($dataProvider))
             ],
             [
                 'attribute' => 'visit',
-                'header' => 'จำนวนรับบริการ(ครั้ง)'
+                'header' => 'จำนวนผู้รับบริการ(ครั้ง)'
             ],
         ]
     ]);

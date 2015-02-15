@@ -60,8 +60,34 @@ limit 10";
         ]);
     }
 
-    public function actionPanthai_2() {
-        $sql = "select * from knott_panthai_2";
+    public function actionPanthai2() {
+       $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        $hospcode='';
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+            $hospcode=$_POST['hospcode'];
+        }
+        
+        $sql = "select d.PROCEDCODE,i.desc_r as oper,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
+from procedure_opd d,cicd9ttm_planthai i
+where d.PROCEDCODE=i.`code` and d.DATE_SERV between '$date1' and '$date2'
+group by d.PROCEDCODE
+order by visit DESC
+limit 10";
+        
+        if($hospcode !=''){
+            $sql = "select d.PROCEDCODE,i.desc_r as oper,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
+from procedure_opd d,cicd9ttm_planthai i
+where d.PROCEDCODE=i.`code` and d.DATE_SERV between '$date1' and '$date2'
+and d.HOSPCODE=$hospcode 
+group by d.PROCEDCODE 
+order by visit DESC
+limit 10";
+        }
+        
+        
 
 
         try {
@@ -74,15 +100,18 @@ limit 10";
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
-        return $this->render('panthai_2', [
+        return $this->render('panthai2', [
                     'dataProvider' => $dataProvider,
-                    'sql' => $sql
+                    'sql' => $sql,
+                    'date1'=>$date1,
+                    'date2'=>$date2,
+                    'hospcode'=>$hospcode
         ]);
     }
 
     
 
-    public function actionPanthai_3() {
+    public function actionPanthai3() {
         
          $sql = "SELECT sm.`month`,d.HOSPCODE,amp.hosname,count(d.SEQ) as total,
 sum(if(d.DIAGCODE like 'u%',1,0)) as panthai_diag,
@@ -118,7 +147,7 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
             'pagination' => FALSE,
         ]);
 
-        return $this->render('panthai_3', [
+        return $this->render('panthai3', [
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
                     'select_year'=>  isset($_POST['year'])?$_POST['year']:''
