@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>knott/report</h1>
+<h1>หมวดรายงานแพทย์แผนไทย</h1>
 
 <p>
     <?php
