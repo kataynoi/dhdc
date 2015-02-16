@@ -1,5 +1,5 @@
 <?php
-$this->params['breadcrumbs'][] = ['label' => 'รวมรายงานของ knott', 'url' => ['knott/index']];
+$this->params['breadcrumbs'][] = ['label' => 'แพทย์แผนไทย', 'url' => ['knott/index']];
 $this->params['breadcrumbs'][] = 'รายงาน 10 อันดับการให้รหัสหัตถการแพทย์แผนไทย';
 $this->title = 'DHDC-รายงานแพทย์แผนไทย';
 ?>
