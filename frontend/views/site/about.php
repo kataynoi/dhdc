@@ -24,6 +24,7 @@ $sys = Sysconfigmain::find()->one();
     <p>- <?= Html::a('คุณสันติ จีนะสอน', 'https://fb.com/gcantei', ['target' => '_blank']) ?> (สสอ.เมือง จ.เพชรบูรณ์) Report Programmer</p>
     <p>- <?= Html::a('คุณวัชรพงษ์ วัชรินทร์', 'https://fb.com/profile.php?id=100001212955625', ['target' => '_blank']) ?> (สสจ.แพร่) Report Programmer</p>
     <p>- <?= Html::a('คุณจิรชาย นาบุญมี', 'https://www.facebook.com/jodonpeng', ['target' => '_blank']) ?> (สสอ.ร้องกวาง จ.แพร่) Report Programmer</p>
+    <p>- <?= Html::a('คุณเดชา สายบุญตั้ง', 'https://www.facebook.com/decha.saiboontung', ['target' => '_blank']) ?> (รพ.ด่านซ้าย จ.เลย) Tester</p>
 
 </div>
 <div>
