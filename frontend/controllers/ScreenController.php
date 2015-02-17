@@ -69,4 +69,48 @@ FROM chospital_amp h";
         
     }
     
+    public function  actionReport2(){
+        
+        $model=  \backend\models\Sysconfigmain::find()->one();
+        $bdg=$model->note2;
+        
+        
+        $sql="select h.hoscode as hospcode ,h.hosname as hospname,
+(SELECT hos_target from
+ (select person.hospcode , count(distinct person.pid) as hos_target from person  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' 
+           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') between 30 and 60) and sex = '2' group by person.hospcode ) as t
+where  t.hospcode = h.hoscode
+) as target ,
+(SELECT hos_doit from
+          (select person.hospcode,count(distinct(person.pid)) as hos_doit from service 
+           inner join diagnosis_opd d on service.hospcode = d.hospcode and service.pid = d.pid  and service.SEQ = d.SEQ
+           inner join person on service.hospcode = person.hospcode and service.pid = person.pid 
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099'  and sex = '2'
+           and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') between 30 and 60)  and d.diagcode in ('Z014','Z124') 
+           and (TIMESTAMPDIFF(YEAR,service.date_serv,CURDATE()) <= 5)  group by person.hospcode) as r
+where r.hospcode = h.hoscode
+) as result 
+
+from chospital_amp h
+order by distcode,hoscode asc";
+        
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+       
+        return $this->render('report2', [
+                   
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql
+        ]);
+    }
+    
 }
