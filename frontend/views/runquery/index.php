@@ -18,6 +18,7 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
         if ($onof->status === 'on'):
             ?>
             <button class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> รันชุดคำสั่ง</button>
+            <button class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> จัดเก็บ</button>
         <?php else: ?>
             <label> ผู้ดูแลระบบปิดใช้งาน </label>
 
