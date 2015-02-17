@@ -18,6 +18,11 @@
     echo \yii\helpers\Html::a('3) เด็กอายุ 5 ปีได้รับวัคซีน DTP5', ['mom/report3']);
     ?>
 </p>
+<p>
+    <?php
+    echo \yii\helpers\Html::a('4) ทารกแรกเกิดน้ำหนักน้อยกว่า 2500 กรัม', ['mom/report4']);
+    ?>
+</p>
 
 
 <div class="footerrow" style="padding-top: 60px">

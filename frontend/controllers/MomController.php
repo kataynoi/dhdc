@@ -362,4 +362,51 @@ order by distcode,hoscode asc";
         
     }
     
+    public function actionReport4(){
+         $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+        
+        $sql="select h.distcode as amphur,h.hoscode as hospcode ,concat(provcode,distcode,subdistcode,mu) as areacode,h.hosname as hospname,
+(SELECT hos_target from
+ (select person.hospcode , count(distinct person.pid) as hos_target from newborn  
+           inner join person on newborn.hospcode = person.hospcode and newborn.pid = person.pid 
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099'  
+           and (newborn.BDATE BETWEEN '$date1' and '$date2') group by person.hospcode ) as t
+where  t.hospcode = h.hoscode
+) as target ,
+(SELECT hos_doit from
+          (select person.hospcode,count(distinct(person.pid)) as hos_doit from newborn  
+           inner join person on newborn.hospcode = person.hospcode and newborn.pid = person.pid 
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099'  
+           and (newborn.BDATE BETWEEN '$date1' and '$date2') and  newborn.BWEIGHT < 2500 group by person.hospcode) as r
+where r.hospcode = h.hoscode
+) as result 
+from chospital_amp h
+order by distcode,hoscode asc";
+        
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report4', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+        
+    }
+    
 }
