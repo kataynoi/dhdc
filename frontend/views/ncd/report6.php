@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = 'ผู้เป็นความดันโ�
 <div id="sql" style="display: none"><?= $sql ?></div>
 <?php
 if (isset($dataProvider))
-    $dev = \yii\helpers\Html::a('คุณศรศักดิ์ สีหะวงษ์ ปรับปรุงเมื่อ:2015-02-27', 'https://fb.com/sosplk', ['target' => '_blank']);
+    $dev = \yii\helpers\Html::a('คุณศรศักดิ์ สีหะวงษ์ ปรับปรุงเมื่อ:2015-02-17', 'https://fb.com/sosplk', ['target' => '_blank']);
     
     
 //echo yii\grid\GridView::widget([
