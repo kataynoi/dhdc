@@ -71,7 +71,8 @@ class SyssettimeController extends Controller {
             ON SCHEDULE EVERY '$days' DAY
             STARTS '$date $time'
             DO BEGIN\n\n";
-            $sql.="UPDATE sys_process_running s set s.is_running = 'true';\n";
+            $sql .= $this->call("start_process", NULL);
+            
             $sql .= $this->call("cal_chart_dial_1", $bdg);
             $sql .= $this->call("cal_chart_dial_2", $bdg);
             $sql .= $this->call("cal_chart_dial_3", $bdg);
@@ -91,7 +92,8 @@ class SyssettimeController extends Controller {
             $sql .= $this->call("cal_count_service", $y - 1);
             $sql .= $this->call("cal_count_service", $y);
             
-            $sql.="UPDATE sys_process_running s set s.is_running = 'false';\n";
+            $sql .= $this->call("end_process", NULL);
+            
             $sql.="\nEND;";
 
             $this->exec_sql($sql);
