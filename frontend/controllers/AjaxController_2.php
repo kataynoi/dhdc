@@ -58,18 +58,9 @@ class AjaxController extends \yii\web\Controller {
                     $transaction = \Yii::$app->db->beginTransaction();
                     try {
 
-                        if (strtolower($ftxt) == 'charge_opd') {
-                            $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
-                            $sql.= " REPLACE INTO TABLE tmp_charge_opd";
-                            $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
-                            $sql.= " SET NOTE1='$fortythree',NOTE2=now()";
-                        } else {
-                            $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
-                            $sql.= " REPLACE INTO TABLE $ftxt";
-                            $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
-                        }
-
-
+                        $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
+                        $sql.= " REPLACE INTO TABLE $ftxt";
+                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
                         $transaction->commit();
                     } catch (Exception $e) {
