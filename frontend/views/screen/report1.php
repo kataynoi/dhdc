@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = 'ประชาชนอายุ 35 ปีข
 <div id="sql" style="display: none"><?= $sql ?></div>
 <?php
 if (isset($dataProvider))
-    $dev = \yii\helpers\Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk', ['target' => '_blank']);
+    $dev = \yii\helpers\Html::a('คุณศรศักดิ์ สีหะวงษ์ Edit:20150227', 'https://fb.com/sosplk', ['target' => '_blank']);
     
     
 //echo yii\grid\GridView::widget([

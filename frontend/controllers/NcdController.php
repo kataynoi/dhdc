@@ -250,12 +250,12 @@ order by hoscode asc;";
             $date2 = $_POST['date2'];
         }
         
-        $sql="select  h.hoscode as hospcode ,h.hosname as hospname,
+        $sql="select h.hoscode as hospcode ,h.hosname as hospname,
 
 (SELECT  hos_chronic from 
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E14')  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E149')  
            and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35 )  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,
@@ -263,7 +263,7 @@ where c.hospcode  = h.hoscode
           (select person.hospcode,count(distinct(person.pid)) as hos_doit from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid            
            inner join labfu on person.hospcode = labfu.hospcode and person.pid = labfu.pid 
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' 
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E149') 
            and labfu.labtest = '05' and (labfu.date_serv BETWEEN '$date1' and '$date2' ) 
            and (TIMESTAMPDIFF(YEAR,person.birth,labfu.date_serv) >= 35 )  group by person.hospcode) as r
 where r.hospcode = h.hoscode
@@ -272,15 +272,14 @@ where r.hospcode = h.hoscode
           (select person.hospcode,count(distinct(person.pid)) as hos_doit from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid 
            inner join labfu on person.hospcode = labfu.hospcode and person.pid = labfu.pid 
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' 
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E149') 
            and labfu.labtest = '05' and labfu.LABRESULT < 7 and (labfu.date_serv BETWEEN '$date1' and '$date2' ) 
            and (TIMESTAMPDIFF(YEAR,person.birth,labfu.date_serv) >= 35 )  group by person.hospcode) as r
 where r.hospcode = h.hoscode
 ) as control
 
 from chospital_amp h
-
-order by distcode,hoscode asc;";
+order by distcode,hoscode asc";
         
         
         try {
@@ -313,11 +312,11 @@ order by distcode,hoscode asc;";
             $date2 = $_POST['date2'];
         }
         
-        $sql="select h.hoscode as hospcode ,h.hosname as hospname,
+        $sql="select  h.hoscode as hospcode ,h.hosname as hospname,
 (SELECT  hos_chronic from 
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid          
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I15')  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I159')  
            and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35 )  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,
@@ -325,7 +324,7 @@ where c.hospcode  = h.hoscode
           (select person.hospcode,count(distinct(person.pid)) as hos_doit from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid 
            inner join chronicfu on person.hospcode = chronicfu.hospcode and person.pid = chronicfu.pid 
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I15')  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I159')  
            and (chronicfu.sbp <140 and chronicfu.dbp < 90) and (chronicfu.date_serv BETWEEN '$date1' and '$date2' ) 
            and (TIMESTAMPDIFF(YEAR,person.birth,chronicfu.date_serv) >= 35 )  group by person.hospcode) as r
 where r.hospcode = h.hoscode
