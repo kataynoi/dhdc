@@ -6,22 +6,22 @@ use yii\helpers\Html;
 
 <p>
     <?php
-    echo Html::a('1) Color chart ผู้ป่วยความดันโลหิต-HT(ทราบผลคอเลสเตอรอล)', ['ncd/report1']);
+    echo Html::a('1) Color chart ผู้ป่วยความดันโลหิต-HT(ทราบผลคอเลสเตอรอล)(ปรับ 20150217)', ['ncd/report1']);
     ?>
 </p>
 <p>
     <?php
-    echo Html::a('2) Color chart ผู้ป่วยความดันโลหิต-HT(ไม่ทราบผลคอเลสเตอรอล)', ['ncd/report2']);
+    echo Html::a('2) Color chart ผู้ป่วยความดันโลหิต-HT(ไม่ทราบผลคอเลสเตอรอล)(ปรับ 20150217)', ['ncd/report2']);
     ?>
 </p>
 <p>
     <?php
-    echo Html::a('3) Color chart ผู้ป่วยเบาหวาน-DM(ทราบผลคอเลสเตอรอล)', ['ncd/report3']);
+    echo Html::a('3) Color chart ผู้ป่วยเบาหวาน-DM(ทราบผลคอเลสเตอรอล)(ปรับ 20150217)', ['ncd/report3']);
     ?>
 </p>
 <p>
     <?php
-    echo Html::a('4) Color chart ผู้ป่วยเบาหวาน-DM(ไม่ทราบผลคอเลสเตอรอล)', ['ncd/report4']);
+    echo Html::a('4) Color chart ผู้ป่วยเบาหวาน-DM(ไม่ทราบผลคอเลสเตอรอล)(ปรับ 20150217)', ['ncd/report4']);
     ?>
 </p>
 <p>

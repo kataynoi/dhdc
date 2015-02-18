@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = 'Color Chart ผู้ป่วยความ�
 <div id="sql" style="display: none"><?= $sql ?></div>
 <?php
 if (isset($dataProvider))
-    $dev = Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk',['target'=>'_blank']);
+    $dev = Html::a('คุณศรศักดิ์ สีหะวงษ์ ปรับปรุงเมื่อ:2015-02-17', 'https://fb.com/sosplk',['target'=>'_blank']);
     
     
 //echo yii\grid\GridView::widget([

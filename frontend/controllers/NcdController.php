@@ -25,11 +25,10 @@ class NcdController extends \yii\web\Controller {
 
         $sql = "select  h.hoscode as hospcode ,h.hosname as hospname,
 
-
 (SELECT  hos_chronic from 
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I15')  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I159')  
            and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35)  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,IFNULL(l1,0)as l1,IFNULL(l2,0)as l2,IFNULL(l3,0)as l3,IFNULL(l4,0)as l4,IFNULL(l5,0)as l5
@@ -40,11 +39,10 @@ LEFT JOIN
                    sum(if(n.chart = '20-<30%',1,0)) as l3 ,sum(if(n.chart = '30-<40%',1,0)) as l4 ,sum(if(n.chart = '>=40%',1,0)) as l5
                    from sys_ncd_cholesteral_colorchart n
                    where n.date_serv BETWEEN '$date1'  and  '$date2'
-                   and  (n.chronic between 'I10' and 'I15') 
+                   and  (n.chronic between 'I10' and 'I159') 
                    GROUP BY n.hospcode
 ) as result  on result.hospcode = h.hoscode
-
-order by hoscode asc;";
+order by distcode,hoscode asc";
 
 
 
@@ -84,7 +82,7 @@ order by hoscode asc;";
 (SELECT  hos_chronic from 
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid         
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I15')  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'I10' and 'I159')  
            and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35  )  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,IFNULL(l1,0)as l1,IFNULL(l2,0)as l2,IFNULL(l3,0)as l3,IFNULL(l4,0)as l4,IFNULL(l5,0)as l5
@@ -96,11 +94,10 @@ LEFT JOIN
                    sum(if(n.chart = '20-<30%',1,0)) as l3 ,sum(if(n.chart = '30-<40%',1,0)) as l4 ,sum(if(n.chart = '>=40%',1,0)) as l5
                    from sys_ncd_nocholesteral_colorchart n
                    where n.date_serv BETWEEN '$date1'  and  '$date2'
-                   and  (n.chronic between 'I10' and 'I15') 
+                   and  (n.chronic between 'I10' and 'I159') 
                    GROUP BY n.hospcode
 ) as result  on result.hospcode = h.hoscode
-
-order by hoscode asc;";
+order by distcode,hoscode asc";
 
 
 
@@ -135,13 +132,12 @@ order by hoscode asc;";
             $date2 = $_POST['date2'];
         }
 
-        $sql = "select  h.hoscode as hospcode ,h.hosname as hospname,
-
+        $sql = "select h.hoscode as hospcode ,h.hosname as hospname,
 
 (SELECT  hos_chronic from 
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E14')  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E149')  
            and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35  )  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,IFNULL(l1,0)as l1,IFNULL(l2,0)as l2,IFNULL(l3,0)as l3,IFNULL(l4,0)as l4,IFNULL(l5,0)as l5
@@ -153,12 +149,10 @@ LEFT JOIN
                    sum(if(n.chart = '20-<30%',1,0)) as l3 ,sum(if(n.chart = '30-<40%',1,0)) as l4 ,sum(if(n.chart = '>=40%',1,0)) as l5
                    from sys_ncd_cholesteral_colorchart n
                    where n.date_serv BETWEEN '$date1'  and  '$date2'
-                   and  (n.chronic between 'E10' and 'E14') 
+                   and  (n.chronic between 'E10' and 'E149') 
                    GROUP BY n.hospcode
 ) as result  on result.hospcode = h.hoscode
-
-
-order by hoscode asc;";
+order by distcode,hoscode asc";
 
 
 
@@ -199,7 +193,7 @@ order by hoscode asc;";
 (SELECT  hos_chronic from 
           (select person.hospcode,count(distinct(person.pid)) as hos_chronic from chronic  
            inner join person on chronic.hospcode = person.hospcode and chronic.pid = person.pid
-           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E14')  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and  (chronic.chronic between 'E10' and 'E149')  
            and (TIMESTAMPDIFF(YEAR,person.birth,'$bdg') >= 35  )  group by person.hospcode) as c
 where c.hospcode  = h.hoscode
 ) as target,IFNULL(l1,0)as l1,IFNULL(l2,0)as l2,IFNULL(l3,0)as l3,IFNULL(l4,0)as l4,IFNULL(l5,0)as l5
@@ -211,12 +205,10 @@ LEFT JOIN
                    sum(if(n.chart = '20-<30%',1,0)) as l3 ,sum(if(n.chart = '30-<40%',1,0)) as l4 ,sum(if(n.chart = '>=40%',1,0)) as l5
                    from sys_ncd_nocholesteral_colorchart n
                    where n.date_serv BETWEEN '$date1'  and  '$date2'
-                   and  (n.chronic between 'E10' and 'E14') 
+                   and  (n.chronic between 'E10' and 'E149') 
                    GROUP BY n.hospcode
 ) as result  on result.hospcode = h.hoscode
-
-
-order by hoscode asc;";
+order by distcode,hoscode asc";
 
 
 
