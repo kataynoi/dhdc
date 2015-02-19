@@ -60,8 +60,9 @@ class AjaxController extends \yii\web\Controller {
 
                         $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
                         $sql.= " REPLACE INTO TABLE $ftxt";
+                        //$sql.= " REPLACE INTO TABLE tmp_$ftxt";
                         $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
-
+                        //$sql.= " SET NOTE1='$fortythree',NOTE2=NOW()";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
                         $transaction->commit();
                     } catch (Exception $e) {
@@ -402,7 +403,10 @@ class AjaxController extends \yii\web\Controller {
                 \Yii::$app->db->createCommand("truncate sys_count_import;")->execute();
                 \Yii::$app->db->createCommand("truncate sys_count_all;")->execute();
                 \Yii::$app->db->createCommand("truncate sys_count_service;")->execute();
-                 \Yii::$app->db->createCommand("truncate sys_person_type;")->execute();
+                \Yii::$app->db->createCommand("truncate sys_person_type;")->execute();
+
+                \Yii::$app->db->createCommand("truncate sys_ncd_nocholesteral_colorchart;")->execute();
+                \Yii::$app->db->createCommand("truncate sys_ncd_cholesteral_colorchart;")->execute();
             }
         }
     }
