@@ -2,11 +2,50 @@
 
 namespace frontend\controllers;
 
+use yii;
+use yii\filters\VerbFilter;
 use yii\base\ErrorException;
 
 class RunqueryController extends \yii\web\Controller {
 
     public $enableCsrfValidation = false;
+
+    public function behaviors() {
+
+        $role = 0;
+        if (!Yii::$app->user->isGuest) {
+            $role = Yii::$app->user->identity->role;
+        }
+        $arr = [''];
+        if ($role == 1) {
+            $arr = ['index', 'result'];
+        }
+        if ($role == 2) {
+            $arr = ['index', 'result'];
+        }
+
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'denyCallback' => function ($rule, $action) {
+                    throw new \yii\web\ForbiddenHttpException("ไม่ได้รับอนุญาต");
+                },
+                'only' => ['index', 'result'],
+                'rules' => [
+                    [
+                        'allow' => FALSE,
+                        'actions' => $arr,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => $arr,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
     public function actions() {
         return [
