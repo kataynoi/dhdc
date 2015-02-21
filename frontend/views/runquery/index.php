@@ -18,13 +18,15 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
         if ($onof->status === 'on'):
             ?>
             <button class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> รันชุดคำสั่ง</button>
-            <button class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> จัดเก็บ</button>
-        <?php else: ?>
+            <button name="save" value="yes" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> จัดเก็บ</button>
+            <a href="<?=  yii\helpers\Url::to(['sqlscript/index'])?>" class="btn btn-primary">คลัง script</a>
+ <?php else: ?>
             <label> ผู้ดูแลระบบปิดใช้งาน </label>
 
         <?php endif; ?>
     </div>
 </form>
+
 <hr>
 <div style="overflow: auto">
     <?php

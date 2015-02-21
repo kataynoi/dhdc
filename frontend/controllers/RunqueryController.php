@@ -62,6 +62,8 @@ class RunqueryController extends \yii\web\Controller {
 
             $sql = trim($_POST['sql_code']);
 
+          
+
             $break = FALSE;
 
 
@@ -106,6 +108,16 @@ class RunqueryController extends \yii\web\Controller {
             } catch (\yii\db\Exception $e) {
                 throw new \yii\web\ConflictHttpException('SQL ERROR');
             }
+            
+              if (isset($_POST['save'])) {
+
+                $model = new \frontend\models\Sqlscript();
+                $model->topic = 'กรุณาแก้ชื่อ script';
+                $model->sql_script = $sql;
+                $model->user = Yii::$app->user->identity->username;
+                $model->d_update = date('Y-m-d H:i:s');
+                $model->save();
+            }
 
 
 
@@ -114,6 +126,8 @@ class RunqueryController extends \yii\web\Controller {
                 'allModels' => $rawData,
                 'pagination' => FALSE,
             ]);
+
+       
 
             return $this->render('index', [
                         'dataProvider' => $dataProvider,
