@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Sqlscript */
 
-$this->title = 'Create Sqlscript';
+$this->title = 'เพิ่ม script';
 $this->params['breadcrumbs'][] = ['label' => 'Sqlscripts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

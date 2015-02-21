@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Sqlscript */
 
-$this->title = 'Update Sqlscript: ' . ' ' . $model->id;
+$this->title = 'แก้ไข script: ' . ' ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Sqlscripts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

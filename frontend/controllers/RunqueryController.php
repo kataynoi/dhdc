@@ -57,12 +57,12 @@ class RunqueryController extends \yii\web\Controller {
 
     public function actionIndex() {
 
-
+        $saved = false;
         if (\Yii::$app->request->isPost) {
 
             $sql = trim($_POST['sql_code']);
 
-          
+
 
             $break = FALSE;
 
@@ -108,15 +108,17 @@ class RunqueryController extends \yii\web\Controller {
             } catch (\yii\db\Exception $e) {
                 throw new \yii\web\ConflictHttpException('SQL ERROR');
             }
-            
-              if (isset($_POST['save'])) {
+
+            if (isset($_POST['save'])) {
 
                 $model = new \frontend\models\Sqlscript();
                 $model->topic = 'กรุณาแก้ชื่อ script';
                 $model->sql_script = $sql;
                 $model->user = Yii::$app->user->identity->username;
                 $model->d_update = date('Y-m-d H:i:s');
-                $model->save();
+                if ($model->save()) {
+                    $saved = true;
+                }
             }
 
 
@@ -127,15 +129,18 @@ class RunqueryController extends \yii\web\Controller {
                 'pagination' => FALSE,
             ]);
 
-       
+
 
             return $this->render('index', [
                         'dataProvider' => $dataProvider,
-                        'sql_code' => $sql
+                        'sql_code' => $sql,
+                        'saved' => $saved ? '[บันทึก script แล้ว]' : ''
             ]);
         }
 
-        return $this->render('index');
+        return $this->render('index',[
+            'saved'=>''
+        ]);
     }
 
     public function actionResult() {

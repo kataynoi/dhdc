@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Sqlscript */
 
-$this->title = $model->id;
+$this->title = 'script ที่ '.$model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Sqlscripts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
