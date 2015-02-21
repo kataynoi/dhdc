@@ -42,7 +42,7 @@ class SqlscriptController extends Controller {
                     [
                         'allow' => true,
                         'actions' => $arr,
-                        'roles' => ['?'],
+                        'roles' => ['@'],
                     ],
                     [
                         'allow' => true,

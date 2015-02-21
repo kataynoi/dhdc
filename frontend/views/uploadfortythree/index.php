@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\UploadFortythreeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Fortythrees All');
+$this->title = Yii::t('app', 'รายการไฟล์');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-fortythree-index">
