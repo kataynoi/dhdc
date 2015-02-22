@@ -66,6 +66,8 @@ AppAsset::register($this);
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> แพทย์แผนไทยและแพทย์ทางเลือก', 'url' => ['knott/index']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> สุขภาพจิต', 'url' => ['mind/index']];
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> หมอประจำครอบครัว', 'url' => ['kukks/index']];
+             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> รายงาน-custom', 'url' => ['stimusoft/index']];
+           
             if (!Yii::$app->user->isGuest) {
                 $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-refresh"></span> คำสั่ง sql', 'url' => ['runquery/index']];
             }
