@@ -3,7 +3,7 @@
 ?>
 
 <?php
-$this->params['breadcrumbs'][] = 'หมวดรายงาน custom';
+$this->params['breadcrumbs'][] = 'Custom-Report';
 ///
 ?>
 
