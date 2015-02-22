@@ -152,5 +152,36 @@ group by home.HOSPCODE) as home2 on home2.HOSPCODE=h.hoscode
         ]);
     }
     
+    public function  actionReport4(){
+        $selyear = date('Y');
+        $sql = "select * from rpt_visit_oldman where selyear=$selyear";
+        if (!empty($_POST['selyear'])) {
+            $selyear = $_POST['selyear'];
+             $sql = "select * from rpt_visit_oldman where selyear=$selyear";
+        }
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+        $sql ="select count(distinct hhv.CID) as num from 
+(SELECT comserv.HOSPCODE,comserv.PID,comserv.SEQ,comserv.DATE_SERV,comserv.COMSERVICE,p.CID
+FROM community_service as comserv,person as p
+where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
+and comserv.COMSERVICE like '1A4%' and (TIMESTAMPDIFF(YEAR,p.birth,'2014-09-30')>= 60)
+group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode";
+        return $this->render('report4', [
+                    'dataProvider' => $dataProvider,
+                    'sql'=>$sql,
+                    'selyear' => $selyear
+        ]);
+    }
+    
 
 }
