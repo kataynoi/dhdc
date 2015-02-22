@@ -11,10 +11,10 @@ $this->params['breadcrumbs'][] = 'หมวดรายงาน custom';
 
 
 $rpt_name1= 'rpt1.mrt';
-$route1 = "http://localhost:8080/dhdc/?report=$rpt_name1&" . http_build_query(['h' =>'03','date1'=>'2014-09-30','date2'=>date('Y-m-d')]);
+$route1 = "http://localhost:8080/custom/?report=$rpt_name1&" . http_build_query(['h' =>'03','date1'=>'2014-09-30','date2'=>date('Y-m-d')]);
 
 $rpt_name2= 'newborn2500.mrt';
-$route2 = "http://localhost:8080/dhdc/?report=$rpt_name2&" . http_build_query(['start'=>'2014-09-30','end'=>date('Y-m-d')]);
+$route2 = "http://localhost:8080/custom/?report=$rpt_name2&" . http_build_query(['start'=>'2014-09-30','end'=>date('Y-m-d')]);
 
 
 ?>
