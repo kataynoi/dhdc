@@ -9,4 +9,10 @@ class TestController extends \yii\web\Controller {
         $sql = Yii::getAlias('@databases/sys_month.sql');
         echo file_get_contents($sql);
     }
+    
+    public function  actionRpt1(){
+        
+        return $this->render('rpt1');
+        
+    }
 }
