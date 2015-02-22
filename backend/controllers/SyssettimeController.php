@@ -91,6 +91,8 @@ class SyssettimeController extends Controller {
             $sql .= $this->call("cal_sys_person_type");
             $sql .= $this->call("cal_count_service", $y - 1);
             $sql .= $this->call("cal_count_service", $y);
+           
+            
             
             $sql .= $this->call("end_process", NULL);
             
