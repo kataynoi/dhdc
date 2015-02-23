@@ -1,8 +1,16 @@
 <?php
 
 namespace frontend\controllers;
-use yii;
+
+
+use Yii;
+use backend\models\CustomReport;
+use backend\models\CustomReportSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
+
 class StimusoftController extends \yii\web\Controller
 {
    
@@ -53,7 +61,15 @@ class StimusoftController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        
+        $searchModel = new CustomReportSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+        
     }
 
 }

@@ -15,6 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <p>
+        <?= Html::a('Create Custom Report', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -22,15 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            'id',
             'rpt_topic',
-            //'rpt_file',
+            'rpt_file',
             'rpt_group',
-            //'note1',
-             'note2',
-            'note3',
+            'note1',
+            // 'note2',
+            // 'note3',
             // 'note4',
 
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
