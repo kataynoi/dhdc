@@ -21,6 +21,8 @@ $sys = Sysconfigmain::find()->one();
     <p>- <?= Html::a('คุณสุจินต์ สุกกล้า', 'https://fb.com/jub.wifi', ['target' => '_blank']) ?> (รพท.ศรีสังวรณ์ สุโขทัย) Co-Programmer</p>
     <p>- <?= Html::a('คุณนครินทร์ เกตุวีระพงศ์', 'https://fb.com/nakharin.knott', ['target' => '_blank']) ?> (รพ.วัดโบสถ์ จ.พิษณุโลก) Co-Programmer</p>
     <p>- <?= Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk', ['target' => '_blank']) ?> (สสจ.พิษณุโลก) Report Programmer & CUT Tool</p>
+    <p>- <?= Html::a('คุณภศล สุริยะ', 'https://www.facebook.com/chondlatitsuriya', ['target' => '_blank']) ?> (รพ.ชาติตระการ จ.พิษณุโลก) Custom-Report Programmer</p>
+
     <p>- <?= Html::a('คุณสันติ จีนะสอน', 'https://fb.com/gcantei', ['target' => '_blank']) ?> (สสอ.เมือง จ.เพชรบูรณ์) Report Programmer</p>
     <p>- <?= Html::a('คุณวัชรพงษ์ วัชรินทร์', 'https://fb.com/profile.php?id=100001212955625', ['target' => '_blank']) ?> (สสจ.แพร่) Report Programmer</p>
     <p>- <?= Html::a('คุณจิรชาย นาบุญมี', 'https://www.facebook.com/jodonpeng', ['target' => '_blank']) ?> (สสอ.ร้องกวาง จ.แพร่) Report Programmer</p>
