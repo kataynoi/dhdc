@@ -141,6 +141,16 @@ $this->title = 'DHDC Backend';
                     </a>
                 <?php endif; ?>
             </div>
+            
+               <div class="col-sm-4">
+                 <?php 
+                 $route = Yii::$app->urlManager->createUrl('customreport/index'); 
+                 ?>
+                <a class="btn btn-primary btn-xlarge" href="<?=$route?>"> 
+                    <i class="glyphicon glyphicon-list-alt"></i> Custom Report  
+                </a>
+
+            </div>
 
         </div>
 

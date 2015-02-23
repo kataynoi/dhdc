@@ -25,13 +25,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'rpt_topic',
+            //'id',
+            [
+                'attribute' => 'rpt_topic',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $tomcat_url = $data->note1;
+                    $rpt_file = $data->rpt_file;
+                    $url = "$tomcat_url?report=$rpt_file";
+                    return Html::a($data->rpt_topic, $url, ['target' => '_blank']);
+                },
+                    ],
             'rpt_file',
             'rpt_group',
             'note1',
-            // 'note2',
-            // 'note3',
+             'note2',
+             'note3',
             // 'note4',
 
             ['class' => 'yii\grid\ActionColumn'],
