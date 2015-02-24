@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2015-02-24 20:37:43
+Date: 2015-02-24 20:43:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,7 +81,7 @@ REPLACE into sys_count_all
 
 SELECT SQL_BIG_RESULT h.hoscode as hospcode,@ym as month,
 (select COUNT(*) from person t where t.HOSPCODE=h.hoscode and EXTRACT(YEAR_MONTH FROM t.D_UPDATE)=@ym) as person,
-(select COUNT(*) from death t where t.HOSPCODE=h.hoscode and EXTRACT(YEAR_MONTH FROM t.D_UPDATE)=@ym) as death,
+(select COUNT(*) from death t where t.HOSPCODE=h.hoscode and EXTRACT(YEAR_MONTH FROM t.DDEATH)=@ym) as death,
 (select COUNT(*) from service t where t.HOSPCODE=h.hoscode and EXTRACT(YEAR_MONTH FROM t.DATE_SERV)=@ym) as service,
 (select COUNT(*) from accident t where t.HOSPCODE=h.hoscode and EXTRACT(YEAR_MONTH FROM t.D_UPDATE)=@ym) as accident,
 (select COUNT(*) from diagnosis_opd t where t.HOSPCODE=h.hoscode and EXTRACT(YEAR_MONTH FROM t.DATE_SERV)=@ym) as diagnosis_opd,
