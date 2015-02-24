@@ -257,7 +257,7 @@ class AjaxController extends \yii\web\Controller {
         $upload->upload_date = date('Ymd');
         $upload->upload_time = date('His');
         $upload->note2 = 'OK';
-        $upload->note3 = 'admin do import all';
+        $upload->note3 = 'import all';
         $upload->save();
 
         $up = UploadFortythree::findOne(['file_name' => $fortythree]);
@@ -355,7 +355,7 @@ class AjaxController extends \yii\web\Controller {
         $upload->upload_date = date('Ymd');
         $upload->upload_time = date('His');
         $upload->note2 = 'OK';
-        $upload->note3 = 'admin do import all';
+        $upload->note3 = 'import all';
         $upload->save();
 
 
