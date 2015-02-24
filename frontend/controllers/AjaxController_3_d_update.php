@@ -1,8 +1,7 @@
 <?php
 /*
- * เปลี่ยน  '/n' เป็น /r/n  ใน LOAD DATA
+ * เปลี่ยน  '/r/n' เป็น /n  ใน LOAD DATA
  * เปลี่ยน  $ext == 'txt'  เป็น  strtolower($ext) == 'txt'
- * message  'admin do import all'  เป็น  'import all'
  */
 namespace frontend\controllers;
 
@@ -57,7 +56,7 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = $p['filename'];
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
-                if (strtolower($ext) == 'txt' && $ftxt !== 'office') {
+                if (strtolower($ext) == 'txt' && $ftxt != 'office') {
 
                     $transaction = \Yii::$app->db->beginTransaction();
                     try {
@@ -65,7 +64,7 @@ class AjaxController extends \yii\web\Controller {
                         $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
                         $sql.= " REPLACE INTO TABLE $ftxt";
                         //$sql.= " REPLACE INTO TABLE tmp_$ftxt";
-                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\n' IGNORE 1 LINES";
                         //$sql.= " SET NOTE1='$fortythree',NOTE2=NOW()";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
                         $transaction->commit();
@@ -149,14 +148,14 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = $p['filename'];
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
-                if (strtolower($ext) == 'txt' && $ftxt !== 'office') {
+                if (strtolower($ext) == 'txt' && $ftxt != 'office') {
 
                     $transaction = \Yii::$app->db->beginTransaction();
                     try {
 
                         $sql = "LOAD DATA LOCAL INFILE '$rootpath$folder_without_ext/$file'";
                         $sql.= " REPLACE INTO TABLE $ftxt";
-                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\n' IGNORE 1 LINES";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
                         $transaction->commit();
                     } catch (Exception $e) {
@@ -226,14 +225,14 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = $p['filename'];
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
-                if (strtolower($ext) == 'txt' && $ftxt !== 'office') {
+                if (strtolower($ext) == 'txt' && $ftxt != 'office') {
 
                     $transaction = \Yii::$app->db->beginTransaction();
                     try {
 
                         $sql = "LOAD DATA LOCAL INFILE 'fortythree/$folder_without_ext/$file'";
                         $sql.= " REPLACE INTO TABLE $ftxt";
-                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\n' IGNORE 1 LINES";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
                         $transaction->commit();
                     } catch (Exception $e) {
@@ -263,7 +262,7 @@ class AjaxController extends \yii\web\Controller {
         $up = UploadFortythree::findOne(['file_name' => $fortythree]);
         if ($up) {
             $up->note2 = 'OK';
-            $up->note3 = 'import all';
+            $up->note3 = 'admin do import all';
             $up->update();
         }
 
@@ -326,14 +325,14 @@ class AjaxController extends \yii\web\Controller {
                 $ftxt = $p['filename'];
                 $ftxt = strtolower($ftxt);
                 $ext = $p['extension'];
-                if (strtolower($ext) == 'txt' && $ftxt !== 'office') {
+                if (strtolower($ext) === 'txt' && $ftxt !== 'office') {
 
                     $transaction = \Yii::$app->db->beginTransaction();
                     try {
 
                         $sql = "LOAD DATA LOCAL INFILE '$rootpath$folder_without_ext/$file'";
                         $sql.= " REPLACE INTO TABLE $ftxt";
-                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\r\n' IGNORE 1 LINES";
+                        $sql.= " FIELDS TERMINATED BY '|'  LINES TERMINATED BY '\n' IGNORE 1 LINES";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
                         $transaction->commit();
                     } catch (Exception $e) {
@@ -362,7 +361,7 @@ class AjaxController extends \yii\web\Controller {
         $up = UploadFortythree::findOne(['file_name' => $fortythree]);
         if ($up) {
             $up->note2 = 'OK';
-            $up->note3 = 'import all';
+            $up->note3 = 'admin do import all';
             $up->update();
         }
 
