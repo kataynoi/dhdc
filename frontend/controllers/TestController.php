@@ -15,4 +15,9 @@ class TestController extends \yii\web\Controller {
         return $this->render('rpt1');
         
     }
+    public function actionMap1(){
+        
+        return $this->render('map1');
+        
+    }
 }
