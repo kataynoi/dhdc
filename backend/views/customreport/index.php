@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Custom Report', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Report', ['create'], ['class' => 'btn btn-success']) ?>
+        <button class="btn btn-primary"><i class="glyphicon glyphicon-share"></i>Sync Report</button>
     </p>
 
     <?= GridView::widget([
