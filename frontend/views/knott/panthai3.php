@@ -12,7 +12,7 @@ $arr = [
     '2014' => '2014',
     '2015' => '2015'
 ];
-$a = \yii\helpers\Html::dropDownList('year',$select_year, $arr);
+$a = \yii\helpers\Html::dropDownList('year', $select_year, $arr);
 $before = "
     <form method='POST'>
     $a
@@ -27,6 +27,7 @@ if (isset($dataProvider))
         'dataProvider' => $dataProvider,
         'responsive' => TRUE,
         'hover' => true,
+        'floatHeader' => true,
         'panel' => [
             'before' => $before,
             'type' => \kartik\grid\GridView::TYPE_SUCCESS,

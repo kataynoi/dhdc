@@ -54,6 +54,7 @@ if (isset($dataProvider))
         'dataProvider' => $dataProvider,
         'responsive' => TRUE,
         'hover' => true,
+         'floatHeader' => true,
         'panel' => [
             'before' => '',
             'type' => \kartik\grid\GridView::TYPE_SUCCESS,
