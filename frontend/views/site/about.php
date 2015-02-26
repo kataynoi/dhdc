@@ -16,7 +16,7 @@ $sys = Sysconfigmain::find()->one();
 <div class="site-about">
     <h3>ทีมพัฒนาโปรแกรม และรายงาน</h3>
 
-    <p>- <?= Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn', ['target' => '_blank']) ?> (สสจ.พิษณุโลก) Project Manager & Programmer</p>
+    <p>- <?= Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn', ['target' => '_blank']) ?> (สสจ.พิษณุโลก) Project Manager </p>
     <p>- <?= Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']) ?> (รพสต.ผักตบ อ.หนองหาน จ.อุดรธานี) Co-Programmer</p>
     <p>- <?= Html::a('คุณสุจินต์ สุกกล้า', 'https://fb.com/jub.wifi', ['target' => '_blank']) ?> (รพท.ศรีสังวรณ์ สุโขทัย) Co-Programmer</p>
     <p>- <?= Html::a('คุณนครินทร์ เกตุวีระพงศ์', 'https://fb.com/nakharin.knott', ['target' => '_blank']) ?> (รพ.วัดโบสถ์ จ.พิษณุโลก) Co-Programmer</p>
