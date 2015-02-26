@@ -305,7 +305,7 @@ order by distcode,hoscode asc";
             'pagination' => FALSE,
         ]);
 
-        return $this->render('report1', [
+        return $this->render('report2', [
 
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
@@ -352,7 +352,7 @@ order by distcode,hoscode asc";
             'pagination' => FALSE,
         ]);
 
-        return $this->render('report1', [
+        return $this->render('report3', [
 
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
