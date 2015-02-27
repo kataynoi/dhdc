@@ -28,11 +28,11 @@ echo \kartik\grid\GridView::widget([
         'hospname',
         [
             'attribute' => 'target',
-            'header' => 'กลุ่มประชากรเป้าหมาย(คน)'
+            'header' => 'เป้าหมาย(คน)'
         ],
         [
             'attribute' => 'result',
-            'header' => 'จำนวนผู้ป่วย(คน)'
+            'header' => 'ผลงาน(คน)'
         ],
         
         [

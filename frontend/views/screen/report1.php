@@ -58,15 +58,15 @@ echo \kartik\grid\GridView::widget([
         'hospname',
         [
             'attribute' => 'target',
-            'header' => 'กลุ่มประชากรเป้าหมาย(คน)'
+            'header' => 'เป้าหมาย(คน)'
         ],
         [
             'attribute' => 'chronic',
-            'header' => 'จำนวนผู้ป่วย(คน)'
+            'header' => 'ผู้ป่วย(คน)'
         ],
         [
             'attribute' => 'result',
-            'header' => 'ได้รับการตัดกรอง(คน)'
+            'header' => 'ผลงาน(คน)'
         ],
         [
             'class' => '\kartik\grid\FormulaColumn',
