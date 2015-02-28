@@ -48,6 +48,10 @@ class SqlscriptSearch extends Sqlscript
             'pagination' => [
                 'pageSize' => 15
             ],
+            'sort' => ['defaultOrder' => [
+                    'd_update' => SORT_DESC,
+                    
+                ]]
         ]);
 
         $this->load($params);
