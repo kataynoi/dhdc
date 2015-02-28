@@ -1,6 +1,6 @@
 <?php
 $this->params['breadcrumbs'][] = ['label' => 'โรคไม่ติดต่อ', 'url' => ['ncd/index']];
-$this->params['breadcrumbs'][] = 'ผู้เป็นความดันโลหิตสูงความคุมความดันโลหิตได้ดี';
+$this->params['breadcrumbs'][] = 'ผู้ป่วยความดันโลหิตสูงควบคุมความดันโลหิตได้ดี';
 ?>
 
 <div class='well'>
