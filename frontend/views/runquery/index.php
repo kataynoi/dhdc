@@ -5,6 +5,7 @@ use yii\widgets\Pjax;
 ?>
 
 <h3>คำสั่ง SQL  <?=$saved?></h3>
+<div class="alert alert-danger">กรุณาใส่เครื่องหมาย ; ปิดท้ายคำสั่ง ตัวอย่างเช่น select * from person limit 100;</div>
 <?php
 $route = Yii::$app->urlManager->createUrl('runquery/result');
 ?>

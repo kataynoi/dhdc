@@ -10,6 +10,26 @@ class RunqueryController extends \yii\web\Controller {
 
     public $enableCsrfValidation = false;
 
+    protected function call($store_name, $arg = NULL) {
+        $sql = "";
+        if ($arg != NULL) {
+            $sql = "call " . $store_name . "(" . $arg . ");";
+        } else {
+            $sql = "call " . $store_name . "();";
+        }
+        return $this->query_all($sql);
+    }
+
+    protected function exec_sql($sql) {
+        $affect_row = \Yii::$app->db->createCommand($sql)->execute();
+        return $affect_row;
+    }
+
+    protected function query_all($sql) {
+        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        return $rawData;
+    }
+
     public function behaviors() {
 
         $role = 0;
@@ -66,36 +86,35 @@ class RunqueryController extends \yii\web\Controller {
 
             $break = FALSE;
 
+            if (strpos($sql, 'delete')) {
+                $break = true;
+            }
+            if (strpos($sql, 'insert')) {
+                $break = true;
+            }
 
-
-            if ('delete' === substr($sql, 0, 6)) {
+            if (strpos($sql, 'update')) {
                 $break = true;
             }
-            if ('insert' === substr($sql, 0, 6)) {
+            if (strpos($sql, 'alter')) {
                 $break = true;
             }
-            if ('update' === substr($sql, 0, 6)) {
+            if (strpos($sql, 'drop')) {
                 $break = true;
             }
-            if ('alter' === substr($sql, 0, 5)) {
+            if (strpos($sql, 'show')) {
                 $break = true;
             }
-            if ('drop' === substr($sql, 0, 4)) {
+            if (strpos($sql, 'truncate')) {
                 $break = true;
             }
-            if ('show' === substr($sql, 0, 4)) {
+            if (strpos($sql, 'empty')) {
                 $break = true;
             }
-            if ('trun' === substr($sql, 0, 4)) {
+            if (strpos($sql, 'create')) {
                 $break = true;
             }
-            if ('empty' === substr($sql, 0, 5)) {
-                $break = true;
-            }
-            if ('create' === substr($sql, 0, 6)) {
-                $break = true;
-            }
-            if ('replace' === substr($sql, 0, 7)) {
+            if (strpos($sql, 'replace')) {
                 $break = true;
             }
 
@@ -104,7 +123,16 @@ class RunqueryController extends \yii\web\Controller {
             }
 
             try {
-                $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+
+                $this->exec_sql('DROP PROCEDURE IF EXISTS tmp_store_proc');
+                $sp1 = "CREATE PROCEDURE tmp_store_proc()\r\n";
+                $sp1.=" BEGIN \r\n";
+                $sp1.= trim($sql);
+                $sp1.="\r\n END";
+
+
+                $this->exec_sql($sp1);
+                $rawData = $this->call('tmp_store_proc',NULL);
             } catch (\yii\db\Exception $e) {
                 throw new \yii\web\ConflictHttpException('SQL ERROR');
             }
@@ -138,8 +166,8 @@ class RunqueryController extends \yii\web\Controller {
             ]);
         }
 
-        return $this->render('index',[
-            'saved'=>''
+        return $this->render('index', [
+                    'saved' => ''
         ]);
     }
 
