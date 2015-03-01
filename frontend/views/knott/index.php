@@ -19,7 +19,7 @@
 
 <p>
     <?php
-    echo \yii\helpers\Html::a('3) รายงานอัตราส่วนการวินิจฉัยรหัสโรคแพทย์แผนไทย', ['knott/panthai3']);
+    echo \yii\helpers\Html::a('3) รายงานสรุปสัดส่วนการให้บริการแพทย์แผนไทย', ['knott/panthai4']);
     ?>
 </p>
 

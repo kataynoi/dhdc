@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 $this->params['breadcrumbs'][] = ['label' => 'แพทย์แผนไทย', 'url' => ['knott/index']];
-$this->params['breadcrumbs'][] = 'รายงานสรุปสัดส่วนการให้บริการแพทย์แผนไทยรายไตรมาส';
+$this->params['breadcrumbs'][] = 'รายงานสรุปสัดส่วนการให้บริการแพทย์แผนไทย';
 ?>
 
 <div class='well'>
@@ -42,17 +42,92 @@ $this->params['breadcrumbs'][] = 'รายงานสรุปสัดส่�
         $y = substr($y, 2, 2);
         $py = $y - 1;
 
-        //echo yii\grid\GridView::widget([
-        echo \kartik\grid\GridView::widget([
+        echo yii\grid\GridView::widget([
+        //echo \kartik\grid\GridView::widget([
             'dataProvider' => $dataProvider,
-            'responsive' => TRUE,
+            /*'responsive' => TRUE,
             'hover' => true,
              'floatHeader' => true,
               'panel' => [
               'before' => '',
               'type' => \kartik\grid\GridView::TYPE_SUCCESS,
               'after' => 'โดย ' . $dev
-              ], 
+              ], */ 
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute' => 'hoscode',
+                'header' => 'รหัสสถานบริการ'
+            ],
+            [
+                'attribute' => 'hosname',
+                'header' => 'สถานบริการ'
+            ],
+            [
+                'attribute' => 'op_visit_pt_q1',
+                'header' => 'จำนวน OP Q1(คน)'
+            ],
+            [
+                'attribute' => 'op_visit_q1',
+                'header' => 'จำนวน OP Q1(ครั้ง)'
+            ],
+            [
+                'attribute' => 'tm_visit_pt_q1',
+                'header' => 'จำนวน tm Q1(คน)'
+            ],
+            [
+                'attribute' => 'tm_visit_q1',
+                'header' => 'จำนวน tm Q1(ครั้ง)'
+            ],
+            [
+                'attribute' => 'op_visit_pt_q2',
+                'header' => 'จำนวน OP Q2(คน)'
+            ],
+            [
+                'attribute' => 'op_visit_q2',
+                'header' => 'จำนวน OP Q2(ครั้ง)'
+            ],
+            [
+                'attribute' => 'tm_visit_pt_q2',
+                'header' => 'จำนวน tm Q2(คน)'
+            ],
+            [
+                'attribute' => 'tm_visit_q2',
+                'header' => 'จำนวน tm Q2(ครั้ง)'
+            ],
+            [
+                'attribute' => 'op_visit_pt_q3',
+                'header' => 'จำนวน OP Q3(คน)'
+            ],
+            [
+                'attribute' => 'op_visit_q3',
+                'header' => 'จำนวน OP Q1(ครั้ง)'
+            ],
+            [
+                'attribute' => 'tm_visit_pt_q3',
+                'header' => 'จำนวน tm Q3(คน)'
+            ],
+            [
+                'attribute' => 'tm_visit_q3',
+                'header' => 'จำนวน tm Q3(ครั้ง)'
+            ],
+            [
+                'attribute' => 'op_visit_pt_q4',
+                'header' => 'จำนวน OP Q4(คน)'
+            ],
+            [
+                'attribute' => 'op_visit_q4',
+                'header' => 'จำนวน OP Q4(ครั้ง)'
+            ],
+            [
+                'attribute' => 'tm_visit_pt_q4',
+                'header' => 'จำนวน tm Q4(คน)'
+            ],
+            [
+                'attribute' => 'tm_visit_q4',
+                'header' => 'จำนวน tm Q4(ครั้ง)'
+            ],
+            ],
             
         ]);
     }

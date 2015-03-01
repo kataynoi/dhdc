@@ -163,7 +163,27 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
              $selyear = $_POST['selyear'];
          }
         
-              $sql = "select * from rpt_panth_visit_ratio where rep_year=$selyear";
+              $sql = "select
+c.hoscode, 
+c.hosname,
+(case when r.quarterly=1 and r.rep_year=$selyear then r.op_service_pt end) as op_visit_pt_q1,
+(case when r.quarterly=1 and r.rep_year=$selyear then r.op_service end) as op_visit_q1,
+(case when r.quarterly=1 and r.rep_year=$selyear then r.tm_service_pt end) as tm_visit_pt_q1,
+(case when r.quarterly=1 and r.rep_year=$selyear then r.tm_service end) as tm_visit_q1,
+(case when r.quarterly=2 and r.rep_year=$selyear then r.op_service_pt end) as op_visit_pt_q2,
+(case when r.quarterly=2 and r.rep_year=$selyear then r.op_service end) as op_visit_q2,
+(case when r.quarterly=2 and r.rep_year=$selyear then r.tm_service_pt end) as tm_visit_pt_q2,
+(case when r.quarterly=2 and r.rep_year=$selyear then r.tm_service end) as tm_visit_q2,
+(case when r.quarterly=3 and r.rep_year=$selyear then r.op_service_pt end) as op_visit_pt_q3,
+(case when r.quarterly=3 and r.rep_year=$selyear then r.op_service end) as op_visit_q3,
+(case when r.quarterly=3 and r.rep_year=$selyear then r.tm_service_pt end) as tm_visit_pt_q3,
+(case when r.quarterly=3 and r.rep_year=$selyear then r.tm_service end) as tm_visit_q3,
+(case when r.quarterly=4 and r.rep_year=$selyear then r.op_service_pt end) as op_visit_pt_q4,
+(case when r.quarterly=4 and r.rep_year=$selyear then r.op_service end) as op_visit_q4,
+(case when r.quarterly=4 and r.rep_year=$selyear then r.tm_service_pt end) as tm_visit_pt_q4,
+(case when r.quarterly=4 and r.rep_year=$selyear then r.tm_service end) as tm_visit_q4
+from chospital_amp c,rpt_panth_visit_ratio r
+where c.hoscode=r.pcucode";
         
        
 
@@ -178,6 +198,78 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
+        
+        $sql ="SELECT 
+$selyear rep_year,
+e.code_rep quarterly,
+o.hoscode pcucode,
+o.hosname,
+
+
+IFNULL(e.OP_SERVICE_PT,0) op_service_pt,
+IFNULL(e.OP_SERVICE,0) op_service,
+IFNULL(t.TM_SERVICE_PT,0) tm_service_pt,
+IFNULL(t.TM_SERVICE,0) tm_service,
+(round((tm_service/op_service)*100,2)) tm_ratio
+FROM chospital_amp o 
+LEFT JOIN 
+(
+SELECT SQL_BIG_RESULT 
+e.HOSPCODE,
+IF(MONTH(e.DATE_SERV) IN (10,11,12),1,
+IF(MONTH(e.DATE_SERV) IN (1,2,3),2,
+IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4))) code_rep,
+COUNT(DISTINCT e.PID) OP_SERVICE_PT, 
+COUNT(DISTINCT e.SEQ) OP_SERVICE 
+FROM service e 
+LEFT JOIN diagnosis_opd d ON d.HOSPCODE = e.HOSPCODE AND d.PID = e.PID AND d.SEQ = e.SEQ AND DATE_FORMAT(d.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
+AND LEFT(d.DIAGCODE,1) <> 'Z'
+GROUP BY e.HOSPCODE
+) e ON e.HOSPCODE = o.hoscode 
+
+LEFT JOIN 
+(
+SELECT SQL_BIG_RESULT 
+e.HOSPCODE,
+IF(MONTH(e.DATE_SERV) IN (10,11,12),1,
+IF(MONTH(e.DATE_SERV) IN (1,2,3),2,
+IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4))) code_rep,
+COUNT(DISTINCT e.PID) TM_SERVICE_PT, 
+COUNT(DISTINCT e.SEQ) TM_SERVICE 
+FROM
+(
+SELECT e.HOSPCODE, 
+e.PID, 
+e.SEQ, 
+e.DATE_SERV 
+FROM diagnosis_opd e 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
+AND LEFT(e.DIAGCODE,1) = 'U'
+
+UNION 
+SELECT e.HOSPCODE, 
+e.PID, 
+e.SEQ, 
+e.DATE_SERV 
+FROM drug_opd e 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
+AND LEFT(e.DIDSTD,2) IN ('41','42') 
+
+UNION 
+SELECT e.HOSPCODE, 
+e.PID, 
+e.SEQ, 
+e.DATE_SERV 
+FROM procedure_opd e 
+LEFT JOIN cicd9ttm_planthai p ON e.PROCEDCODE=p.`code` 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
+AND p.code IS NOT NULL 
+
+) e
+GROUP BY e.HOSPCODE
+) t ON t.HOSPCODE = e.HOSPCODE 
+WHERE e.HOSPCODE IS NOT NULL;";
 
         return $this->render('panthai4', [
                     'dataProvider' => $dataProvider,
