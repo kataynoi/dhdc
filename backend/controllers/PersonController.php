@@ -90,7 +90,7 @@ class PersonController extends Controller
                         $count = \Yii::$app->db->createCommand($sql)->execute();
                         $transaction->commit();
                         
-                        $model->note1 = $hos;
+                        $model->note1 = substr($hos,0,5);
                         $model->note2 = strval($count); 
                         $model->note3 = substr($rep,0,4);
                         $model->upload_date = date('Ymd');
