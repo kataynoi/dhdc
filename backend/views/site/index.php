@@ -158,7 +158,7 @@ $this->title = 'DHDC Backend';
               
               <div class="col-sm-4">
                  <?php 
-                 $route = Yii::$app->urlManager->createUrl('sysuploadpersontarget/index'); 
+                 $route = Yii::$app->urlManager->createUrl('person/index'); 
                  ?>
                   <a class="btn btn-primary btn-xlarge" href="<?=$route?>"> 
                     <i class="glyphicon glyphicon-list-alt"></i> ประชากร  

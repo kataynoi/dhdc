@@ -1,27 +1,63 @@
 <?php
 
-/*
- * เปลี่ยน  '/n' เป็น /r/n  ใน LOAD DATA
- * เปลี่ยน  $ext == 'txt'  เป็น  strtolower($ext) == 'txt'
- * message  'admin do import all'  เป็น  'import all'
- */
-
 namespace backend\controllers;
 
-use yii;
-use yii\helpers\Html;
+use Yii;
 use backend\models\SysUploadPersonTarget;
+use backend\models\SysUploadPersonTargetSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 
-class PersonController extends \yii\web\Controller {
 
-    
-     public function actionIndex()
+class PersonController extends Controller
+{
+    public function behaviors()
     {
-        return $this->render('index');
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+  
+    public function actionIndex()
+    {
+        $searchModel = new SysUploadPersonTargetSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+   
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+  
+   
+
+    protected function findModel($id)
+    {
+        if (($model = SysUploadPersonTarget::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
     
-    public function actionImport() {
-
+     public function actionImport() {
 
         $full_dir = \Yii::getAlias('@webroot') . "/persontarget";
 
@@ -37,8 +73,8 @@ class PersonController extends \yii\web\Controller {
                 if (strtolower($ext) == 'txt') {
                     
                     $info = explode("_", $file);
-                    $rep=$info[1];
-                    $hos=$info[2];
+                    $rep=isset($info[1])?$info[1]:'';
+                    $hos=isset($info[2])?$info[2]:'';
                     
                     $model = new SysUploadPersonTarget();
                     $model->file_name = $file;
@@ -53,10 +89,15 @@ class PersonController extends \yii\web\Controller {
                         $sql.= " SET rep_year='$rep'";
                         $count = \Yii::$app->db->createCommand($sql)->execute();
                         $transaction->commit();
+                        
                         $model->note1 = $hos;
+                        $model->note2 = strval($count); 
+                        $model->note3 = substr($rep,0,4);
                         $model->upload_date = date('Ymd');
                         $model->upload_time = date('His');
+                        
                         $model->save();
+                        
                         echo "Import $file Success!\r\n<br>";
                     } catch (Exception $e) {
                         $transaction->rollBack();
@@ -66,10 +107,7 @@ class PersonController extends \yii\web\Controller {
             }
         }
 
-
-
         closedir($dir);
-
 
         $dir = opendir($full_dir);
         while (($file = readdir($dir)) !== false) {
@@ -90,9 +128,11 @@ class PersonController extends \yii\web\Controller {
 
                 \Yii::$app->db->createCommand("truncate sys_upload_person_target;")->execute();
                 \Yii::$app->db->createCommand("truncate person_target;")->execute();
-                echo "truncate success!!";
+                echo "Truncate success!!";
             }
         }
     }
 
+    
+    
 }
