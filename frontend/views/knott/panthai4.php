@@ -35,24 +35,24 @@ $this->params['breadcrumbs'][] = 'รายงานสรุปสัดส่�
 
     <?php
     if (isset($dataProvider)) {
-        $dev = Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn', ['target' => '_blank']);
+        $dev = Html::a('คุณนครินทร์ เกตุวีระพงศ์', 'https://fb.com/nakharin.knott', ['target' => '_blank']);
 
 
         $y = $selyear + 543;
         $y = substr($y, 2, 2);
         $py = $y - 1;
 
-        echo yii\grid\GridView::widget([
-        //echo \kartik\grid\GridView::widget([
+        //echo yii\grid\GridView::widget([
+        echo \kartik\grid\GridView::widget([
             'dataProvider' => $dataProvider,
-            /*'responsive' => TRUE,
+            'responsive' => TRUE,
             'hover' => true,
              'floatHeader' => true,
               'panel' => [
               'before' => '',
               'type' => \kartik\grid\GridView::TYPE_SUCCESS,
               'after' => 'โดย ' . $dev
-              ], */
+              ], 
             
         ]);
     }
