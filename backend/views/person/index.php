@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $dir = \Yii::getAlias('@webroot') . "/persontarget";
     $count = count(scandir($dir)) - 2;
     ?>
-    <button class="btn btn-warning"  style="margin-bottom: 10px" onclick="exec();">
+    <button class="btn btn-success"  style="margin-bottom: 10px" onclick="exec();">
         <i class="glyphicon glyphicon-file"></i>
         รอนำเข้า <?= $count ?> ไฟล์
     </button>
