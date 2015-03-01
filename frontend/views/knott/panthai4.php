@@ -1,42 +1,63 @@
 <?php
+use yii\helpers\Html;
 $this->params['breadcrumbs'][] = ['label' => 'แพทย์แผนไทย', 'url' => ['knott/index']];
 $this->params['breadcrumbs'][] = 'รายงานสรุปสัดส่วนการให้บริการแพทย์แผนไทยรายไตรมาส';
 ?>
 
+<div class='well'>
+    <form method="POST">
+        ปีงบประมาณ:
+        <div class='row'>
+
+            <div class='col-sm-3'>
+               
+                <?php
+                 $list_year =  [
+                    '2014' => '2557',
+                    '2015' => '2558',
+                    '2016' => '2559',
+                    '2017' => '2560'];
+                 
+                echo Html::dropDownList('selyear', $selyear, $list_year,[
+                    'class' => 'form-control'
+                ]);
+                ?>
+            </div>
+            <div class='col-sm-3'>
+
+                <button class='btn btn-danger'>ประมวลผล</button>
+            </div>
+        </div>
+    </form>
+</div>
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
-<div id="sql" style="display: none"><?= $sql ?></div>
+<div id="sql" style="display: none"><?=$sql ?></div>
+
+    <?php
+    if (isset($dataProvider)) {
+        $dev = Html::a('คุณอุเทน จาดยางโทน', 'https://fb.com/tehnn', ['target' => '_blank']);
 
 
+        $y = $selyear + 543;
+        $y = substr($y, 2, 2);
+        $py = $y - 1;
 
-    
-<?php
-$arr = [
-    '2014' => '2014',
-    '2015' => '2015'
-];
-$a = \yii\helpers\Html::dropDownList('year', $select_year, $arr);
-$before = "
-    <form method='POST'>
-    $a
-        <button>ตกลง</button>
-</form>
-";
+        echo yii\grid\GridView::widget([
+        //echo \kartik\grid\GridView::widget([
+            'dataProvider' => $dataProvider,
+            /*'responsive' => TRUE,
+            'hover' => true,
+             'floatHeader' => true,
+              'panel' => [
+              'before' => '',
+              'type' => \kartik\grid\GridView::TYPE_SUCCESS,
+              'after' => 'โดย ' . $dev
+              ], */
+            
+        ]);
+    }
+    ?>
 
-
-if (isset($dataProvider))
-//echo yii\grid\GridView::widget([
-    echo \kartik\grid\GridView::widget([
-        'dataProvider' => $dataProvider,
-        'responsive' => TRUE,
-        'hover' => true,
-        'floatHeader' => true,
-        'panel' => [
-            'before' => $before,
-            'type' => \kartik\grid\GridView::TYPE_SUCCESS,
-            'after' => ''
-        ],
-    ]);
-?>
 <?php
 $script = <<< JS
 $('#btn_sql').on('click', function(e) {
@@ -46,6 +67,3 @@ $('#btn_sql').on('click', function(e) {
 JS;
 $this->registerJs($script);
 ?>
-
-
-

@@ -155,13 +155,19 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
     }
     
       public function actionPanthai4() {
+          
+          
+        $selyear = date('Y');
         
+         if (!empty($_POST['selyear'])) {
+             $selyear = $_POST['selyear'];
+         }
         
               $sql = "SELECT 
 o.hoscode pcucode,
 o.hosname,
 e.code_rep quarterly,
-@rep_year year_rep,
+$selyear+543 year_rep,
 IFNULL(e.OP_SERVICE_PT,0) op_service_pt,
 IFNULL(e.OP_SERVICE,0) op_service,
 IFNULL(t.TM_SERVICE_PT,0) tm_service_pt,
@@ -178,8 +184,8 @@ IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4))) code_rep,
 COUNT(DISTINCT e.PID) OP_SERVICE_PT, 
 COUNT(DISTINCT e.SEQ) OP_SERVICE 
 FROM service e 
-LEFT JOIN diagnosis_opd d ON d.HOSPCODE = e.HOSPCODE AND d.PID = e.PID AND d.SEQ = e.SEQ AND DATE_FORMAT(d.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT((2015-1),'-10-01') AND CONCAT(2015,'-09-30') 
-WHERE e.DATE_SERV BETWEEN CONCAT((2015-1),'-10-01') AND CONCAT(2015,'-09-30') 
+LEFT JOIN diagnosis_opd d ON d.HOSPCODE = e.HOSPCODE AND d.PID = e.PID AND d.SEQ = e.SEQ AND DATE_FORMAT(d.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
 AND LEFT(d.DIAGCODE,1) <> 'Z'
 GROUP BY e.HOSPCODE
 ) e ON e.HOSPCODE = o.hoscode 
@@ -200,7 +206,7 @@ e.PID,
 e.SEQ, 
 e.DATE_SERV 
 FROM diagnosis_opd e 
-WHERE e.DATE_SERV BETWEEN CONCAT((2015-1),'-10-01') AND CONCAT(2015,'-09-30') 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
 AND LEFT(e.DIAGCODE,1) = 'U'
 
 UNION 
@@ -209,7 +215,7 @@ e.PID,
 e.SEQ, 
 e.DATE_SERV 
 FROM drug_opd e 
-WHERE e.DATE_SERV BETWEEN CONCAT((2015-1),'-10-01') AND CONCAT(2015,'-09-30') 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
 AND LEFT(e.DIDSTD,2) IN ('41','42') 
 
 UNION 
@@ -219,7 +225,7 @@ e.SEQ,
 e.DATE_SERV 
 FROM procedure_opd e 
 LEFT JOIN cicd9ttm_planthai p ON e.PROCEDCODE=p.`code` 
-WHERE e.DATE_SERV BETWEEN CONCAT((2015-1),'-10-01') AND CONCAT(2015,'-09-30') 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
 AND p.code IS NOT NULL 
 
 ) e
@@ -228,7 +234,6 @@ GROUP BY e.HOSPCODE
 WHERE e.HOSPCODE IS NOT NULL";
         
        
-
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
@@ -244,8 +249,8 @@ WHERE e.HOSPCODE IS NOT NULL";
 
         return $this->render('panthai4', [
                     'dataProvider' => $dataProvider,
-                    'sql' => $sql,
-                    'select_year'=>  isset($_POST['year'])?$_POST['year']:''
+                    'sql'=>$sql,
+                    'selyear' => $selyear
         ]);
     }
 
