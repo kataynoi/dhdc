@@ -1,6 +1,6 @@
 <?php
 $this->params['breadcrumbs'][] = ['label' => 'หมอประจำครอบครัว', 'url' => ['kukks/index']];
-$this->params['breadcrumbs'][] = 'ผู้สูงอายุได้รับการเยี่ยมบ้าน';
+$this->params['breadcrumbs'][] = 'หญิงตั้งครรภ์ได้รับการเยี่ยมบ้าน';
 ?>
 
 <div class='well'>
@@ -58,7 +58,7 @@ echo \kartik\grid\GridView::widget([
         'hosname',
         [
             'attribute' => 'target',
-            'header' => 'ผู้สูงอายุ(คน)'
+            'header' => 'หญิงตั้งครรภ์(คน)'
         ],
         [
             'attribute' => 'hv',

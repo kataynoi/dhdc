@@ -26,6 +26,11 @@
     echo \yii\helpers\Html::a('4) ผู้สูงอายุที่ได้รับการเยี่ยมบ้าน', ['kukks/report4']);
     ?>
 </p>
+<p>
+    <?php
+    echo \yii\helpers\Html::a('5) หญิงตั้งครรภ์ที่ได้รับการเยี่ยมบ้าน', ['kukks/report5']);
+    ?>
+</p>
 
 <div class="footerrow" style="padding-top: 60px">
     <div class="alert alert-success">
