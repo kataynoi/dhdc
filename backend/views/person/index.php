@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="sys-upload-person-target-index">
 
     <div class="alert alert-success">
-        <h3>รายการไฟล์ PERSON เพื่อใช้เป็นประชากรกลุ่มเป้าหมาย </h3>
+        <h4>รายการแฟ้ม PERSON เพื่อใช้เป็นประชากรกลุ่มเป้าหมาย </h4>
     </div>
     <?php
     $dir = \Yii::getAlias('@webroot') . "/persontarget";
