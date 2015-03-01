@@ -72,8 +72,8 @@ class SyssettimeController extends Controller {
             STARTS '$date $time'
             DO BEGIN\n\n";
             $sql .= $this->call("start_process", NULL);
-            
-            
+
+
             $sql .= $this->call("cal_chart_dial_1", $bdg);
             $sql .= $this->call("cal_chart_dial_2", $bdg);
             $sql .= $this->call("cal_chart_dial_3", $bdg);
@@ -92,14 +92,18 @@ class SyssettimeController extends Controller {
             $sql .= $this->call("cal_sys_person_type");
             $sql .= $this->call("cal_count_service", $y - 1);
             $sql .= $this->call("cal_count_service", $y);
-            
-            $sql .=$this->call("cal_rpt_visit_oldman",$y-1);
-            $sql .=$this->call("cal_rpt_visit_oldman",$y);
-           
+
+            $sql .=$this->call("cal_rpt_visit_oldman", $y - 1);
+            $sql .=$this->call("cal_rpt_visit_oldman", $y);
+
+            //รายงานแผนไทย-knott
+            $sql .=$this->call("cal_rpt_panth_visit_ratio", '2014');
+            $sql .=$this->call("cal_rpt_panth_visit_ratio", '2015');
+
             //
-            
+
             $sql .= $this->call("end_process", NULL);
-            
+
             $sql.="\nEND;";
 
             $this->exec_sql($sql);

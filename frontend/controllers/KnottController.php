@@ -163,75 +163,7 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
              $selyear = $_POST['selyear'];
          }
         
-              $sql = "SELECT 
-o.hoscode pcucode,
-o.hosname,
-e.code_rep quarterly,
-$selyear+543 year_rep,
-IFNULL(e.OP_SERVICE_PT,0) op_service_pt,
-IFNULL(e.OP_SERVICE,0) op_service,
-IFNULL(t.TM_SERVICE_PT,0) tm_service_pt,
-IFNULL(t.TM_SERVICE,0) tm_service,
-(round((tm_service/op_service)*100,2)) tm_ratio
-FROM chospital_amp o 
-LEFT JOIN 
-(
-SELECT SQL_BIG_RESULT 
-e.HOSPCODE,
-IF(MONTH(e.DATE_SERV) IN (10,11,12),1,
-IF(MONTH(e.DATE_SERV) IN (1,2,3),2,
-IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4))) code_rep,
-COUNT(DISTINCT e.PID) OP_SERVICE_PT, 
-COUNT(DISTINCT e.SEQ) OP_SERVICE 
-FROM service e 
-LEFT JOIN diagnosis_opd d ON d.HOSPCODE = e.HOSPCODE AND d.PID = e.PID AND d.SEQ = e.SEQ AND DATE_FORMAT(d.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
-WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
-AND LEFT(d.DIAGCODE,1) <> 'Z'
-GROUP BY e.HOSPCODE
-) e ON e.HOSPCODE = o.hoscode 
-
-LEFT JOIN 
-(
-SELECT SQL_BIG_RESULT 
-e.HOSPCODE,
-IF(MONTH(e.DATE_SERV) IN (10,11,12),1,
-IF(MONTH(e.DATE_SERV) IN (1,2,3),2,
-IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4))) code_rep,
-COUNT(DISTINCT e.PID) TM_SERVICE_PT, 
-COUNT(DISTINCT e.SEQ) TM_SERVICE 
-FROM
-(
-SELECT e.HOSPCODE, 
-e.PID, 
-e.SEQ, 
-e.DATE_SERV 
-FROM diagnosis_opd e 
-WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
-AND LEFT(e.DIAGCODE,1) = 'U'
-
-UNION 
-SELECT e.HOSPCODE, 
-e.PID, 
-e.SEQ, 
-e.DATE_SERV 
-FROM drug_opd e 
-WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
-AND LEFT(e.DIDSTD,2) IN ('41','42') 
-
-UNION 
-SELECT e.HOSPCODE, 
-e.PID, 
-e.SEQ, 
-e.DATE_SERV 
-FROM procedure_opd e 
-LEFT JOIN cicd9ttm_planthai p ON e.PROCEDCODE=p.`code` 
-WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
-AND p.code IS NOT NULL 
-
-) e
-GROUP BY e.HOSPCODE
-) t ON t.HOSPCODE = e.HOSPCODE 
-WHERE e.HOSPCODE IS NOT NULL";
+              $sql = "select * from rpt_panth_visit_ratio where rep_year=$selyear";
         
        
 
