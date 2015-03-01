@@ -12,7 +12,7 @@ use yii;
 use yii\helpers\Html;
 use backend\models\SysUploadPersonTarget;
 
-class PersonTargetController extends \yii\web\Controller {
+class PersonController extends \yii\web\Controller {
 
     public function actionImport() {
 
@@ -84,6 +84,7 @@ class PersonTargetController extends \yii\web\Controller {
 
                 \Yii::$app->db->createCommand("truncate sys_upload_person_target;")->execute();
                 \Yii::$app->db->createCommand("truncate person_target;")->execute();
+                echo "truncate success!!";
             }
         }
     }
