@@ -23,8 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <i class="glyphicon glyphicon-file"></i>
         รอนำเข้า <?= $count ?> ไฟล์
     </button>
+    
+     <button class="btn btn-danger"  style="margin-bottom: 10px" onclick="cls();">
+        <i class="glyphicon glyphicon-remove"></i>
+        ล้างข้อมูล
+    </button>
 
-    <div id="res" style="display: none;margin-bottom: 10px"><h2>กำลังนำเข้า....</h2></div>
+    <div id="res" style="display: none;margin-bottom: 10px"><h2>กำลังดำเนินการ....</h2></div>
 
     <?=
     //GridView::widget([
@@ -60,6 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 $action_route = "index.php?r=person/import";
+$action_route2 = "index.php?r=person/truncate";
 $script = <<< JS
    
      function exec() {     
@@ -71,6 +77,21 @@ $script = <<< JS
             success: function (data) {
                 $('#res').toggle();
                 alert(' นำเข้าสำเร็จ');
+                
+                window.location.reload();
+            }
+        });
+    }
+        
+    function cls() {     
+        if(!confirm('ยืนยัน?')){ return false;}
+        $('#res').toggle();
+        $.ajax({
+            url: "$action_route2",
+            data:{},
+            success: function (data) {
+                $('#res').toggle();
+                alert(' ล้างข้อมูลสำเร็จ');
                 
                 window.location.reload();
             }
