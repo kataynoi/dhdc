@@ -227,7 +227,7 @@ FROM
 anc as a,
 person as p
 where p.PID=a.PID and p.HOSPCODE=a.HOSPCODE
-and a.DATE_SERV between @start and @end
+and a.DATE_SERV between '$date1' and '$date2'
 and p.NATION='099' and p.DISCHARGE='9' and p.TYPEAREA in ('1','3') and p.HOSPCODE=h.hoscode) as 'target',
 (select count(distinct hhv.CID) as num from 
 (SELECT
