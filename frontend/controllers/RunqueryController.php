@@ -86,35 +86,35 @@ class RunqueryController extends \yii\web\Controller {
 
             $break = FALSE;
 
-            if (substr($sql, 0, 6)=='delete') {
+            //if (substr($sql, 0, 6)=='delete') {
+            if (strpos($sql, 'delete') !== false) {
                 $break = true;
             }
-            if (substr($sql, 0, 6)=='insert') {
+            if (strpos($sql, 'insert') !== false) {
                 $break = true;
             }
-
-            if (substr($sql, 0, 6)=='update') {
+            if (strpos($sql, 'update') !== false) {
                 $break = true;
             }
-            if (substr($sql, 0, 5)=='alter') {
+            if (strpos($sql, 'alter') !== false) {
                 $break = true;
             }
-            if (substr($sql, 0, 4)== 'drop') {
+            if (strpos($sql, 'drop') !== false) {
                 $break = true;
             }
-            if (substr($sql, 0, 4)== 'show') {
+            if (strpos($sql, 'show') !== false) {
                 $break = true;
             }
-            if (substr($sql, 0, 8)== 'truncate') {
+            if (strpos($sql, 'truncate') !== false) {
                 $break = true;
             }
-            if (substr($sql, 0, 5)== 'empty') {
+            if (strpos($sql, 'empty') !== false) {
                 $break = true;
             }
-            if (substr($sql, 0, 6)== 'create') {
+            if (strpos($sql, 'create') !== false) {
                 $break = true;
             }
-            if (substr($sql, 0, 7)== 'replace') {
+            if (strpos($sql, 'replace') !== false) {
                 $break = true;
             }
 
@@ -133,9 +133,9 @@ class RunqueryController extends \yii\web\Controller {
 
 
                 $this->exec_sql($sp1);
-                $rawData = $this->call('tmp_store_proc',NULL);
+                $rawData = $this->call('tmp_store_proc', NULL);
             } catch (\yii\db\Exception $e) {
-                throw new \yii\web\ConflictHttpException($e->getCode().' : คำสั่งผิดพลาด SQL ERROR');
+                throw new \yii\web\ConflictHttpException($e->getCode() . ' : คำสั่งผิดพลาด SQL ERROR');
                 //return;
             }
 
