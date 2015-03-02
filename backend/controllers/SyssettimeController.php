@@ -97,10 +97,10 @@ class SyssettimeController extends Controller {
             $sql .=$this->call("cal_rpt_visit_oldman", $y);
 
             //รายงานแผนไทย-knott
-            $sql .=$this->call("cal_rpt_panth_visit_ratio", $y - 1);
-            $sql .=$this->call("cal_rpt_panth_visit_ratio", $y);
-            $sql .=$this->call("cal_rpt_panth_drug_value", $y - 1);
-            $sql .=$this->call("cal_rpt_panth_drug_value", $y);
+            $sql .=$this->call("cal_rpt_panth_visit_ratio",'2014');
+            $sql .=$this->call("cal_rpt_panth_visit_ratio",'2015');
+            $sql .=$this->call("cal_rpt_panth_drug_value",'2014');
+            $sql .=$this->call("cal_rpt_panth_drug_value",'2015');
 
             //
 
