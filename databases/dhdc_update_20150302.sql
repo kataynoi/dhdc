@@ -1919,3 +1919,45 @@ BEGIN
 		END
 ;;
 DELIMITER ;
+
+-- ----------------------------
+-- Table structure for rpt_panth_drug_value
+-- ----------------------------
+DROP TABLE IF EXISTS `rpt_panth_drug_value`;
+CREATE TABLE `rpt_panth_drug_value` (
+  `hoscode` varchar(5) NOT NULL,
+  `year_rep` int(4) NOT NULL DEFAULT '0',
+  `month` int(2) DEFAULT NULL,
+  `price_drug` decimal(44,2) DEFAULT NULL,
+  `price_planthai_drug` decimal(44,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+-- Procedure structure for cal_rpt_panth_drug_value
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `cal_rpt_panth_drug_value`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cal_rpt_panth_drug_value`(IN `selyear` varchar(4))
+BEGIN
+	
+set @selyear = selyear;
+#DROP TABLE IF EXISTS rpt_panth_visit_ratio;
+#CREATE TABLE IF NOT EXISTS rpt_panth_visit_ratio;
+REPLACE INTO rpt_panth_drug_value 
+SELECT SQL_BIG_RESULT
+e.HOSPCODE as hoscode,
+@selyear year_rep,
+MONTH(e.date_serv) as month,
+SUM(IF(LEFT(e.DIDSTD,2) <> '41' OR LEFT(e.DIDSTD,2) <> '42',e.DRUGPRICE*e.AMOUNT,0))  price_drug ,
+SUM(IF(d.didstd IS NOT NULL,e.DRUGPRICE*e.AMOUNT,0))  price_planthai_drug
+FROM drug_opd e 
+LEFT JOIN cdrug_planthai d ON d.didstd=e.DIDSTD 
+LEFT JOIN chospital_amp i ON e.HOSPCODE = i.hoscode 
+WHERE e.DATE_SERV BETWEEN CONCAT((@selyear-1),'-10-01') AND CONCAT(@selyear,'-09-30')   
+GROUP BY e.HOSPCODE, LEFT(DATE(e.DATE_SERV),7);
+
+
+END
+;;
+DELIMITER ;
