@@ -123,15 +123,15 @@ limit 10";
 max(if(r.month=10,r.price_drug,null)) as m10_price_drug, max(if(r.month=10,r.price_planthai_drug,null)) as m10_panth_drug,
 max(if(r.month=11,r.price_drug,null)) as m11_price_drug, max(if(r.month=11,r.price_planthai_drug,null)) as m11_panth_drug,
 max(if(r.month=12,r.price_drug,null)) as m12_price_drug, max(if(r.month=12,r.price_planthai_drug,null)) as m12_panth_drug,
-max(if(r.month=1,r.price_drug,null)) as m01_price_drug, max(if(r.month=1,r.price_planthai_drug,null)) as m01_panth_drug,
-max(if(r.month=2,r.price_drug,null)) as m02_price_drug, max(if(r.month=2,r.price_planthai_drug,null)) as m02_panth_drug,
-max(if(r.month=3,r.price_drug,null)) as m03_price_drug, max(if(r.month=3,r.price_planthai_drug,null)) as m03_panth_drug,
-max(if(r.month=4,r.price_drug,null)) as m04_price_drug, max(if(r.month=4,r.price_planthai_drug,null)) as m04_panth_drug,
-max(if(r.month=5,r.price_drug,null)) as m05_price_drug, max(if(r.month=5,r.price_planthai_drug,null)) as m05_panth_drug,
-max(if(r.month=6,r.price_drug,null)) as m06_price_drug, max(if(r.month=6,r.price_planthai_drug,null)) as m06_panth_drug,
-max(if(r.month=7,r.price_drug,null)) as m07_price_drug, max(if(r.month=7,r.price_planthai_drug,null)) as m07_panth_drug,
-max(if(r.month=8,r.price_drug,null)) as m08_price_drug, max(if(r.month=8,r.price_planthai_drug,null)) as m08_panth_drug,
-max(if(r.month=9,r.price_drug,null)) as m09_price_drug, max(if(r.month=9,r.price_planthai_drug,null)) as m09_panth_drug
+max(if(r.month=01,r.price_drug,null)) as m01_price_drug, max(if(r.month=01,r.price_planthai_drug,null)) as m01_panth_drug,
+max(if(r.month=02,r.price_drug,null)) as m02_price_drug, max(if(r.month=02,r.price_planthai_drug,null)) as m02_panth_drug,
+max(if(r.month=03,r.price_drug,null)) as m03_price_drug, max(if(r.month=03,r.price_planthai_drug,null)) as m03_panth_drug,
+max(if(r.month=04,r.price_drug,null)) as m04_price_drug, max(if(r.month=04,r.price_planthai_drug,null)) as m04_panth_drug,
+max(if(r.month=05,r.price_drug,null)) as m05_price_drug, max(if(r.month=05,r.price_planthai_drug,null)) as m05_panth_drug,
+max(if(r.month=06,r.price_drug,null)) as m06_price_drug, max(if(r.month=06,r.price_planthai_drug,null)) as m06_panth_drug,
+max(if(r.month=07,r.price_drug,null)) as m07_price_drug, max(if(r.month=07,r.price_planthai_drug,null)) as m07_panth_drug,
+max(if(r.month=08,r.price_drug,null)) as m08_price_drug, max(if(r.month=08,r.price_planthai_drug,null)) as m08_panth_drug,
+max(if(r.month=09,r.price_drug,null)) as m09_price_drug, max(if(r.month=09,r.price_planthai_drug,null)) as m09_panth_drug
 from chospital_amp c,rpt_panth_drug_value r
 where c.hoscode=r.hoscode and r.year_rep=$selyear
 group by c.hoscode";
