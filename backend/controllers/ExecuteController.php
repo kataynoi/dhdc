@@ -105,9 +105,12 @@ class ExecuteController extends \yii\web\Controller {
             
             //รายงานแผนไทย-knott
             $this->call("cal_rpt_panth_visit_ratio",$y-1);
-             $this->call("cal_rpt_panth_visit_ratio",$y);
+            $this->call("cal_rpt_panth_visit_ratio",$y);
+            $this->call("cal_rpt_panth_drug_value",$y-1);
+            $this->call("cal_rpt_panth_drug_value",$y);
             
-           //
+            
+            //
             
 
             

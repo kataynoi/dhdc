@@ -113,31 +113,36 @@ limit 10";
 
     public function actionPanthai3() {
         
-         $sql = "SELECT sm.`month`,d.HOSPCODE,amp.hosname,count(d.SEQ) as total,
-sum(if(d.DIAGCODE like 'u%',1,0)) as panthai_diag,
-round(((sum(if(d.DIAGCODE like 'u%',1,0)))/(count(d.SEQ)))*100,2) as percent
-from diagnosis_opd d,sys_month sm,chospital_amp amp 
-where concat(year(d.DATE_SERV),month(d.DATE_SERV))=sm.`month` and d.HOSPCODE=amp.hoscode
-GROUP BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV)) 
-ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
-         
-        if(\Yii::$app->request->post()){
-            $year = $_POST['year'];
-              $sql = "SELECT sm.`month`,d.HOSPCODE,amp.hosname,count(d.SEQ) as total,
-sum(if(d.DIAGCODE like 'u%',1,0)) as panthai_diag,
-round(((sum(if(d.DIAGCODE like 'u%',1,0)))/(count(d.SEQ)))*100,2) as percent
-from diagnosis_opd d,sys_month sm,chospital_amp amp 
-where concat(year(d.DATE_SERV),month(d.DATE_SERV))=sm.`month` and d.HOSPCODE=amp.hoscode
-and sm.month like '$year%' 
-GROUP BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV)) 
-ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
-        }
+        $selyear = date('Y');
+        
+         if (!empty($_POST['selyear'])) {
+             $selyear = $_POST['selyear'];
+         }
+            
+         $sql = "select c.hoscode,c.hosname,
+max(if(r.month=10,r.price_drug,null)) as m10_price_drug, max(if(r.month=10,r.price_planthai_drug,null)) as m10_panth_drug,
+max(if(r.month=11,r.price_drug,null)) as m11_price_drug, max(if(r.month=11,r.price_planthai_drug,null)) as m11_panth_drug,
+max(if(r.month=12,r.price_drug,null)) as m12_price_drug, max(if(r.month=12,r.price_planthai_drug,null)) as m12_panth_drug,
+max(if(r.month=1,r.price_drug,null)) as m01_price_drug, max(if(r.month=1,r.price_planthai_drug,null)) as m01_panth_drug,
+max(if(r.month=2,r.price_drug,null)) as m02_price_drug, max(if(r.month=2,r.price_planthai_drug,null)) as m02_panth_drug,
+max(if(r.month=3,r.price_drug,null)) as m03_price_drug, max(if(r.month=3,r.price_planthai_drug,null)) as m03_panth_drug,
+max(if(r.month=4,r.price_drug,null)) as m04_price_drug, max(if(r.month=4,r.price_planthai_drug,null)) as m04_panth_drug,
+max(if(r.month=5,r.price_drug,null)) as m05_price_drug, max(if(r.month=5,r.price_planthai_drug,null)) as m05_panth_drug,
+max(if(r.month=6,r.price_drug,null)) as m06_price_drug, max(if(r.month=6,r.price_planthai_drug,null)) as m06_panth_drug,
+max(if(r.month=7,r.price_drug,null)) as m07_price_drug, max(if(r.month=7,r.price_planthai_drug,null)) as m07_panth_drug,
+max(if(r.month=8,r.price_drug,null)) as m08_price_drug, max(if(r.month=8,r.price_planthai_drug,null)) as m08_panth_drug,
+max(if(r.month=9,r.price_drug,null)) as m09_price_drug, max(if(r.month=9,r.price_planthai_drug,null)) as m09_panth_drug
+from chospital_amp c,rpt_panth_drug_value r
+where c.hoscode=r.hoscode and r.year_rep=$selyear
+group by c.hoscode";
+        
        
 
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-        } catch (\yii\db\Exception $e) {
+        } 
+            catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
 
@@ -146,11 +151,24 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
+        
+        
+        $sql ="SELECT SQL_BIG_RESULT
+e.HOSPCODE as hoscode,
+$selyear year_rep,
+MONTH(e.date_serv) as month,
+SUM(IF(LEFT(e.DIDSTD,2) <> '41' OR LEFT(e.DIDSTD,2) <> '42',e.DRUGPRICE*e.AMOUNT,0))  price_drug ,
+SUM(IF(d.didstd IS NOT NULL,e.DRUGPRICE*e.AMOUNT,0))  price_planthai_drug
+FROM drug_opd e 
+LEFT JOIN cdrug_planthai d ON d.didstd=e.DIDSTD 
+LEFT JOIN chospital_amp i ON e.HOSPCODE = i.hoscode 
+WHERE e.DATE_SERV BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30')   
+GROUP BY e.HOSPCODE, LEFT(DATE(e.DATE_SERV),7)";
 
         return $this->render('panthai3', [
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
-                    'select_year'=>  isset($_POST['year'])?$_POST['year']:''
+                    'selyear'=>  $selyear
         ]);
     }
     
@@ -166,22 +184,22 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
               $sql = "select
 c.hoscode, 
 c.hosname,
-max(if(r.quarterly=1,r.op_service_pt,'')) as op_visit_pt_q1,
-max(if(r.quarterly=1,r.op_service,'')) as op_visit_q1,
-max(if(r.quarterly=1,r.tm_service_pt,'')) as tm_visit_pt_q1,
-max(if(r.quarterly=1,r.tm_service,'')) as tm_visit_q1,
-max(if(r.quarterly=2,r.op_service_pt,'')) as op_visit_pt_q2,
-max(if(r.quarterly=2,r.op_service,'')) as op_visit_q2,
-max(if(r.quarterly=2,r.tm_service_pt,'')) as tm_visit_pt_q2,
-max(if(r.quarterly=2,r.tm_service,'')) as tm_visit_q2,
-max(if(r.quarterly=3,r.op_service_pt,'')) as op_visit_pt_q3,
-max(if(r.quarterly=3,r.op_service,'')) as op_visit_q3,
-max(if(r.quarterly=3,r.tm_service_pt,'')) as tm_visit_pt_q3,
-max(if(r.quarterly=3,r.tm_service,'')) as tm_visit_q3,
-max(if(r.quarterly=4,r.op_service_pt,'')) as op_visit_pt_q4,
-max(if(r.quarterly=4,r.op_service,'')) as op_visit_q4,
-max(if(r.quarterly=4,r.tm_service_pt,'')) as tm_visit_pt_q4,
-max(if(r.quarterly=4,r.tm_service,'')) as tm_visit_q4
+max(if(r.quarterly=1,r.op_service_pt,null)) as op_visit_pt_q1,
+max(if(r.quarterly=1,r.op_service,null)) as op_visit_q1,
+max(if(r.quarterly=1,r.tm_service_pt,null)) as tm_visit_pt_q1,
+max(if(r.quarterly=1,r.tm_service,null)) as tm_visit_q1,
+max(if(r.quarterly=2,r.op_service_pt,null)) as op_visit_pt_q2,
+max(if(r.quarterly=2,r.op_service,null)) as op_visit_q2,
+max(if(r.quarterly=2,r.tm_service_pt,null)) as tm_visit_pt_q2,
+max(if(r.quarterly=2,r.tm_service,null)) as tm_visit_q2,
+max(if(r.quarterly=3,r.op_service_pt,null)) as op_visit_pt_q3,
+max(if(r.quarterly=3,r.op_service,null)) as op_visit_q3,
+max(if(r.quarterly=3,r.tm_service_pt,null)) as tm_visit_pt_q3,
+max(if(r.quarterly=3,r.tm_service,null)) as tm_visit_q3,
+max(if(r.quarterly=4,r.op_service_pt,null)) as op_visit_pt_q4,
+max(if(r.quarterly=4,r.op_service,null)) as op_visit_q4,
+max(if(r.quarterly=4,r.tm_service_pt,null)) as tm_visit_pt_q4,
+max(if(r.quarterly=4,r.tm_service,null)) as tm_visit_q4
 from chospital_amp c,rpt_panth_visit_ratio r
 where c.hoscode=r.pcucode and  r.year_rep=$selyear 
 group by c.hoscode";
@@ -190,7 +208,8 @@ group by c.hoscode";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-        } catch (\yii\db\Exception $e) {
+        } 
+            catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
 
@@ -270,7 +289,7 @@ AND p.code IS NOT NULL
 ) e
 GROUP BY e.HOSPCODE
 ) t ON t.HOSPCODE = e.HOSPCODE 
-WHERE e.HOSPCODE IS NOT NULL;";
+WHERE e.HOSPCODE IS NOT NULL";
 
         return $this->render('panthai4', [
                     'dataProvider' => $dataProvider,

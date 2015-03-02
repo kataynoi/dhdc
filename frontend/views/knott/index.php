@@ -16,10 +16,15 @@
     ?>
 </p>
 
+<p>
+    <?php
+    echo \yii\helpers\Html::a('3) มูลค่าการจ่ายยาสมุนไพรผู้ป่วยนอก', ['knott/panthai3']);
+    ?>
+</p>
 
 <p>
     <?php
-    echo \yii\helpers\Html::a('3) รายงานสรุปสัดส่วนการให้บริการแพทย์แผนไทย', ['knott/panthai4']);
+    echo \yii\helpers\Html::a('4) รายงานสรุปสัดส่วนการให้บริการแพทย์แผนไทย', ['knott/panthai4']);
     ?>
 </p>
 
