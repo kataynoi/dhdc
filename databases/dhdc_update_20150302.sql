@@ -10,10 +10,128 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2015-02-28 09:32:18
+Date: 2015-03-02 18:20:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for person_target
+-- ----------------------------
+DROP TABLE IF EXISTS `person_target`;
+CREATE TABLE `person_target` (
+  `HOSPCODE` varchar(5) NOT NULL,
+  `CID` varchar(13) DEFAULT NULL,
+  `PID` varchar(15) NOT NULL,
+  `HID` varchar(14) DEFAULT NULL,
+  `PRENAME` varchar(3) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `LNAME` varchar(50) NOT NULL,
+  `HN` varchar(15) DEFAULT NULL,
+  `SEX` varchar(1) NOT NULL,
+  `BIRTH` date NOT NULL,
+  `MSTATUS` char(1) DEFAULT NULL,
+  `OCCUPATION_OLD` varchar(3) DEFAULT NULL,
+  `OCCUPATION_NEW` varchar(4) DEFAULT NULL,
+  `RACE` varchar(3) DEFAULT NULL,
+  `NATION` varchar(3) NOT NULL,
+  `RELIGION` varchar(2) DEFAULT NULL,
+  `EDUCATION` varchar(2) DEFAULT NULL,
+  `FSTATUS` varchar(1) DEFAULT NULL,
+  `FATHER` varchar(13) DEFAULT NULL,
+  `MOTHER` varchar(13) DEFAULT NULL,
+  `COUPLE` varchar(13) DEFAULT NULL,
+  `VSTATUS` varchar(1) DEFAULT NULL,
+  `MOVEIN` date DEFAULT NULL,
+  `DISCHARGE` varchar(1) DEFAULT NULL,
+  `DDISCHARGE` date DEFAULT NULL,
+  `ABOGROUP` varchar(1) DEFAULT NULL,
+  `RHGROUP` varchar(1) DEFAULT NULL,
+  `LABOR` varchar(2) DEFAULT NULL,
+  `PASSPORT` varchar(8) DEFAULT NULL,
+  `TYPEAREA` varchar(1) NOT NULL,
+  `D_UPDATE` datetime NOT NULL,
+  `REP_YEAR` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`HOSPCODE`,`PID`),
+  KEY `idx_hoscode` (`HOSPCODE`,`PID`,`TYPEAREA`),
+  KEY `idx1` (`HOSPCODE`),
+  KEY `idx2` (`CID`),
+  KEY `idx3` (`HID`),
+  KEY `idx4` (`TYPEAREA`),
+  KEY `idx5` (`TYPEAREA`),
+  KEY `idx6` (`HOSPCODE`,`PID`),
+  KEY `idx7` (`BIRTH`),
+  KEY `idx8` (`DISCHARGE`),
+  KEY `idx9` (`LABOR`),
+  KEY `idx10` (`HOSPCODE`,`HID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of person_target
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for rpt_panth_visit_ratio
+-- ----------------------------
+DROP TABLE IF EXISTS `rpt_panth_visit_ratio`;
+CREATE TABLE `rpt_panth_visit_ratio` (
+  `pcucode` char(5) NOT NULL DEFAULT '',
+  `quarterly` int(1) DEFAULT '0',
+  `year_rep` bigint(20) DEFAULT NULL,
+  `op_service_pt` bigint(21) NOT NULL DEFAULT '0',
+  `op_service` bigint(21) NOT NULL DEFAULT '0',
+  `tm_service_pt` bigint(21) NOT NULL DEFAULT '0',
+  `tm_service` bigint(21) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rpt_panth_visit_ratio
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for rpt_visit_oldman
+-- ----------------------------
+DROP TABLE IF EXISTS `rpt_visit_oldman`;
+CREATE TABLE `rpt_visit_oldman` (
+  `selyear` varchar(25) NOT NULL,
+  `hoscode` varchar(25) NOT NULL DEFAULT '',
+  `hosname` varchar(255) DEFAULT NULL,
+  `target` bigint(21) DEFAULT NULL,
+  `oct` bigint(21) DEFAULT NULL,
+  `nov` bigint(21) DEFAULT NULL,
+  `dec` bigint(21) DEFAULT NULL,
+  `jan` bigint(21) DEFAULT NULL,
+  `feb` bigint(21) DEFAULT NULL,
+  `mar` bigint(21) DEFAULT NULL,
+  `apr` bigint(21) DEFAULT NULL,
+  `may` bigint(21) DEFAULT NULL,
+  `jun` bigint(21) DEFAULT NULL,
+  `jul` bigint(21) DEFAULT NULL,
+  `aug` bigint(21) DEFAULT NULL,
+  `sep` bigint(21) DEFAULT NULL,
+  PRIMARY KEY (`selyear`,`hoscode`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rpt_visit_oldman
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for sqlscript
+-- ----------------------------
+DROP TABLE IF EXISTS `sqlscript`;
+CREATE TABLE `sqlscript` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `topic` varchar(255) DEFAULT NULL,
+  `sql_script` text,
+  `user` varchar(255) DEFAULT NULL,
+  `d_update` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sqlscript
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_month
@@ -66,6 +184,28 @@ INSERT INTO `sys_month` VALUES ('201506', '2558', '06', 'มิถุนาย�
 INSERT INTO `sys_month` VALUES ('201507', '2668', '07', 'กรกฎาคม');
 INSERT INTO `sys_month` VALUES ('201508', '2558', '08', 'สิงหาคม');
 INSERT INTO `sys_month` VALUES ('201509', '2558', '09', 'กันยายน');
+
+-- ----------------------------
+-- Table structure for sys_upload_person_target
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_upload_person_target`;
+CREATE TABLE `sys_upload_person_target` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_name` varchar(255) DEFAULT NULL,
+  `file_size` varchar(255) DEFAULT NULL,
+  `upload_date` varchar(255) DEFAULT NULL,
+  `upload_time` varchar(255) DEFAULT NULL,
+  `note1` varchar(255) DEFAULT NULL,
+  `note2` varchar(255) DEFAULT NULL,
+  `note3` varchar(255) DEFAULT NULL,
+  `note4` varchar(255) DEFAULT NULL,
+  `note5` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_upload_person_target
+-- ----------------------------
 
 -- ----------------------------
 -- Procedure structure for cal_chart_dial_1
@@ -127,7 +267,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `cal_chart_dial_2`(IN `bdg_date`  va
 BEGIN
 	
 	set @start='2014-10-01';
-	set @end='2014-12-31';
+	set @end=CURDATE();
 	set @bdg_date = bdg_date;
 
 DROP TABLE IF EXISTS sys_chart_dial_2 ;
@@ -184,7 +324,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `cal_chart_dial_3`(IN `bdg_date`  va
 BEGIN
 	
 	set @start='2014-10-01';
-	set @end='2014-12-31';
+	set @end=CURDATE();
 	set @bdg_date = bdg_date;
 
 DROP TABLE IF EXISTS sys_chart_dial_3 ;
@@ -1281,6 +1421,96 @@ END
 DELIMITER ;
 
 -- ----------------------------
+-- Procedure structure for cal_rpt_panth_visit_ratio
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `cal_rpt_panth_visit_ratio`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cal_rpt_panth_visit_ratio`(IN `selyear` varchar(4))
+BEGIN
+
+set @selyear = selyear;
+#DROP TABLE IF EXISTS rpt_panth_visit_ratio;
+#CREATE TABLE IF NOT EXISTS rpt_panth_visit_ratio;
+REPLACE INTO rpt_panth_visit_ratio 
+SELECT 
+o.hoscode pcucode,
+e.code_rep quarterly,
+@selyear year_rep,
+IFNULL(e.OP_SERVICE_PT,0) op_service_pt,
+IFNULL(e.OP_SERVICE,0) op_service,
+IFNULL(t.TM_SERVICE_PT,0) tm_service_pt,
+IFNULL(t.TM_SERVICE,0) tm_service
+FROM chospital_amp o 
+LEFT JOIN 
+(
+SELECT SQL_BIG_RESULT 
+e.HOSPCODE,
+IF(MONTH(e.DATE_SERV) IN (10,11,12),1,
+IF(MONTH(e.DATE_SERV) IN (1,2,3),2,
+IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4))) code_rep,
+COUNT(DISTINCT e.PID) OP_SERVICE_PT, 
+COUNT(DISTINCT e.SEQ) OP_SERVICE 
+FROM service e 
+LEFT JOIN diagnosis_opd d ON d.HOSPCODE = e.HOSPCODE AND d.PID = e.PID AND d.SEQ = e.SEQ AND DATE_FORMAT(d.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT((@selyear-1),'-10-01') AND CONCAT(@selyear,'-09-30') 
+WHERE DATE_FORMAT(e.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT((@selyear-1),'-10-01') AND CONCAT(@selyear,'-09-30') 
+AND LEFT(d.DIAGCODE,1) <> 'Z'
+GROUP BY e.HOSPCODE, 
+IF(MONTH(e.DATE_SERV) IN (10,11,12),1,
+IF(MONTH(e.DATE_SERV) IN (1,2,3),2,
+IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4)))
+) e ON e.HOSPCODE = o.hoscode 
+
+LEFT JOIN 
+(
+SELECT SQL_BIG_RESULT 
+e.HOSPCODE,
+IF(MONTH(e.DATE_SERV) IN (10,11,12),1,
+IF(MONTH(e.DATE_SERV) IN (1,2,3),2,
+IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4))) code_rep,
+COUNT(DISTINCT e.PID) TM_SERVICE_PT, 
+COUNT(DISTINCT e.SEQ) TM_SERVICE 
+FROM
+(
+SELECT e.HOSPCODE, 
+e.PID, 
+e.SEQ, 
+e.DATE_SERV 
+FROM diagnosis_opd e 
+WHERE DATE_FORMAT(e.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT((@selyear-1),'-10-01') AND CONCAT(@selyear,'-09-30') 
+AND LEFT(e.DIAGCODE,1) = 'U'
+
+UNION 
+SELECT e.HOSPCODE, 
+e.PID, 
+e.SEQ, 
+e.DATE_SERV 
+FROM drug_opd e 
+WHERE DATE_FORMAT(e.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT((@selyear-1),'-10-01') AND CONCAT(@selyear,'-09-30') 
+AND LEFT(e.DIDSTD,2) IN ('41','42') 
+
+UNION 
+SELECT e.HOSPCODE, 
+e.PID, 
+e.SEQ, 
+e.DATE_SERV 
+FROM procedure_opd e 
+LEFT JOIN cicd9ttm_planthai p ON e.PROCEDCODE=p.`code` 
+WHERE DATE_FORMAT(e.DATE_SERV,'%Y-%m-%d') BETWEEN CONCAT((@selyear-1),'-10-01') AND CONCAT(@selyear,'-09-30') 
+AND p.code IS NOT NULL 
+
+) e
+GROUP BY e.HOSPCODE, IF(MONTH(e.DATE_SERV) IN (10,11,12),1,
+IF(MONTH(e.DATE_SERV) IN (1,2,3),2,
+IF(MONTH(e.DATE_SERV) IN (4,5,6),3,4)))
+) t ON t.HOSPCODE = e.HOSPCODE AND t.code_rep = e.code_rep
+WHERE  e.HOSPCODE IS NOT NULL;
+
+
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
 -- Procedure structure for cal_rpt_visit_oldman
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `cal_rpt_visit_oldman`;
@@ -1490,7 +1720,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `clear_null_hospcode`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `clear_null_hospcode`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `clear_null_hospcode`()
 BEGIN
 	
 delete from service where hospcode ='';
@@ -1536,6 +1766,19 @@ BEGIN
 	UPDATE sys_process_running s set s.is_running = 'true';
 
 END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for tmp_store_proc
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `tmp_store_proc`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `tmp_store_proc`()
+BEGIN 
+set @a=1;
+select * from fp limit 10;
+ END
 ;;
 DELIMITER ;
 
