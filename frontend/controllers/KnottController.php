@@ -166,24 +166,25 @@ ORDER BY d.HOSPCODE,concat(year(DATE_SERV),month(DATE_SERV))";
               $sql = "select
 c.hoscode, 
 c.hosname,
-(case when r.quarterly=1 and r.rep_year=$selyear then r.op_service_pt end) as op_visit_pt_q1,
-(case when r.quarterly=1 and r.rep_year=$selyear then r.op_service end) as op_visit_q1,
-(case when r.quarterly=1 and r.rep_year=$selyear then r.tm_service_pt end) as tm_visit_pt_q1,
-(case when r.quarterly=1 and r.rep_year=$selyear then r.tm_service end) as tm_visit_q1,
-(case when r.quarterly=2 and r.rep_year=$selyear then r.op_service_pt end) as op_visit_pt_q2,
-(case when r.quarterly=2 and r.rep_year=$selyear then r.op_service end) as op_visit_q2,
-(case when r.quarterly=2 and r.rep_year=$selyear then r.tm_service_pt end) as tm_visit_pt_q2,
-(case when r.quarterly=2 and r.rep_year=$selyear then r.tm_service end) as tm_visit_q2,
-(case when r.quarterly=3 and r.rep_year=$selyear then r.op_service_pt end) as op_visit_pt_q3,
-(case when r.quarterly=3 and r.rep_year=$selyear then r.op_service end) as op_visit_q3,
-(case when r.quarterly=3 and r.rep_year=$selyear then r.tm_service_pt end) as tm_visit_pt_q3,
-(case when r.quarterly=3 and r.rep_year=$selyear then r.tm_service end) as tm_visit_q3,
-(case when r.quarterly=4 and r.rep_year=$selyear then r.op_service_pt end) as op_visit_pt_q4,
-(case when r.quarterly=4 and r.rep_year=$selyear then r.op_service end) as op_visit_q4,
-(case when r.quarterly=4 and r.rep_year=$selyear then r.tm_service_pt end) as tm_visit_pt_q4,
-(case when r.quarterly=4 and r.rep_year=$selyear then r.tm_service end) as tm_visit_q4
+max(if(r.quarterly=1,r.op_service_pt,'')) as op_visit_pt_q1,
+max(if(r.quarterly=1,r.op_service,'')) as op_visit_q1,
+max(if(r.quarterly=1,r.tm_service_pt,'')) as tm_visit_pt_q1,
+max(if(r.quarterly=1,r.tm_service,'')) as tm_visit_q1,
+max(if(r.quarterly=2,r.op_service_pt,'')) as op_visit_pt_q2,
+max(if(r.quarterly=2,r.op_service,'')) as op_visit_q2,
+max(if(r.quarterly=2,r.tm_service_pt,'')) as tm_visit_pt_q2,
+max(if(r.quarterly=2,r.tm_service,'')) as tm_visit_q2,
+max(if(r.quarterly=3,r.op_service_pt,'')) as op_visit_pt_q3,
+max(if(r.quarterly=3,r.op_service,'')) as op_visit_q3,
+max(if(r.quarterly=3,r.tm_service_pt,'')) as tm_visit_pt_q3,
+max(if(r.quarterly=3,r.tm_service,'')) as tm_visit_q3,
+max(if(r.quarterly=4,r.op_service_pt,'')) as op_visit_pt_q4,
+max(if(r.quarterly=4,r.op_service,'')) as op_visit_q4,
+max(if(r.quarterly=4,r.tm_service_pt,'')) as tm_visit_pt_q4,
+max(if(r.quarterly=4,r.tm_service,'')) as tm_visit_q4
 from chospital_amp c,rpt_panth_visit_ratio r
-where c.hoscode=r.pcucode";
+where c.hoscode=r.pcucode and  r.year_rep=$selyear 
+group by c.hoscode";
         
        
 
