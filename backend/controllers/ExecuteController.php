@@ -77,7 +77,7 @@ class ExecuteController extends \yii\web\Controller {
             }
             $bdg = "'" . $bdg . "'";
             
-            
+            $this->call("merge_newborncare",NULL);
             $this->call("clear_null_hospcode",NULL);
             $this->call("cal_chart_dial_1", $bdg);
             $this->call("cal_chart_dial_2", $bdg);
