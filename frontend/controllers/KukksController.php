@@ -10,7 +10,7 @@ class KukksController extends \yii\web\Controller {
     
       
 
-    public function actionIndex() {//หน้ารวม
+    public function actionIndex() {//หน้ารวม//
         return $this->render('index');
     }
 

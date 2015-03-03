@@ -63,7 +63,7 @@ order by h.hoscode";
             throw new \yii\web\ConflictHttpException('sql error');
         }
         $dataProvider = new \yii\data\ArrayDataProvider([
-            //'key' => 'hoscode',
+            //'key' => 'hoscode',//
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
