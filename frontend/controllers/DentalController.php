@@ -9,7 +9,7 @@ class DentalController extends \yii\web\Controller {
         return $this->render('index');
     }
 
-    public function actionReport1() {
+    public function actionReport1() { //anc ตรวจฟัน
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {

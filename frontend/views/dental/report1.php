@@ -71,7 +71,7 @@ echo \kartik\grid\GridView::widget([
             'header' => 'ร้อยละ',
             'value' => function ($model, $key, $index, $widget) {
                 $p = compact('model', 'key', 'index');
-                // เขียนสูตร
+                // เขียนสูตร2
                 if ($widget->col(2, $p) > 0) {
                     $persent = $widget->col(3, $p) / $widget->col(2, $p) * 100;
                     $persent = number_format($persent, 2);

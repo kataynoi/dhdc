@@ -2,7 +2,7 @@
 /* @var $this yii\web\View 
 use yii\helpers\Html;*/
 ?>
-<h3>หมวดรายงานทันตกรรม</h3>
+<h4>หมวดรายงานทันตกรรม</h4>
 
 <p>
     <?php
