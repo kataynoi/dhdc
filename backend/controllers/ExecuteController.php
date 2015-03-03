@@ -50,6 +50,7 @@ class ExecuteController extends \yii\web\Controller {
 
     public function actionFilecount() {
 
+        $this->call("merge_newborncare", NULL);
         $sql = "truncate sys_count_all";
         $this->exec_sql($sql);
 
@@ -68,17 +69,17 @@ class ExecuteController extends \yii\web\Controller {
             $running->is_running = 'true';
             $running->update();
             //ใส่ excel store;
-            
-            
+
+
             $bdg = '2014-09-30';
             $model = \backend\models\Sysconfigmain::find()->one();
-            if($model){
-                $bdg=$model->note2;
+            if ($model) {
+                $bdg = $model->note2;
             }
             $bdg = "'" . $bdg . "'";
-            
-            $this->call("merge_newborncare",NULL);
-            $this->call("clear_null_hospcode",NULL);
+
+            $this->call("merge_newborncare", NULL);
+            $this->call("clear_null_hospcode", NULL);
             $this->call("cal_chart_dial_1", $bdg);
             $this->call("cal_chart_dial_2", $bdg);
             $this->call("cal_chart_dial_3", $bdg);
@@ -95,28 +96,22 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_pyramid_level_3");
 
             $this->call("cal_sys_person_type");
-            
+
             $y = date('Y');
-            $this->call("cal_count_service",$y-1);
-            $this->call("cal_count_service",$y);
-            
-            $this->call("cal_rpt_visit_oldman",$y-1);
-            $this->call("cal_rpt_visit_oldman",$y);
-            
+            $this->call("cal_count_service", $y - 1);
+            $this->call("cal_count_service", $y);
+
+            $this->call("cal_rpt_visit_oldman", $y - 1);
+            $this->call("cal_rpt_visit_oldman", $y);
+
             //รายงานแผนไทย-knott
-            $this->call("cal_rpt_panth_visit_ratio",$y-1);
-            $this->call("cal_rpt_panth_visit_ratio",$y);
-            $this->call("cal_rpt_panth_drug_value",$y-1);
-            $this->call("cal_rpt_panth_drug_value",$y);
-            
-            
+            $this->call("cal_rpt_panth_visit_ratio", $y - 1);
+            $this->call("cal_rpt_panth_visit_ratio", $y);
+            $this->call("cal_rpt_panth_drug_value", $y - 1);
+            $this->call("cal_rpt_panth_drug_value", $y);
+
+
             //
-            
-
-            
-            
-
-
             //จบใส่ store
             $running->is_running = 'false';
             $running->update();
