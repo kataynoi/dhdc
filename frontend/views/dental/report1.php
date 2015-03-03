@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+
 $this->params['breadcrumbs'][] = ['label' => 'Dental', 'url' => ['dental/index']];
 $this->params['breadcrumbs'][] = 'หญิงตั้งครรภ์ได้รับการตรวจสุขภาพช่องปาก';
 ?>
@@ -36,9 +37,11 @@ $this->params['breadcrumbs'][] = 'หญิงตั้งครรภ์ได�
         <button class='btn btn-danger'>ประมวลผล</button>
     </form>
 </div>
+
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
 <div id="sql" style="display: none"><?= $sql ?></div>
-<?php
+
+    <?php
 if (isset($dataProvider))
     $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
     

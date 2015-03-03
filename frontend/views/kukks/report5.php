@@ -42,7 +42,7 @@ if (isset($dataProvider))
     $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
     
     
-//echo yii\grid\GridView::widget([
+//echo yii\grid\GridView::widget([//
 echo \kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'responsive' => TRUE,

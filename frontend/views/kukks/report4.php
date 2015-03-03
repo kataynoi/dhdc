@@ -37,9 +37,11 @@ $this->params['breadcrumbs'][] = 'ผู้สูงอายุได้รั�
         <button class='btn btn-danger'>ประมวลผล</button>
     </form>
 </div>
+
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
 <div id="sql" style="display: none"><?= $sql ?></div>
-<?php
+
+    <?php
 if (isset($dataProvider))
     $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
 

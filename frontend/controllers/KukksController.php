@@ -14,7 +14,7 @@ class KukksController extends \yii\web\Controller {
         return $this->render('index');
     }
 
-    public function actionReport1() {//ร้อยละผู้ป่วยโรคเรื้อรังได้รับการเยี่ยมบ้าน
+    public function actionReport1() {//ร้อยละผู้ป่วยโรคเรื้อรังได้รับการเยี่ยมบ้าน//
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {
