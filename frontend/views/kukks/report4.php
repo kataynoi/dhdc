@@ -1,4 +1,6 @@
 <?php
+use yii\helpers\Html;
+
 $this->params['breadcrumbs'][] = ['label' => 'หมอประจำครอบครัว', 'url' => ['kukks/index']];
 $this->params['breadcrumbs'][] = 'ผู้สูงอายุได้รับการเยี่ยมบ้าน';
 ?>
@@ -40,8 +42,7 @@ $this->params['breadcrumbs'][] = 'ผู้สูงอายุได้รั�
 <?php
 if (isset($dataProvider))
     $dev = \yii\helpers\Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']);
-    
-    
+
 //echo yii\grid\GridView::widget([
 echo \kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,

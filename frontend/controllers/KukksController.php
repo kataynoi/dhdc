@@ -163,14 +163,15 @@ group by home.HOSPCODE) as home2 on home2.HOSPCODE=h.hoscode
         if (Yii::$app->request->isPost) {
             $date1 = $_POST['date1'];
             $date2 = $_POST['date2'];
+            $selyear = $_POST['selyear'];          
         }
 
-        $sql = "select temp.hoscode,temp.hosname,temp.target,temp.hv,round((temp.hv*100/temp.target),2) as percent from (select h.hoscode,h.hosname,
+$sql = "select temp.hoscode,temp.hosname,temp.target,temp.hv,round((temp.hv*100/temp.target),2) as percent from (select h.hoscode,h.hosname,
 (SELECT
 count(distinct p.CID)
 FROM
 person as p
-where  p.NATION='099' and p.DISCHARGE='9' and p.TYPEAREA in ('1','3') and p.HOSPCODE=h.hoscode and (TIMESTAMPDIFF(YEAR,p.birth,@bdg_date)>= 60)) as target,
+where  p.NATION='099' and p.DISCHARGE='9' and p.TYPEAREA in ('1','3') and p.HOSPCODE=h.hoscode and (TIMESTAMPDIFF(YEAR,p.birth,'$date2')>= 60)) as target,
 (select count(distinct hhv.CID) as num from 
 (SELECT
 comserv.HOSPCODE,
@@ -184,7 +185,7 @@ community_service as comserv
 ,person as p
 where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
 and comserv.DATE_SERV between '$date1' and '$date2' 
-and comserv.COMSERVICE like '1A4%' and (TIMESTAMPDIFF(YEAR,p.birth,@bdg_date)>= 60)
+and comserv.COMSERVICE like '1A4%' and (TIMESTAMPDIFF(YEAR,p.birth,'$date2')>= 60)
 group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as hv
 from chospital_amp h order by h.hoscode  ) as temp";
 
