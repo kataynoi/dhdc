@@ -1,15 +1,18 @@
 <?php
 /* @var $this yii\web\View */
+
 use yii\helpers\Html;
 ?>
-<?php
 
-$model = frontend\models\SysEventLog::find()->orderBy('id DESC')->one();
-$last_process = $model->end_at;
 
-?>
-
-<h3>หมวดรายงาน-ภูมิคุ้มกันโรค (ประมวลผลเมื่อ - <?=$last_process?>)</h3>
+<h3>หมวดรายงาน-ภูมิคุ้มกันโรค</h3>
+<div class="alert alert-warning">
+    <?php
+    $model = frontend\models\SysEventLog::find()->orderBy('id DESC')->one();
+    $last_process = date_format(date_create($model->end_at), 'Y-m-d H:i:s');
+    ?>
+    ประมวลผล <?= $last_process ?>
+</div>
 
 <p>
     <?php
