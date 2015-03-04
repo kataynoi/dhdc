@@ -42,7 +42,7 @@ $this->registerJsFile('./js/chart_dial.js');
             
             $this->registerJs("
                         var obj_div=$('#ch1');
-                        gen_dial(obj_div,$a);
+                        gen_dial(obj_div,90,$a);
                     ");
             ?>
             <h4>ประชาชนอายุ 35 ปีขึ้นไปได้รับการคัดกรอง<br>เบาหวาน-ความดันโลหิต</h4>
@@ -65,7 +65,7 @@ $this->registerJsFile('./js/chart_dial.js');
             
             $this->registerJs("
                         var obj_div=$('#ch2');
-                        gen_dial(obj_div,$a);
+                        gen_dial(obj_div,90,$a);
                     ");
             ?>
             <h4>ผู้ป่วยเบาหวานได้รับการตรวจ HbA1c <br>และควบคุมน้ำตาลได้ดี</h4>
@@ -89,7 +89,7 @@ $this->registerJsFile('./js/chart_dial.js');
             
             $this->registerJs("
                         var obj_div=$('#ch3');
-                        gen_dial(obj_div,$a);
+                        gen_dial(obj_div,85,$a);
                     ");
             ?>
             <h4>ผู้ป่วยความดันโลหิตสูงควบคุม<br>ความดันโลหิตได้ดี</h4>
@@ -115,7 +115,7 @@ $this->registerJsFile('./js/chart_dial.js');
             
             $this->registerJs("
                         var obj_div=$('#ch4');
-                        gen_dial(obj_div,$a);
+                        gen_dial(obj_div,90,$a);
                     ");
             ?>
             <h4>หญิงมีครรภ์ได้รับการฝากครรภ์ครบ <br>5 ครั้งตามเกณฑ์ </h4>
@@ -139,7 +139,7 @@ $this->registerJsFile('./js/chart_dial.js');
             
             $this->registerJs("
                         var obj_div=$('#ch5');
-                        gen_dial(obj_div,$a);
+                        gen_dial(obj_div,60,$a);
                     ");
             ?>
             <h4>หญิงมีครรภ์ได้รับการฝากครรภ์ครั้งแรก<br>ก่อน 12 สัปดาห์</h4>
@@ -163,7 +163,7 @@ $this->registerJsFile('./js/chart_dial.js');
              
             $this->registerJs("
                         var obj_div=$('#ch6');
-                        gen_dial(obj_div,$a);
+                        gen_dial(obj_div,79,$a);
                     ");
             ?>
             <h4><br>เด็กอายุ 5 ปีได้รับวัคซีน DTP5</h4>

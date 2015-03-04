@@ -1,4 +1,4 @@
-function gen_dial(obj, value) {
+function gen_dial(obj, base, value) {
     obj.highcharts({
         chart: {
             type: "gauge",
@@ -10,7 +10,13 @@ function gen_dial(obj, value) {
         },
         credits: {"enabled": false},
         title: {
-            text: ""
+            text: "<b>ร้อยละ </b>" +value,
+            verticalAlign: "bottom",
+            y: -80,
+            style: {
+                color: "#2653E3",
+                fontSize: "12px"
+            }
         },
         pane: {
             startAngle: -90,
@@ -35,20 +41,16 @@ function gen_dial(obj, value) {
                 rotation: "auto"
             },
             title: {
-                text: "ร้อยละ " + value
+                //text: "ร้อยละ " + value
             },
             plotBands: [{
                     from: 0,
-                    to: 60,
+                    to: base,
                     color: "#DF5353" // red 
                 }, {
-                    from: 60,
-                    to: 80,
-                    color: "#DDDF0D"// yellow
-                }, {
-                    from: 80,
+                    from: base,
                     to: 100,
-                    color: "#55BF3B" // green
+                    color: "#22F127" // green
                 }]
         },
         series: [{
@@ -56,7 +58,12 @@ function gen_dial(obj, value) {
                 data: [value],
                 tooltip: {
                     valueSuffix: " "
-                }
+                },
+                dataLabels:{
+                    
+                    enabled : false
+                },
+                
             }]// จบ content
     });// จบ chart
 }
