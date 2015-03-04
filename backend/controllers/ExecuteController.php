@@ -25,9 +25,10 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     protected function run_sys_count_all($ym) {
-
+      
         $sql = "call cal_sys_count_all($ym)";
         $this->exec_sql($sql);
+        
     }
 
     public function actionIndex() {
@@ -49,6 +50,8 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     public function actionFilecount() {
+        
+          //$this->call("start_process",NULL);
 
         $this->call("merge_newborncare", NULL);
         $sql = "truncate sys_count_all";
@@ -60,6 +63,7 @@ class ExecuteController extends \yii\web\Controller {
                 $this->run_sys_count_all($m->month);
             }
         }
+          //$this->call("end_process",NULL);
     }
 
     public function actionProcessreport() {
