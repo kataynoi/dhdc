@@ -66,10 +66,10 @@ class ExecuteController extends \yii\web\Controller {
         $running = \backend\models\SysProcessRunning::find()->one();
 
         if ($running->is_running == 'false') {
-            $running->is_running = 'true';
-            $running->update();
-            //ใส่ excel store;
-
+            //$running->is_running = 'true';
+            //$running->update();
+            //ใส่  store;
+             $this->call("start_process",NULL);
 
             $bdg = '2014-09-30';
             $model = \backend\models\Sysconfigmain::find()->one();
@@ -110,11 +110,11 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_rpt_panth_drug_value",$y-1);
             $this->call("cal_rpt_panth_drug_value",$y);
             
-            
+             $this->call("end_process",NULL);
             //
             //จบใส่ store
-            $running->is_running = 'false';
-            $running->update();
+            //$running->is_running = 'false';
+           // $running->update();
         }
     }
 
