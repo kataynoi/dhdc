@@ -163,7 +163,7 @@ group by home.HOSPCODE) as home2 on home2.HOSPCODE=h.hoscode
         if (Yii::$app->request->isPost) {
             $date1 = $_POST['date1'];
             $date2 = $_POST['date2'];
-            $selyear = $_POST['selyear'];          
+            //$selyear = $_POST['selyear']; //  ตัวนี้เกินมาครับ/อุเทน         
         }
 
 $sql = "select temp.hoscode,temp.hosname,temp.target,temp.hv,round((temp.hv*100/temp.target),2) as percent from (select h.hoscode,h.hosname,
