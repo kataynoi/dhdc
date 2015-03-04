@@ -2,7 +2,14 @@
 /* @var $this yii\web\View */
 use yii\helpers\Html;
 ?>
-<h3>หมวดรายงาน-ภูมิคุ้มกันโรค</h3>
+<?php
+
+$model = frontend\models\SysEventLog::find()->orderBy('id DESC')->one();
+$last_process = $model->end_at;
+
+?>
+
+<h3>หมวดรายงาน-ภูมิคุ้มกันโรค (ประมวลผลเมื่อ - <?=$last_process?>)</h3>
 
 <p>
     <?php
