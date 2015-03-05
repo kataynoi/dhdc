@@ -3,6 +3,13 @@
 ?>
 
 <h3>หมวดรายงาน-แพทย์แผนไทย</h3>
+<div class="alert alert-warning">
+    <?php
+    $model = frontend\models\SysEventLog::find()->orderBy('id DESC')->one();
+    $last_process = date_format(date_create($model->end_at), 'Y-m-d H:i:s');
+    ?>
+    ประมวลผล <?= $last_process ?>
+</div>
 
 <p>
     <?php
