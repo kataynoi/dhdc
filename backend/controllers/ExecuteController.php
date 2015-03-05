@@ -30,7 +30,7 @@ class ExecuteController extends \yii\web\Controller {
         $this->exec_sql($sql);
         
     }
-
+    
     public function actionIndex() {
         $sql = "show processlist;";
         $rawData = $this->query_all($sql);
