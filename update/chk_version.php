@@ -26,6 +26,11 @@
         </td>
     </tr>
 </table> 
+<div>
+    <?php
+            echo file_get_contents("http://utehn.plkhealth.go.th/dhdc/version/log.txt");
+            ?>
+</div>
 <br>
 <button id="update">
     Update
