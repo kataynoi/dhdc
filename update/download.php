@@ -1,5 +1,6 @@
 <?php
-$new_version = "dhdc_update_20150305_2";
+$filename=file_get_contents("http://utehn.plkhealth.go.th/dhdc/zip/filename.txt");
+$new_version = $filename;
 $source = "http://utehn.plkhealth.go.th/dhdc/zip/$new_version.zip";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $source);
