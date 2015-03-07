@@ -1,3 +1,15 @@
+<meta charset="UTF-8">
+<style>
+    .btn-xlarge {
+        padding: 18px 28px;
+        font-size: 22px; //change this to your desired size
+        line-height: normal;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        cursor: pointer
+    }
+</style>
 <script src="jquery.js"></script>
 <script>
     $(function () {
@@ -5,6 +17,7 @@
     });
    
 </script>
+
 <table border="1">
      <tr>
         <td>code</td>
@@ -18,7 +31,7 @@
             ?>
         </td>
     </tr>
-    <tr>
+    <tr bgcolor="yellow">
         <td>New:</td>
         <td><?php
             echo file_get_contents("http://utehn.plkhealth.go.th/dhdc/version/version.txt");
@@ -26,17 +39,19 @@
         </td>
     </tr>
 </table> 
-<div>
-    <?php
-            echo file_get_contents("http://utehn.plkhealth.go.th/dhdc/version/log.txt");
-            ?>
-</div>
-<br>
-<button id="update">
+
+<hr>
+<button id="update" class="btn-xlarge">
     Update
 </button>
 <div id="res" style="display: none">
     <img src="updating.gif">
+</div>
+<hr>
+<div>
+    <?php
+            echo file_get_contents("http://utehn.plkhealth.go.th/dhdc/version/log.txt");
+            ?>
 </div>
 <script>
     function update(){

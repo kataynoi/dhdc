@@ -51,7 +51,7 @@ $this->title = 'DHDC Backend';
                 <?php
                 $route = \Yii::$app->urlManager->createUrl('sysconfigmain/index');
                 ?>
-                <a class="btn btn-success btn-xlarge" id="btn_1" href="<?= $route ?>"> 
+                <a class="btn btn-success btn-xlarge btn-material-yellow" id="btn_1" href="<?= $route ?>"> 
                     <i class="glyphicon glyphicon-cog"></i>  ตั้งค่าอำเภอ   
                 </a>
 
@@ -80,7 +80,7 @@ $this->title = 'DHDC Backend';
                  <?php 
                  $route = Yii::$app->urlManager->createUrl('user/index'); 
                  ?>
-                <a class="btn btn-primary btn-xlarge" href="<?=$route?>"> 
+                <a class="btn btn-primary btn-xlarge btn-material-green" href="<?=$route?>"> 
                     <i class="glyphicon glyphicon-user"></i> จัดการผู้ใช้   
                 </a>
 
