@@ -1,3 +1,12 @@
+<?php
+    //check user
+if(!isset($_POST['isadmin'])){
+    exit('You have no permission.');
+}
+if($_POST['isadmin'] != md5('utehn')){
+    exit('you may be dolly.');
+}
+?>
 <meta charset="UTF-8">
 <style>
     .btn-xlarge {

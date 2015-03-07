@@ -21,7 +21,7 @@ $this->title = 'DHDC Backend';
 
     <div class="well">        
         <h1>ระบบ District HDC BACK-END</h1>
-        <div class="alert alert-warning">
+        <div class="alert alert-success">
             <div id="version_current">
                 <?php
                 $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
@@ -51,7 +51,7 @@ $this->title = 'DHDC Backend';
                 <?php
                 $route = \Yii::$app->urlManager->createUrl('sysconfigmain/index');
                 ?>
-                <a class="btn btn-success btn-xlarge btn-material-yellow" id="btn_1" href="<?= $route ?>"> 
+                <a class="btn btn-success btn-xlarge" id="btn_1" href="<?= $route ?>"> 
                     <i class="glyphicon glyphicon-cog"></i>  ตั้งค่าอำเภอ   
                 </a>
 
@@ -80,7 +80,7 @@ $this->title = 'DHDC Backend';
                  <?php 
                  $route = Yii::$app->urlManager->createUrl('user/index'); 
                  ?>
-                <a class="btn btn-primary btn-xlarge btn-material-green" href="<?=$route?>"> 
+                <a class="btn btn-primary btn-xlarge" href="<?=$route?>"> 
                     <i class="glyphicon glyphicon-user"></i> จัดการผู้ใช้   
                 </a>
 
