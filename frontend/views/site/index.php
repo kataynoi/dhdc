@@ -45,7 +45,7 @@ $this->registerJsFile('./js/chart_dial.js');
                         gen_dial(obj_div,$base,$a);
                     ");
             ?>
-            <h4>ประชาชนอายุ 35 ปีขึ้นไปได้รับการคัดกรอง<br>เบาหวาน-ความดันโลหิต TEST AUTO 11111</h4>
+            <h4>ประชาชนอายุ 35 ปีขึ้นไปได้รับการคัดกรอง<br>เบาหวาน-ความดันโลหิต </h4>
             <div id="ch1"></div>
         </div>
 
@@ -68,7 +68,7 @@ $this->registerJsFile('./js/chart_dial.js');
                         gen_dial(obj_div,$base,$a);
                     ");
             ?>
-            <h4>ผู้ป่วยเบาหวานได้รับการตรวจ HbA1c <br>และควบคุมน้ำตาลได้ดี TEST AUTO</h4>
+            <h4>ผู้ป่วยเบาหวานได้รับการตรวจ HbA1c <br>และควบคุมน้ำตาลได้ดี </h4>
             <div id="ch2"></div>
         </div>
 
