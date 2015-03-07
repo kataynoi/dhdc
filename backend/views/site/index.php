@@ -9,9 +9,9 @@ $this->registerCss(".btn-xlarge {
         padding: 18px 28px;
         font-size: 22px; //change this to your desired size
         line-height: normal;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        border-radius: 8px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
     }");
 
 $this->title = 'DHDC Backend';
@@ -20,7 +20,7 @@ $this->title = 'DHDC Backend';
 
     <div class="well">        
         <h1>ระบบ District HDC BACK-END</h1>
-        <div class="alert alert-danger">
+        <div class="alert alert-success">
             <div id="version_current">
                 <?php
                 $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
@@ -30,10 +30,10 @@ $this->title = 'DHDC Backend';
             </div>
             <font color="blue"><div id="version_new"></div></font>
             <div>
-                <button class="btn btn-danger" id="btn_chk_ver">
+                <button class="btn btn-warning" id="btn_chk_ver">
                     <i class="glyphicon glyphicon-check"></i> Version
                 </button>
-                <a class="btn btn-primary" href="ftp://utehn.plkhealth.go.th/" target="_blank">
+                <a class="btn btn-warning" href="ftp://utehn.plkhealth.go.th/" target="_blank">
                     <i class="glyphicon glyphicon-arrow-up"></i> download
                 </a>
             </div>
