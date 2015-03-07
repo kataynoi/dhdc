@@ -21,7 +21,7 @@ $this->title = 'DHDC Backend';
 
     <div class="well">        
         <h1>ระบบ District HDC BACK-END</h1>
-        <div class="alert alert-success">
+        <div class="alert alert-warning">
             <div id="version_current">
                 <?php
                 $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
