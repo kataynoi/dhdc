@@ -4,7 +4,7 @@
 
 //$js_url = Yii::getAlias('@web');
 //$this->registerJsFile($js_url."/js/bootbox.min.js");
-//
+
 
 $this->registerCss(".btn-xlarge {
         padding: 18px 28px;
