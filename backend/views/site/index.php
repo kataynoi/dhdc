@@ -5,6 +5,7 @@
 //$js_url = Yii::getAlias('@web');
 //$this->registerJsFile($js_url."/js/bootbox.min.js");
 
+
 $this->registerCss(".btn-xlarge {
         padding: 18px 28px;
         font-size: 22px; //change this to your desired size
@@ -28,13 +29,12 @@ $this->title = 'DHDC Backend';
                 ?>
                 frontend:<?= $ver[0]; ?>,backend:<?= $ver[1]; ?>,databases:<?= $ver[2]; ?>
             </div>
-            <font color="blue"><div id="version_new"></div></font>
+            <font color="black"><div id="version_new"></div></font>
             <div>
-                <button class="btn btn-warning" id="btn_chk_ver">
-                    <i class="glyphicon glyphicon-check"></i> Version
-                </button>
-                <a class="btn btn-warning" href="ftp://utehn.plkhealth.go.th/" target="_blank">
-                    <i class="glyphicon glyphicon-arrow-up"></i> download
+                
+                
+                <a class="btn btn-info" href="../../update/chk_version.php" target="_blank">
+                    <i class="glyphicon glyphicon-arrow-up"></i> update
                 </a>
             </div>
 
@@ -184,7 +184,7 @@ $route_file_count = Yii::$app->urlManager->createUrl('execute/filecount');
 
 $script1 = <<< JS
        
-  $('#btn_chk_ver').on('click', function () {
+  $(function () {
     $.ajax({
        url: "$route_chk_update",       
        success: function(data) {        

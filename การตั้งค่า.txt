@@ -33,3 +33,4 @@
 - nano dhdc/common/config/main-local.php
 - php dhdc/chmod.php
 - nano /etc/mysql/my.cnf  edit  #bind-address =127.0.0.1
+- chmod -R 777 dhdc
