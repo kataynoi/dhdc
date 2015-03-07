@@ -31,11 +31,13 @@ $this->title = 'DHDC Backend';
             </div>
             <font color="black"><div id="version_new"></div></font>
             <div>
+                <form action="../../update/chk_version.php" method="POST" target="_blank">
+                    <button class="btn btn-material-yellow">
+                        <input type="hidden" name="isadmin" value="<?=  md5('utehn')?>">
+                        <i class="glyphicon glyphicon-arrow-up"></i> update
+                    </button>
+                </form>
                 
-                
-                <a class="btn btn-info" href="../../update/chk_version.php" target="_blank">
-                    <i class="glyphicon glyphicon-arrow-up"></i> update
-                </a>
             </div>
 
         </div>
