@@ -4,9 +4,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=dhdc;port=3306',
+            'dsn' => 'mysql:host=localhost;dbname=dhdc;port=3309',
             'username' => 'root',
-            'password' => '',
+            'password' => '1234',
             'charset' => 'utf8',
             'attributes' => array(
                 PDO::MYSQL_ATTR_LOCAL_INFILE => true
