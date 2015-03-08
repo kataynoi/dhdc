@@ -42,5 +42,5 @@ $sys = Sysconfigmain::find()->one();
     $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
     $ver = explode(',', $ver);
     ?>
-    <h3>frontend version: <?= $ver[0] ?></h3>
+    
 </div>

@@ -11,10 +11,13 @@ class TestController extends \yii\web\Controller {
     }
 
     protected function exec_sql($sql) {
-        $db = \Yii::$app->db;
 
-        $affect_row = $db->createCommand($sql)->execute();
-        return $affect_row;
+        $connection = \Yii::$app->db;
+
+        $command = $connection->createCommand($sql);
+        
+        $command->execute(); //added
+      
     }
 
     protected function SplitSQL($file, $delimiter = ';') {
@@ -59,8 +62,11 @@ class TestController extends \yii\web\Controller {
 
     function actionUpdb() {
         $path = yii::getAlias('@databases');
-        $file = "$path/test.sql";
-        $this->SplitSQL($file);
+        $file = "$path/dhdc_update_20150304_1.sql";
+        //$this->SplitSQL($file);
+        $sql = file_get_contents($file);
+        //echo $sql;
+        $this->exec_sql($sql);
     }
 
 }

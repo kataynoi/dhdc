@@ -1,9 +1,9 @@
 <?php
-    //check user
-if(!isset($_POST['isadmin'])){
+//check user
+if (!isset($_POST['isadmin'])) {
     exit('You have no permission.');
 }
-if($_POST['isadmin'] != md5('utehn')){
+if ($_POST['isadmin'] != md5('utehn')) {
     exit('you may be dolly.');
 }
 ?>
@@ -24,25 +24,23 @@ if($_POST['isadmin'] != md5('utehn')){
     $(function () {
         //alert();
     });
-   
+
 </script>
 
 <table border="1">
-     <tr>
-        <td>code</td>
-        <td>frontend,backend,database
-        </td>
-    </tr>
+
     <tr>
-        <td>Current:</td>
-        <td><?php
+        <td>Your System</td>
+        <td>
+            <?php
             echo file_get_contents("../version/version.txt");
             ?>
         </td>
     </tr>
     <tr bgcolor="yellow">
-        <td>New:</td>
-        <td><?php
+        <td>New Version</td>
+        <td>
+            <?php
             echo file_get_contents("http://utehn.plkhealth.go.th/dhdc/version/version.txt");
             ?>
         </td>
@@ -53,27 +51,32 @@ if($_POST['isadmin'] != md5('utehn')){
 <button id="update" class="btn-xlarge">
     Update
 </button>
+<hr>
+File Name:
+<?php
+echo file_get_contents("http://utehn.plkhealth.go.th/dhdc/version/filename.txt");
+?>.zip
 <div id="res" style="display: none">
     <img src="updating.gif">
 </div>
 <hr>
 <div>
     <?php
-            echo file_get_contents("http://utehn.plkhealth.go.th/dhdc/version/log.txt");
-            ?>
+    echo file_get_contents("http://utehn.plkhealth.go.th/dhdc/version/log.txt");
+    ?>
 </div>
 <script>
-    function update(){
-         $.ajax({
+    function update() {
+        $.ajax({
             url: "update.php",
             success: function () {
-                 $('#res').toggle();
+                $('#res').toggle();
                 alert(' สำเร็จ');
             }
         });
     }
-     $('#update').on('click', function () {
-         $('#res').toggle();
+    $('#update').on('click', function () {
+        $('#res').toggle();
         $.ajax({
             url: "download.php",
             success: function (data) {

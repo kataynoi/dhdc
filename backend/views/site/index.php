@@ -25,24 +25,27 @@ $this->title = 'DHDC Backend';
             <div id="version_current">
                 <?php
                 $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
-                $ver = explode(',', $ver);
+                
                 ?>
-                frontend:<?= $ver[0]; ?>,backend:<?= $ver[1]; ?>,databases:<?= $ver[2]; ?>
+                [Your System]=><?=$ver?>
             </div>
-            <font color="black"><div id="version_new"></div></font>
+            <font color="yellow"><div id="version_new"></div></font>
             <div class="row">
                 <div class="col-sm-3">
                     <form action="../../update/chk_version.php" method="POST" target="_blank">
                         <input type="hidden" name="isadmin" value="<?= md5('utehn') ?>">
-                        <button class="btn btn-material-yellow">
-                            <i class="glyphicon glyphicon-arrow-up"></i> update web
+                        <button class="btn btn-material-blue-300">
+                            1) <i class="glyphicon glyphicon-arrow-up"></i> update web
                         </button>
                     </form>
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-material-red-300">
-                        <i class="glyphicon glyphicon-arrow-up"></i> update db
-                    </button>
+                    <?php
+                    $path = Yii::getAlias('@databases');
+                    ?>
+                    <a class="btn btn-material-yellow" href="../../databases/" target="_blank">
+                        2) <i class="glyphicon glyphicon-arrow-up"></i> update db
+                    </a>
                 </div>
             </div>
 
@@ -195,7 +198,8 @@ $script1 = <<< JS
   $(function () {
     $.ajax({
        url: "$route_chk_update",       
-       success: function(data) {        
+       success: function(data) { 
+           data = '[New Version]=>'+data;
             $('#version_new').html(data);
        }
     });
