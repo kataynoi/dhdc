@@ -10,7 +10,8 @@ use frontend\widgets\Alert;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+//AppAsset::register($this);
+\backend\assets\MaterialAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
