@@ -10,8 +10,8 @@ use frontend\widgets\Alert;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-//AppAsset::register($this);
-\backend\assets\MaterialAsset::register($this);
+AppAsset::register($this);
+//\backend\assets\MaterialAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ use frontend\widgets\Alert;
                 'brandLabel' => '<span class="glyphicon glyphicon-th-large"></span>',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-custom navbar-fixed-top',
+                    'class' => 'navbar-fixed-top navbar-custom',
                 ],
             ]);
 
