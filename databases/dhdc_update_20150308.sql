@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2015-03-08 00:51:07
+Date: 2015-03-08 13:50:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -18,7 +18,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for newborn_care
 -- ----------------------------
-DROP TABLE IF EXISTS 'newborn_care';
+DROP TABLE IF EXISTS `newborn_care`;
 CREATE TABLE `newborn_care` (
   `HOSPCODE` varchar(5) NOT NULL,
   `PID` varchar(15) NOT NULL,
