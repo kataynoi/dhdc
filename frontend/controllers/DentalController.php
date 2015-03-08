@@ -28,7 +28,7 @@ anc as a,
 person as p 
 where a.PID = p.PID 
 and p.HOSPCODE = a.HOSPCODE
-and p.NATION='099' and p.DISCHARGE='9' and p.TYPEAREA in ('1','3') 
+and p.NATION='099' and p.DISCHARGE='9' and a.GA between 4 and 45 and p.TYPEAREA in ('1','3') 
 and a.DATE_SERV between '$date1' and '$date2'  
 and p.HOSPCODE=h.hoscode) as target,
 (select
@@ -48,7 +48,7 @@ and d.SEQ = pd.SEQ
 and d.PID=pd.PID 
 and d.HOSPCODE = pd.HOSPCODE 
 and a.DATE_SERV between '$date1' and '$date2' 
-and p.NATION='099' and p.DISCHARGE='9' and p.TYPEAREA in ('1','3')  
+and p.NATION='099' and p.DISCHARGE='9' and a.GA between 4 and 45 and p.TYPEAREA in ('1','3')  
 and p.HOSPCODE=h.hoscode) as output
 from
 chospital_amp AS h
