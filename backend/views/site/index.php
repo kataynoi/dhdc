@@ -30,14 +30,20 @@ $this->title = 'DHDC Backend';
                 frontend:<?= $ver[0]; ?>,backend:<?= $ver[1]; ?>,databases:<?= $ver[2]; ?>
             </div>
             <font color="black"><div id="version_new"></div></font>
-            <div>
-                <form action="../../update/chk_version.php" method="POST" target="_blank">
-                    <button class="btn btn-material-yellow">
-                        <input type="hidden" name="isadmin" value="<?=  md5('utehn')?>">
-                        <i class="glyphicon glyphicon-arrow-up"></i> update
+            <div class="row">
+                <div class="col-sm-3">
+                    <form action="../../update/chk_version.php" method="POST" target="_blank">
+                        <input type="hidden" name="isadmin" value="<?= md5('utehn') ?>">
+                        <button class="btn btn-material-yellow">
+                            <i class="glyphicon glyphicon-arrow-up"></i> update web
+                        </button>
+                    </form>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-material-red-300">
+                        <i class="glyphicon glyphicon-arrow-up"></i> update db
                     </button>
-                </form>
-                
+                </div>
             </div>
 
         </div>
@@ -58,14 +64,14 @@ $this->title = 'DHDC Backend';
                 </a>
 
             </div>
-            
-             <div class="col-sm-4">
-                
+
+            <div class="col-sm-4">
+
                 <a class="btn btn-info btn-xlarge" id="btn_count_all" href="#"> 
                     <i class="glyphicon glyphicon-circle-arrow-up"></i> นับจำนวนแฟ้ม
                 </a>
             </div>
-           
+
             <div class="col-sm-4">
 
                 <button class="btn btn-danger btn-xlarge" id="btn_process_report"> 
@@ -77,24 +83,24 @@ $this->title = 'DHDC Backend';
         </div>
         <br>
         <div class="row">
-            
-             <div class="col-sm-4">
-                 <?php 
-                 $route = Yii::$app->urlManager->createUrl('user/index'); 
-                 ?>
-                <a class="btn btn-primary btn-xlarge" href="<?=$route?>"> 
+
+            <div class="col-sm-4">
+                <?php
+                $route = Yii::$app->urlManager->createUrl('user/index');
+                ?>
+                <a class="btn btn-primary btn-xlarge" href="<?= $route ?>"> 
                     <i class="glyphicon glyphicon-user"></i> จัดการผู้ใช้   
                 </a>
 
             </div>
 
-           
+
 
             <div class="col-sm-4">
-                <?php 
-                 $route = Yii::$app->urlManager->createUrl('execute/index'); 
-                 ?>
-                <a class="btn btn-warning btn-xlarge" href="<?=$route?>"> 
+                <?php
+                $route = Yii::$app->urlManager->createUrl('execute/index');
+                ?>
+                <a class="btn btn-warning btn-xlarge" href="<?= $route ?>"> 
                     <i class="glyphicon glyphicon-play"></i> MySQL Load
                 </a>
             </div>
@@ -143,11 +149,11 @@ $this->title = 'DHDC Backend';
                     </a>
                 <?php endif; ?>
             </div>
-            
-               <div class="col-sm-4">
-                 <?php 
-                 $route = Yii::$app->urlManager->createUrl('customreport/index'); 
-                 ?>
+
+            <div class="col-sm-4">
+                <?php
+                $route = Yii::$app->urlManager->createUrl('customreport/index');
+                ?>
                 <a class="btn btn-primary btn-xlarge" href="#"> 
                     <i class="glyphicon glyphicon-list-alt"></i> Custom Report  
                 </a>
@@ -155,24 +161,24 @@ $this->title = 'DHDC Backend';
             </div>
 
         </div>
-          <br>
-          <div class="row">
-              
-              <div class="col-sm-4">
-                 <?php 
-                 $route = Yii::$app->urlManager->createUrl('person/index'); 
-                 ?>
-                  <a class="btn btn-primary btn-xlarge" href="<?=$route?>"> 
+        <br>
+        <div class="row">
+
+            <div class="col-sm-4">
+                <?php
+                $route = Yii::$app->urlManager->createUrl('person/index');
+                ?>
+                <a class="btn btn-primary btn-xlarge" href="<?= $route ?>"> 
                     <i class="glyphicon glyphicon-list-alt"></i> ประชากร  
                 </a>
 
             </div>
-              
-          </div>
+
+        </div>
 
 
     </div>
-  
+
 
 </div>
 
@@ -222,5 +228,4 @@ $('#btn_count_all').on('click', function(e) {
 JS;
 
 $this->registerJs($script1);
-
 ?>
