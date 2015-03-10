@@ -29,7 +29,7 @@ $this->title = 'DHDC Backend';
                 ?>
                 [Your System]=><?=$ver?>
             </div>
-            <font color="yellow"><div id="version_new"></div></font>
+            <font color="yellow"><div id="version_new">loading...</div></font>
             <div class="row">
                 <div class="col-sm-3">
                     <form action="../../update/chk_version.php" method="POST" target="_blank">
