@@ -87,6 +87,10 @@ echo \kartik\grid\GridView::widget([
 
 <?php
 $script = <<< JS
+$(function(){
+    $("label[title='Show all data']").hide();
+});        
+
 $('#btn_sql').on('click', function(e) {
     
    $('#sql').toggle();
