@@ -23,6 +23,12 @@ use yii\helpers\Html;
     ?>
 </p>
 
+<p>
+    <?php
+    echo Html::a('2) ผลงานการฉีดวัคซีนรณรงค์ dTC', ['report2']);
+    ?>
+</p>
+
 
 <div class="footerrow" style="padding-top: 60px">
     <div class="alert alert-success">
