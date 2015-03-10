@@ -29,7 +29,7 @@ $this->title = 'DHDC Backend';
                 ?>
                 [Your System]=><?=$ver?>
             </div>
-            <font color="yellow"><div id="version_new">loading...</div></font>
+            <font color="yellow"><div id="version_new">Checking new version ...</div></font>
             <div class="row">
                 <div class="col-sm-3">
                     <form action="../../update/chk_version.php" method="POST" target="_blank">
@@ -194,15 +194,21 @@ $route_file_count = Yii::$app->urlManager->createUrl('execute/filecount');
 
 
 $script1 = <<< JS
-       
-  $(function () {
-    $.ajax({
+        
+ setTimeout(function() {
+        
+        $.ajax({
        url: "$route_chk_update",       
        success: function(data) { 
            data = '[New Version]=>'+data;
             $('#version_new').html(data);
        }
     });
+      
+}, 5000);
+       
+  $(function () {
+    
  });
         
  $('#btn_process_report').on('click', function () {
