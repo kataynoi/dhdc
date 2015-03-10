@@ -68,5 +68,12 @@ class TestController extends \yii\web\Controller {
         //echo $sql;
         $this->exec_sql($sql);
     }
+    function actionTest2(){
+        
+        $data = array('1'=>1,'2'=>2);
+        //$data=['2'=>1];
+        print_r($data);
+        
+    }
 
 }
