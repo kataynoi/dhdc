@@ -25,6 +25,37 @@ echo \kartik\grid\GridView::widget([
         'type' => \kartik\grid\GridView::TYPE_SUCCESS,
         'after' => 'โดย ' . $dev
     ],
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
+        [
+            'attribute' => 'hospcode',
+            'header' => 'รหัส'
+        ],
+        [
+            'attribute' => 'hosname',
+            'label' => 'สถานบริการ'
+        ],
+        [
+            'attribute' => 'dtc_all',
+            'header' => 'ผลงานฉีด dTC<br>ทั้งหมด (คน)'
+        ],
+        [
+            'attribute' => 'dtc_inhos',
+            'header' => 'ผลงานฉีด dTC<br>ในสถานบริการ (คน)'
+        ],
+        [
+            'attribute' => 'dtc_other',
+            'header' => 'ผลงานฉีด dTC<br>นอกสถานบริการ (คน)'
+        ],
+        [
+            'attribute' => 'dtc_inregion',
+            'header' => 'ผลงานฉีด dTC<br>ประชากรในเขต (คน)'
+        ],
+        [
+            'attribute' => 'dtc_outregion',
+            'header' => 'ผลงานฉีด dTC<br>ประชากรนอกเขต (คน)'
+        ],
+    ]
 ]);
 ?>
 

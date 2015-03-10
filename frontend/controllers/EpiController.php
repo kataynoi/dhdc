@@ -64,12 +64,12 @@ order by distcode,hoscode asc;";
     
     public function actionReport2() {//
         
-        $sql = "SELECT epi.HOSPCODE,h.hosname,
-count(distinct case when epi.VACCINETYPE = '901' then epi.pid else null end) as 'ผลงาน(dTc)ทังหมด',
-count(distinct case when epi.hospcode=epi.VACCINEPLACE and epi.VACCINETYPE = '901' then epi.pid else null end) as 'ผลงาน(dTc)ของหน่วยบริการ',
-count(distinct case when epi.hospcode!=epi.VACCINEPLACE and epi.VACCINETYPE = '901' then epi.pid else null end) as 'ผลงาน(dTc)รับจากที่อื่น',
-count(distinct case when epi.VACCINETYPE = '901' and p.typearea in ('1','3') then epi.pid else null end) as 'ผลงานในเขต(dTc)',
-count(distinct case when epi.VACCINETYPE = '901' and p.typearea not in ('1','3') then epi.pid else null end) as 'ผลงานนอกเขต(dTc)'
+        $sql = "SELECT epi.HOSPCODE as hospcode,h.hosname,
+count(distinct case when epi.VACCINETYPE = '901' then epi.pid else null end) as 'dtc_all',
+count(distinct case when epi.hospcode=epi.VACCINEPLACE and epi.VACCINETYPE = '901' then epi.pid else null end) as 'dtc_inhos',
+count(distinct case when epi.hospcode!=epi.VACCINEPLACE and epi.VACCINETYPE = '901' then epi.pid else null end) as 'dtc_other',
+count(distinct case when epi.VACCINETYPE = '901' and p.typearea in ('1','3') then epi.pid else null end) as 'dtc_inregion',
+count(distinct case when epi.VACCINETYPE = '901' and p.typearea not in ('1','3') then epi.pid else null end) as 'dtc_outregion'
 from person p
 INNER JOIN epi ON epi.HOSPCODE=p.HOSPCODE and epi.pid=p.pid 
 INNER JOIN chospital_amp h ON h.hoscode=p.HOSPCODE
@@ -94,7 +94,7 @@ GROUP BY epi.HOSPCODE;";
                     'sql' => $sql,
                     
         ]);
-    }
+    }// จบ report 2
     
     
 
