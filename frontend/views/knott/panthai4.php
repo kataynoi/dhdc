@@ -65,67 +65,67 @@ $this->params['breadcrumbs'][] = 'รายงานสรุปสัดส่�
             ],
             [
                 'attribute' => 'op_visit_pt_q1',
-                'header' => 'จำนวน OP Q1(คน)'
+                'header' => 'จำนวน OP<br>Q1<br>(คน)'
             ],
             [
                 'attribute' => 'op_visit_q1',
-                'header' => 'จำนวน OP Q1(ครั้ง)'
+                'header' => 'จำนวน OP<br>Q1<br>(ครั้ง)'
             ],
             [
                 'attribute' => 'tm_visit_pt_q1',
-                'header' => 'จำนวน tm Q1(คน)'
+                'header' => 'จำนวน tm <br>Q1<br>(คน)'
             ],
             [
                 'attribute' => 'tm_visit_q1',
-                'header' => 'จำนวน tm Q1(ครั้ง)'
+                'header' => 'จำนวน tm <br>Q1<br>(ครั้ง)'
             ],
             [
                 'attribute' => 'op_visit_pt_q2',
-                'header' => 'จำนวน OP Q2(คน)'
+                'header' => 'จำนวน OP <br>Q2<br>(คน)'
             ],
             [
                 'attribute' => 'op_visit_q2',
-                'header' => 'จำนวน OP Q2(ครั้ง)'
+                'header' => 'จำนวน OP <br>Q2<br>(ครั้ง)'
             ],
             [
                 'attribute' => 'tm_visit_pt_q2',
-                'header' => 'จำนวน tm Q2(คน)'
+                'header' => 'จำนวน tm <br>Q2<br>(คน)'
             ],
             [
                 'attribute' => 'tm_visit_q2',
-                'header' => 'จำนวน tm Q2(ครั้ง)'
+                'header' => 'จำนวน tm <br>Q2<br>(ครั้ง)'
             ],
             [
                 'attribute' => 'op_visit_pt_q3',
-                'header' => 'จำนวน OP Q3(คน)'
+                'header' => 'จำนวน OP <br>Q3<br>(คน)'
             ],
             [
                 'attribute' => 'op_visit_q3',
-                'header' => 'จำนวน OP Q3(ครั้ง)'
+                'header' => 'จำนวน OP <br>Q3<br>(ครั้ง)'
             ],
             [
                 'attribute' => 'tm_visit_pt_q3',
-                'header' => 'จำนวน tm Q3(คน)'
+                'header' => 'จำนวน tm <br>Q3<br>(คน)'
             ],
             [
                 'attribute' => 'tm_visit_q3',
-                'header' => 'จำนวน tm Q3(ครั้ง)'
+                'header' => 'จำนวน tm <br>Q3<br>(ครั้ง)'
             ],
             [
                 'attribute' => 'op_visit_pt_q4',
-                'header' => 'จำนวน OP Q4(คน)'
+                'header' => 'จำนวน OP <br>Q4<br>(คน)'
             ],
             [
                 'attribute' => 'op_visit_q4',
-                'header' => 'จำนวน OP Q4(ครั้ง)'
+                'header' => 'จำนวน OP <br>Q4<br>ครั้ง)'
             ],
             [
                 'attribute' => 'tm_visit_pt_q4',
-                'header' => 'จำนวน tm Q4(คน)'
+                'header' => 'จำนวน tm <br>Q4<br>(คน)'
             ],
             [
                 'attribute' => 'tm_visit_q4',
-                'header' => 'จำนวน tm Q4(ครั้ง)'
+                'header' => 'จำนวน tm <br>Q4<br>(ครั้ง)'
             ],
             ],
             
