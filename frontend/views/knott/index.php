@@ -8,7 +8,7 @@
     $model = frontend\models\SysEventLog::find()->orderBy('id DESC')->one();
     $last_process = '';
     if ($model->end_at != 'wait')
-    $last_process = date_format(date_create($model->end_at), 'Y-m-d H:i:s');
+        $last_process = date_format(date_create($model->end_at), 'Y-m-d H:i:s');
     ?>
     ประมวลผล <?= $last_process ?>
 </div>
@@ -34,6 +34,12 @@
 <p>
     <?php
     echo \yii\helpers\Html::a('4) รายงานสรุปสัดส่วนการให้บริการแพทย์แผนไทย', ['knott/panthai4']);
+    ?>
+</p>
+
+<p>
+    <?php
+    echo \yii\helpers\Html::a('5) รายงานอันดับการจ่ายยาสมุนไพร', ['knott/panthai5']);
     ?>
 </p>
 

@@ -1,7 +1,9 @@
 <?php
 
 namespace frontend\controllers;
+
 use yii;
+
 class KnottController extends \yii\web\Controller {
 
     public $enableCsrfValidation = false;
@@ -13,13 +15,13 @@ class KnottController extends \yii\web\Controller {
     public function actionPanthai1() {
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
-        $hospcode='';
+        $hospcode = '';
         if (Yii::$app->request->isPost) {
             $date1 = $_POST['date1'];
             $date2 = $_POST['date2'];
-            $hospcode=$_POST['hospcode'];
+            $hospcode = $_POST['hospcode'];
         }
-        
+
         $sql = "select i.diseasethai as diag,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
 from diagnosis_opd d,cdisease i
 where d.DIAGCODE=i.diagcode and d.DATE_SERV between '$date1' and '$date2' 
@@ -27,8 +29,8 @@ and d.DIAGCODE LIKE 'u%'
 group by d.DIAGCODE
 order by visit DESC
 limit 10";
-        
-        if($hospcode !=''){
+
+        if ($hospcode != '') {
             $sql = "select i.diseasethai as diag,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
 from diagnosis_opd d,cdisease i
 where d.DIAGCODE=i.diagcode and d.DATE_SERV between '$date1' and '$date2' 
@@ -37,8 +39,8 @@ group by d.DIAGCODE
 order by visit DESC
 limit 10";
         }
-        
-        
+
+
 
 
         try {
@@ -54,30 +56,30 @@ limit 10";
         return $this->render('panthai1', [
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
-                    'date1'=>$date1,
-                    'date2'=>$date2,
-                    'hospcode'=>$hospcode
+                    'date1' => $date1,
+                    'date2' => $date2,
+                    'hospcode' => $hospcode
         ]);
     }
 
     public function actionPanthai2() {
-       $date1 = "2014-10-01";
+        $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
-        $hospcode='';
+        $hospcode = '';
         if (Yii::$app->request->isPost) {
             $date1 = $_POST['date1'];
             $date2 = $_POST['date2'];
-            $hospcode=$_POST['hospcode'];
+            $hospcode = $_POST['hospcode'];
         }
-        
+
         $sql = "select d.PROCEDCODE,i.desc_r as oper,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
 from procedure_opd d,cicd9ttm_planthai i
 where d.PROCEDCODE=i.`code` and d.DATE_SERV between '$date1' and '$date2'
 group by d.PROCEDCODE
 order by visit DESC
 limit 10";
-        
-        if($hospcode !=''){
+
+        if ($hospcode != '') {
             $sql = "select d.PROCEDCODE,i.desc_r as oper,count(distinct d.pid) as person,count(DISTINCT d.seq) as visit
 from procedure_opd d,cicd9ttm_planthai i
 where d.PROCEDCODE=i.`code` and d.DATE_SERV between '$date1' and '$date2'
@@ -86,8 +88,8 @@ group by d.PROCEDCODE
 order by visit DESC
 limit 10";
         }
-        
-        
+
+
 
 
         try {
@@ -103,23 +105,21 @@ limit 10";
         return $this->render('panthai2', [
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
-                    'date1'=>$date1,
-                    'date2'=>$date2,
-                    'hospcode'=>$hospcode
+                    'date1' => $date1,
+                    'date2' => $date2,
+                    'hospcode' => $hospcode
         ]);
     }
 
-    
-
     public function actionPanthai3() {
-        
+
         $selyear = date('Y');
-        
-         if (!empty($_POST['selyear'])) {
-             $selyear = $_POST['selyear'];
-         }
-            
-         $sql = "select c.hoscode,c.hosname,
+
+        if (!empty($_POST['selyear'])) {
+            $selyear = $_POST['selyear'];
+        }
+
+        $sql = "select c.hoscode,c.hosname,
 max(if(r.month=10,r.price_drug,null)) as m10_price_drug, max(if(r.month=10,r.price_planthai_drug,null)) as m10_panth_drug,
 max(if(r.month=11,r.price_drug,null)) as m11_price_drug, max(if(r.month=11,r.price_planthai_drug,null)) as m11_panth_drug,
 max(if(r.month=12,r.price_drug,null)) as m12_price_drug, max(if(r.month=12,r.price_planthai_drug,null)) as m12_panth_drug,
@@ -135,14 +135,13 @@ max(if(r.month=09,r.price_drug,null)) as m09_price_drug, max(if(r.month=09,r.pri
 from chospital_amp c,rpt_panth_drug_value r
 where c.hoscode=r.hoscode and r.year_rep=$selyear
 group by c.hoscode";
-        
-       
+
+
 
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-        } 
-            catch (\yii\db\Exception $e) {
+        } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
 
@@ -151,9 +150,9 @@ group by c.hoscode";
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
-        
-        
-        $sql ="SELECT SQL_BIG_RESULT
+
+
+        $sql = "SELECT SQL_BIG_RESULT
 e.HOSPCODE as hoscode,
 $selyear year_rep,
 MONTH(e.date_serv) as month,
@@ -168,20 +167,20 @@ GROUP BY e.HOSPCODE, LEFT(DATE(e.DATE_SERV),7)";
         return $this->render('panthai3', [
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
-                    'selyear'=>  $selyear
+                    'selyear' => $selyear
         ]);
     }
-    
-      public function actionPanthai4() {
-          
-          
+
+    public function actionPanthai4() {
+
+
         $selyear = date('Y');
-        
-         if (!empty($_POST['selyear'])) {
-             $selyear = $_POST['selyear'];
-         }
-        
-              $sql = "select
+
+        if (!empty($_POST['selyear'])) {
+            $selyear = $_POST['selyear'];
+        }
+
+        $sql = "select
 c.hoscode, 
 c.hosname,
 max(if(r.quarterly=1,r.op_service_pt,null)) as op_visit_pt_q1,
@@ -203,13 +202,12 @@ max(if(r.quarterly=4,r.tm_service,null)) as tm_visit_q4
 from chospital_amp c,rpt_panth_visit_ratio r
 where c.hoscode=r.pcucode and  r.year_rep=$selyear 
 group by c.hoscode";
-        
-       
+
+
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-        } 
-            catch (\yii\db\Exception $e) {
+        } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
 
@@ -218,14 +216,12 @@ group by c.hoscode";
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
-        
-        $sql ="SELECT 
+
+        $sql = "SELECT 
 $selyear rep_year,
 e.code_rep quarterly,
 o.hoscode pcucode,
 o.hosname,
-
-
 IFNULL(e.OP_SERVICE_PT,0) op_service_pt,
 IFNULL(e.OP_SERVICE,0) op_service,
 IFNULL(t.TM_SERVICE_PT,0) tm_service_pt,
@@ -293,11 +289,127 @@ WHERE e.HOSPCODE IS NOT NULL";
 
         return $this->render('panthai4', [
                     'dataProvider' => $dataProvider,
-                    'sql'=>$sql,
+                    'sql' => $sql,
                     'selyear' => $selyear
         ]);
     }
 
+// จบ action panthai4
+
+    public function actionPanthai5() {
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        $hospcode = '';
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+            $hospcode = $_POST['hospcode'];
+        }
+
+        $sql = "SELECT 
+e.didstd drug_did,
+IFNULL(CONCAT(e.drug_name,', ',e.drug_type),e.didstd) drug_name,
+IFNULL(e.all_visit,0) all_visit,
+IFNULL(e.uc_visit,0) uc_visit
+FROM chospital_amp o 
+LEFT JOIN 
+(
+SELECT 
+e.HOSPCODE,
+e.DIDSTD didstd,
+e.drug_name, 
+e.drug_type,
+@rep_year year_rep, 
+COUNT(DISTINCT e.SEQ) as all_visit, 
+COUNT(DISTINCT (IF(s.INSTYPE='0100',e.SEQ,NULL))) as uc_visit 
+FROM 
+(
+SELECT
+e.HOSPCODE,
+e.PID,
+e.SEQ,
+e.DATE_SERV,
+e.DIDSTD,
+d.didstd PASS,
+d.drug_name,
+d.drug_type 
+FROM 
+drug_opd e 
+LEFT JOIN cdrug_planthai d ON d.didstd=e.DIDSTD 
+WHERE 
+DATE(e.DATE_SERV) BETWEEN '$date1' AND '$date2' 
+AND LEFT(e.DIDSTD,2) IN ('41','42') 
+) e
+LEFT JOIN service s ON e.HOSPCODE = s.HOSPCODE AND e.PID = s.PID AND e.SEQ = s.SEQ 
+GROUP BY  e.DIDSTD ) e ON e.HOSPCODE = o.hoscode 
+WHERE  e.didstd IS NOT NULL 
+order by all_visit desc";
+
+        if ($hospcode != '') {
+            $sql = "SELECT 
+o.hoscode pcucode,
+e.didstd drug_did,
+IFNULL(CONCAT(e.drug_name,', ',e.drug_type),e.didstd) drug_name,
+IFNULL(e.all_visit,0) all_visit,
+IFNULL(e.uc_visit,0) uc_visit
+FROM chospital_amp o 
+LEFT JOIN 
+(
+SELECT  
+e.HOSPCODE, 
+e.DIDSTD didstd,
+e.drug_name, 
+e.drug_type,
+@rep_year year_rep, 
+COUNT(DISTINCT e.SEQ) as all_visit, 
+COUNT(DISTINCT (IF(s.INSTYPE='0100',e.SEQ,NULL))) as uc_visit 
+FROM 
+(
+SELECT
+e.HOSPCODE,
+e.PID,
+e.SEQ,
+e.DATE_SERV,
+e.DIDSTD,
+d.didstd PASS,
+d.drug_name,
+d.drug_type 
+FROM 
+drug_opd e 
+LEFT JOIN cdrug_planthai d ON d.didstd=e.DIDSTD 
+WHERE 
+DATE(e.DATE_SERV) BETWEEN '$date1' AND '$date2' 
+AND LEFT(e.DIDSTD,2) IN ('41','42') 
+) e
+LEFT JOIN service s ON e.HOSPCODE = s.HOSPCODE AND e.PID = s.PID AND e.SEQ = s.SEQ 
+GROUP BY e.HOSPCODE, e.DIDSTD ) e ON e.HOSPCODE = o.hoscode 
+WHERE  e.didstd IS NOT NULL and o.hoscode=$hospcode 
+order by o.hoscode,all_visit desc";
+        }
+
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+        return $this->render('panthai5', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2,
+                    'hospcode' => $hospcode
+        ]);
+    }
+
+// จบ action 5
 }
 
 //จบ controller

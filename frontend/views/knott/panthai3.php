@@ -45,23 +45,23 @@ $this->params['breadcrumbs'][] = 'มูลค่าการจ่ายยา�
         echo yii\grid\GridView::widget([
         //echo \kartik\grid\GridView::widget([
             'dataProvider' => $dataProvider,
-            /*'responsive' => TRUE,
+            /*'responsive' => true,
             'hover' => true,
              'floatHeader' => true,
               'panel' => [
               'before' => '',
               'type' => \kartik\grid\GridView::TYPE_SUCCESS,
               'after' => 'โดย ' . $dev
-              ], */ 
+              ],*/ 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'hoscode',
-                'header' => 'รหัสสถานบริการ'
+                'header' => 'รหัส'
             ],
             [
                 'attribute' => 'hosname',
-                'header' => 'สถานบริการ'
+                'label' => 'สถานบริการ'
             ],
             [
                 'attribute' => 'm10_price_drug',
