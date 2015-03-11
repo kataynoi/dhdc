@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = 'รายงานสรุปสัดส่�
             ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'hoscode',
-                'header' => 'รหัสสถานบริการ'
+                'header' => 'รหัส'
             ],
             [
                 'attribute' => 'hosname',
